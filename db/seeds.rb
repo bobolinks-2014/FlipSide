@@ -32,3 +32,4 @@ pair1 = Pair.create({
 	article2: yay_russia,
 	difference_score: 0.95
 	})
+
