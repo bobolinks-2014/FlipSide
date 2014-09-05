@@ -3,9 +3,9 @@ class CreateArticles < ActiveRecord::Migration
     create_table :articles do |t|
       t.string :title
       t.string :source
+      t.string :topic
       t.string :url
       t.text :slug
-
       t.timestamps
     end
   end
