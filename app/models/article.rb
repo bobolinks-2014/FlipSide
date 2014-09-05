@@ -4,6 +4,7 @@ class Article < ActiveRecord::Base
   has_many :tags, :through => :article_tags
   belongs_to :category
 
+
   def make_tags(keywords, number)
     keywords[0...number].each do |keyword|
       kw_name = keyword["text"]
