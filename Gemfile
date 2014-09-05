@@ -42,3 +42,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 #Add React framework to project
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+
+# Add Foundation CSS framework
+gem 'foundation-rails'
+
