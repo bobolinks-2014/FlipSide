@@ -7,14 +7,9 @@ require 'rest_client'
 def add_categories(collection)
 	category = ""
 	collection["results"]["collection1"].each do |article|
-		unless article["category"] == ""
-			category = article["category"]
-			p article["category"]
-		else
-			article["category"] = category
-		end
+		article["category"] == "" ? article["category"] = category : category = article["category"]
 	end
-endg
+end
 returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
 json_obj = JSON.parse(returnVal)
 add_categories(json_obj)
