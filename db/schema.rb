@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140905033210) do
+ActiveRecord::Schema.define(version: 20140905154515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20140905033210) do
   create_table "article_tags", force: true do |t|
     t.integer  "article_id"
     t.integer  "tag_id"
+    t.decimal  "sentiment_score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -26,9 +27,24 @@ ActiveRecord::Schema.define(version: 20140905033210) do
   create_table "articles", force: true do |t|
     t.string   "title"
     t.string   "source"
-    t.string   "topic"
     t.string   "url"
     t.text     "slug"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pairs", force: true do |t|
+    t.integer  "category_id"
+    t.integer  "article1_id"
+    t.integer  "article2_id"
+    t.decimal  "difference_score"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,7 +60,6 @@ ActiveRecord::Schema.define(version: 20140905033210) do
 
   create_table "tags", force: true do |t|
     t.string   "name"
-    t.string   "sentiment"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
