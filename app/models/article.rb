@@ -1,4 +1,3 @@
-require 'rest_client'
 class Article < ActiveRecord::Base
 	has_many :ratings
 	has_many :article_tags
