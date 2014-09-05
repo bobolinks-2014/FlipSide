@@ -91,6 +91,35 @@ end
 puts ''
 puts ''
 
+# puts '############################################'
+# puts '#   Targeted Sentiment Analysis Example    #'
+# puts '############################################'
+# puts ''
+# puts ''
+
+# puts 'Processing text: ' + demo_text
+# puts ''
+
+# response = alchemyapi.sentiment_targeted('text', demo_text, 'Denver')
+
+# if response['status'] == 'OK'
+# 	puts '## Response Object ##'
+# 	puts JSON.pretty_generate(response)
+
+
+# 	puts ''
+# 	puts '## Targeted Sentiment ##'
+# 	puts 'type: ' + response['docSentiment']['type']
+
+# 	#Make sure score exists (it's not returned for neutral sentiment
+# 	if response['docSentiment'].key?('score')
+# 		puts 'score: ' + response['docSentiment']['score']
+# 	end
+
+# else
+# 	puts 'Error in targeted sentiment analysis call: ' + response['statusInfo']
+# end
+
 
 
 # puts ''
@@ -236,34 +265,6 @@ puts ''
 # puts ''
 # puts ''
 # puts ''
-# puts '############################################'
-# puts '#   Targeted Sentiment Analysis Example    #'
-# puts '############################################'
-# puts ''
-# puts ''
-
-# puts 'Processing text: ' + demo_text
-# puts ''
-
-# response = alchemyapi.sentiment_targeted('text', demo_text, 'Denver')
-
-# if response['status'] == 'OK'
-# 	puts '## Response Object ##'
-# 	puts JSON.pretty_generate(response)
-
-
-# 	puts ''
-# 	puts '## Targeted Sentiment ##'
-# 	puts 'type: ' + response['docSentiment']['type']
-
-# 	#Make sure score exists (it's not returned for neutral sentiment
-# 	if response['docSentiment'].key?('score')
-# 		puts 'score: ' + response['docSentiment']['score']
-# 	end
-
-# else
-# 	puts 'Error in targeted sentiment analysis call: ' + response['statusInfo']
-# end
 
 
 # puts ''
