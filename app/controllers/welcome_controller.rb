@@ -5,10 +5,10 @@ class WelcomeController < ApplicationController
   # all the pairs
   def pairs
   	@pairs = Pair.all
-  	respond_to do |format|
-    format.html
-    format.json { render :json => @pairs.to_json(:include => [:article1_id, :article2_id]) }
-  end
+  	if request.xhr?
+      
+      render :json => @pairs.to_json(:include => [:article1, :article2])
+    end
   end
 
 
