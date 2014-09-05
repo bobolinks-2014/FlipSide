@@ -15,11 +15,9 @@ class Article < ActiveRecord::Base
                         0 :
                         keyword["sentiment"]["score"]
 
-      article_tag = ArticleTag.new(article_id: self.id,
+      article_tag = ArticleTag.create!(article_id: self.id,
                                    tag_id: tag.id,
                                    sentiment_score: sentiment_score)
-
-
     end
   end
 
