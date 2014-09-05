@@ -8,7 +8,11 @@ require 'pry'
 def add_categories(collection)
 	category = ""
 	collection["results"]["collection1"].each do |article|
-		article["category"] == "" ? article["category"] = category : category = article["category"]
+		if article["category"] == ""
+     article["category"] = category
+    else
+      category = article["category"]
+    end
 	end
 end
 
@@ -23,10 +27,11 @@ def kimono_parser(json)
       category = Category.create(name:article_hash["category"])
     end
 
-    title = article_hash["title"]["text"]
-    url = article_hash["title"]["href"]
-    source = article_hash["source"]
-    slug = article_hash["slug"]
+    title   = article_hash["title"]["text"]
+    url     = article_hash["title"]["href"]
+    source  = article_hash["source"]
+    slug    = article_hash["slug"]
+
     Article.create(title: title,
                    url: url,
                    source: source,
