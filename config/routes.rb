@@ -31,7 +31,8 @@ Rails.application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-
+  resources :users
+  match '/signup',  to: 'users#new',            via: 'get'
   # Example resource route with more complex sub-resources:
   #   resources :products do
   #     resources :comments
