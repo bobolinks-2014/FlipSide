@@ -1,9 +1,5 @@
 namespace :article_updater do
-  desc "TODO"
-  task :get_articles => :environment do
-
-  end
-
+  desc "Clear out old articles"
   task :delete_old_articles => :environment do
     articles = Article.all
     time_now = Time.now
