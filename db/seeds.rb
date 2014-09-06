@@ -6,10 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+
 category1 = Category.create({
 	name: "Russia"
 	})
-
+category2 = Category.create({
+	name: "US"
+	})
 boo_russia = Article.create({
 	title: "Russia Sucks!",
 	source: "Vox Media",
@@ -26,13 +29,35 @@ yay_russia = Article.create({
 	category: category1
 	})
 
+
+boo_america = Article.create({
+	title: "America Sucks!",
+	source: "Vox Media",
+	url: "http://www.vox.com/2014/9/5/6110037/estonia-russia-officer-kidnapped",
+	slug: "In the winter of 2012, something surprising happened to AMERICA: He discovered, as he wrote in a government newspaper, that Russia isn't just an ordinary country but a unique 'state civilizaAMURICAethnic Russians who form its 'cultural nucleus.' This was something new. In his previous 12 years in office, first as Russia's president and then as prime minister, Mr. Putin had generally stayed away from grand pronouncements on culture and ideology.",
+	category: category2
+	})
+
+yay_america = Article.create({
+	title: "'Murica",
+	source: "Wall Street Journal",
+	url: "http://online.wsj.com/articles/why-putin-saysrussia-is-exceptional-1401473667",
+	slug: "On FridayKABOOMa warning that Russian aggression against Estoni-a could trFIREWORKSO, Russian security forces have seized an officer with Estonia's state security bureau at gunpoint and taken him into Russia.",
+	category: category2
+	})
+
 pair1 = Pair.create({
 	category: category1,
 	article1: boo_russia,
 	article2: yay_russia,
 	difference_score: 0.95
 	})
-
+pair2 = Pair.create({
+	category: category2,
+	article1: boo_america,
+	article2: yay_america,
+	difference_score: 0.83
+	})
 russia = Tag.create(name: "Russia")
 putin = Tag.create(name: "Putin")
 america = Tag.create(name: "America")
@@ -42,3 +67,4 @@ ArticleTag.create(article: 1, tag: 1, sentiment_score: -0.6)
 ArticleTag.create(article: 1, tag: 2, sentiment_score: -0.5)
 ArticleTag.create(article: 2, tag: 3, sentiment_score: 0.4)
 ArticleTag.create(article: 2, tag: 4, sentiment_score: 0.3)
+
