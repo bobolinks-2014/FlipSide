@@ -102,19 +102,21 @@ function renderPair(){
 	);
 }
 
+function removeIFrame(){
+	if ($('iframe').length !== 0){
+		$('iframe').remove();
+		$('.button.close').remove();
+	}
+}
+
 $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
-	if ($('iframe').length !== 0){
-		$('iframe').remove();
-	}
+	removeIFrame();
 	$(this.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
 $('div').on("click",'.close', function(e){
 	e.preventDefault();
-	if ($('iframe').length !== 0){
-		$('iframe').remove();
-		$(this).remove();
-	}
+	removeIFrame();
 });
