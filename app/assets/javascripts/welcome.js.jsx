@@ -38,7 +38,7 @@ var Pair = React.createClass({
 		return (
 			<div>
 				<form onSubmit={this.getPairs}>
-					<input type = "submit" className= 'button' value = "load articles"/>
+					<input id="load_articles" type = "submit" className= 'button' value = "load articles"/>
 				</form>
 				<div className='newsFeed large-12 columns'>{this.state.pairs}</div>
 			</div>
