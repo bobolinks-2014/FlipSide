@@ -2,13 +2,20 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#manifesto h1{
+  color: white;
+}
 h2{
   font-family: 'Playfair Display', serif;
 }
 
 .full-page{
+  position:fixed;
+  z-index:-1;
   height:100%;
   background-color: gray;
+  background-image: url("/images/newspaper-background.png");
+  -webkit-filter: blur(5px);
 }
 
 .accentWord{
@@ -18,7 +25,12 @@ h2{
 }
 
 #manifesto{
+  postion: fixed;
+  z-index: 999;
   margin-top: 15%;
+  background-color: #000;
+  opacity: 0.8;
+  padding: 25px;
 }
 
 #enter{
