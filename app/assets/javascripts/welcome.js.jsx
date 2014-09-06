@@ -27,7 +27,7 @@ var Pair = React.createClass({
 	},
 	renderArticles: function(articles){
 		return(
-			<div className="row">
+			<div className="pair row">
 				<Article options = {articles[0]}/>
 				<Article options = {articles[1]}/>
 				<hr/>
@@ -40,28 +40,20 @@ var Pair = React.createClass({
 				<form onSubmit={this.getPairs}>
 					<input type = "submit" className= 'button' value = "load articles"/>
 				</form>
-				<div className='pair large-12 columns'>{this.state.pairs}</div>
+				<div className='newsFeed large-12 columns'>{this.state.pairs}</div>
 			</div>
 		);
 	}
 })
-//title={article1.title} source = {article1.source} slug = {article1.slug}
-// <div className = 'article large-6 columns'>
-// 	<h2>{article1.title}</h2>
-// 	<h6 className="subheader">{article1.source}</h6>
-// 	<p>{article1.slug}</p>
-// </div>
-// <div className = 'article large-6 columns'>
-// 	<h2>{article2.title}</h2>
-// 	<h6 className="subheader">{article2.source}</h6>
-// 	<p>{article2.slug}</p>
-// </div>
-
 
 var Article = React.createClass({
+	onClick: function(url){
+		// iframe should pop up
+		console.log(url);
+	},
 	render: function(){
 		return (
-			<div className = 'article large-6 columns'>
+			<div className = 'article large-6 columns' onClick={this.onClick(this.props.options.url)}>
 				<h2>{this.props.options.title}</h2>
 				<h6 className="subheader">{this.props.options.source}</h6>
 				<p>{this.props.options.slug}</p>
@@ -73,6 +65,6 @@ var Article = React.createClass({
 function renderPair(){
 	React.renderComponent(
 	<Pair/>,
-	document.getElementById('newsFeed')
+	document.getElementById('container')
 	);
 }
