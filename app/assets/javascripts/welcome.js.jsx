@@ -129,3 +129,19 @@ $('div').on("click",'.close', function(e){
 	e.preventDefault();
 	removeIFrame();
 });
+
+$("#goHome").on("click", function(e){
+	e.preventDefault();
+	renderHome();
+})
+$('div').on("click","#enter", function(e){
+    e.preventDefault();
+    $( '#landing' ).fadeOut( 1000 );
+    $( '#manifesto' ).fadeOut( 1000 );
+    renderPair();
+  });
+
+$('div').on("mouseover","#enter", function(){
+  $("#enter").fadeOut( 1000 );
+  $("#enter").fadeIn( 1000 );
+});
