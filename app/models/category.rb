@@ -48,7 +48,6 @@ class Category < ActiveRecord::Base
   def find_pair
     article_pair = [0,0,0]
     articles_left = self.relevant_articles[1..-1]
-
     self.relevant_articles.each do |article1|
       a1_scores = article1.relevant_sentiment_scores(@relevant_tags)
 
