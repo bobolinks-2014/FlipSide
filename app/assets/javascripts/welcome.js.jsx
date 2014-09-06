@@ -115,6 +115,6 @@ $('div').on("click",".article",function(e){
 		$('iframe').remove();
 	}
 		
-	$(this.parentElement).append('<div className = "large-12 columns article-view"><iframe src='+url+' className = "large-12 columns widescreen" height="600"></iframe></div>');
+	$(this.parentElement).append('<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
