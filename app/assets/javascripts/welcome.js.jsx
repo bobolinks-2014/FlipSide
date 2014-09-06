@@ -5,11 +5,6 @@
 // has two articles
 var Pair = React.createClass({
 	getInitialState: function(){
-		return {pairs: ""};
-	},
-	getPairs: function(e){
-		e.preventDefault();
-		console.log("here")
 		request = $.get('pairs');
 		pair_arr = [];
 		request.done(function(data){
@@ -24,6 +19,7 @@ var Pair = React.createClass({
 				pairs: pair_arr,
 			});
 		}.bind(this));
+		return {pairs: ""};
 	},
 	renderArticles: function(articles){
 		return(
@@ -36,15 +32,16 @@ var Pair = React.createClass({
 	},
 	render:function(){
 		return (
-			<div>
-				<form onSubmit={this.getPairs}>
-					<input type = "submit" className= 'button' value = "load articles"/>
-				</form>
-				<div className='newsFeed large-12 columns'>{this.state.pairs}</div>
-			</div>
+			<div className='newsFeed large-12 columns'>{this.state.pairs}</div>
 		);
 	}
 })
+
+			// <div>
+			// 	<form onSubmit={this.getPairs}>
+			// 		<input type = "submit" className= 'button' value = "load articles"/>
+			// 	</form>
+			// </div>
 
 var Article = React.createClass({
 	onClick: function(url){
@@ -63,6 +60,7 @@ var Article = React.createClass({
 });
 
 function renderPair(){
+	console.log("here");
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
