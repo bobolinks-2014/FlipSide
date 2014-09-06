@@ -8,14 +8,6 @@
 var Pair = React.createClass({
 
 	getInitialState: function(){
-		return {
-			pairs: "",
-
-		};
-	},
-	getPairs: function(e){
-		e.preventDefault();
-		console.log("here");
 		request = $.get('pairs');
 		pair_arr = [];
 		request.done(function(data){
@@ -30,6 +22,7 @@ var Pair = React.createClass({
 				pairs: pair_arr,
 			});
 		}.bind(this));
+		return {pairs: ""};
 	},
 	handleClick: function(article){
 		console.log(this); // this is the current pair
@@ -52,20 +45,22 @@ var Pair = React.createClass({
 	},
 	render:function(){
 		return (
-			<div>
-				<form onSubmit={this.getPairs}>
-					<input type = "submit" className= 'button' value = "load articles"/>
-				</form>
-				<div className='newsFeed large-12 columns'>{this.state.pairs}</div>
-			</div>
+			<div className='newsFeed large-12 columns'>{this.state.pairs}</div>
 		);
 	}
 })
 
 
+			// <div>
+			// 	<form onSubmit={this.getPairs}>
+			// 		<input type = "submit" className= 'button' value = "load articles"/>
+			// 	</form>
+			// </div>
+
 				// { this.state.showArticle1? <Iframe url={articles[0].url}/> : null }
 				// { this.state.showArticle2? <Iframe url={articles[1].url}/> : null }
 // for security reasons...you can't access the url of an iframe.
+
 var Article = React.createClass({
 	getInitialState: function(){
 		return {showArticle: false};
@@ -99,6 +94,7 @@ var Iframe = React.createClass({
 });
 
 function renderPair(){
+	console.log("here");
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
@@ -114,7 +110,7 @@ $('div').on("click",".article",function(e){
 	if ($('iframe').length !== 0){
 		$('iframe').remove();
 	}
-		
+
 	$(this.parentElement).append('<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
