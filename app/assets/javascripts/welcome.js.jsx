@@ -8,7 +8,7 @@
 var Pair = React.createClass({
 
 	getInitialState: function(){
-		request = $.get('pairs');
+		request = $.get('pairs', {category: "all"});
 		pair_arr = [];
 		request.done(function(data){
 			$.each(data, function(index){

@@ -4,9 +4,17 @@ class WelcomeController < ApplicationController
 
   # all the pairs
   def pairs
-  	@pairs = Pair.all
-  	if request.xhr?
-      
+    # get pairs from today
+  	p params
+    if params[:category] == "all"
+      # find stuff created in the last 24 hours (86400 seconds)
+      @pairs = Pair.all.where("created_at >= ?", Time.zone.now.ago(86400))
+  	else
+      category = Category.find_by(name: params[:category]).id
+      @pairs = Pair.where(category: category).where("created_at >= ?", Time.zone.now.ago(86400))
+    end
+
+    if request.xhr?
       render :json => @pairs.to_json(:include => [:article1, :article2])
     end
   end
