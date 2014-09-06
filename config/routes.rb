@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+
+  # Newsfeed page
+  root 'welcome#index'
+
+  # Landing Page
+  get 'welcome' => 'welcome#home'
+
+  #Add in users and sessions control after we finish MVP
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+  match '/signup',  to: 'users#new',            via: 'get'
+  match '/signin',  to: 'sessions#new',         via: 'get'
+  match '/signout', to: 'sessions#destroy',     via: 'delete'
+
+
+  get 'pairs' => 'welcome#pairs'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -31,11 +47,6 @@ Rails.application.routes.draw do
   #     resources :comments, :sales
   #     resource :seller
   #   end
-  resources :users
-  resources :sessions, only: [:new, :create, :destroy]
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
 
 
   # Example resource route with more complex sub-resources:
