@@ -45,11 +45,16 @@ gem 'bcrypt', '~> 3.1.7'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-# Use Capybara to test Rails sites
-gem 'capybara', group: :test
-
 #Add React framework to project
 gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
 
 # Add Foundation CSS framework
 gem 'foundation-rails'
+
+group :test do
+  gem 'capybara'
+  gem 'rspec-rails'
+  gem 'poltergeist'
+  gem 'database_cleaner', '~> 1.2.0'
+  gem 'capybara-webkit'
+end
