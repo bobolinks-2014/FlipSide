@@ -33,7 +33,7 @@ gem 'rest-client', '~> 1.7.2'
 
 gem 'json'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -43,3 +43,10 @@ gem 'json'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#Add React framework to project
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+
+# Add Foundation CSS framework
+gem 'foundation-rails'
+
