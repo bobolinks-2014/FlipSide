@@ -87,6 +87,7 @@ var Iframe = React.createClass({
 	render: function(){
 		return(
 			<div className = "row article-view">
+
 		    <iframe src={this.props.url} className = "large-12 columns widescreen" height="600"></iframe>
 		  </div>
 		)
@@ -104,13 +105,16 @@ function renderPair(){
 $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
-	console.log(url);
-	console.log(this);
-	console.log($('iframe'));
 	if ($('iframe').length !== 0){
 		$('iframe').remove();
 	}
-
-	$(this.parentElement).append('<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
+	$(this.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
+$('div').on("click",'.close', function(e){
+	e.preventDefault();
+	if ($('iframe').length !== 0){
+		$('iframe').remove();
+		$(this).remove();
+	}
+});

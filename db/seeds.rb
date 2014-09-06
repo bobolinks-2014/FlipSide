@@ -41,7 +41,7 @@ boo_america = Article.create({
 yay_america = Article.create({
 	title: "'Murica",
 	source: "Wall Street Journal",
-	url: "http://online.wsj.com/articles/why-putin-saysrussia-is-exceptional-1401473667",
+	url: "http://online.wsj.com/articles/why-putin-says-russia-is-exceptional-1401473667",
 	slug: "On FridayKABOOMa warning that Russian aggression against Estoni-a could trFIREWORKSO, Russian security forces have seized an officer with Estonia's state security bureau at gunpoint and taken him into Russia.",
 	category: category2
 	})
