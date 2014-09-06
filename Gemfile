@@ -32,6 +32,7 @@ gem 'simplecov', '~> 0.9.0',		group: :development
 gem 'rest-client', '~> 1.7.2'
 
 gem 'json'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -43,3 +44,6 @@ gem 'json'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use Capybara to test Rails sites
+gem 'capybara' group: :test
