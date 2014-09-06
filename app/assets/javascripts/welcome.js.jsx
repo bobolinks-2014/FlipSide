@@ -3,16 +3,19 @@
 // this describes the pair functionality
 // this renders the pair
 // has two articles
+	var showArticle1= false;
+	var showArticle2= false;
 var Pair = React.createClass({
+
 	getInitialState: function(){
 		return {
 			pairs: "",
-			showArticle1: false,
-			showArticle2: false
+
 		};
 	},
 	getPairs: function(e){
 		e.preventDefault();
+		console.log("here");
 		request = $.get('pairs');
 		pair_arr = [];
 		request.done(function(data){
@@ -31,18 +34,18 @@ var Pair = React.createClass({
 	handleClick: function(article){
 		console.log(this); // this is the current pair
 		console.log(article); // article is the article we clicked
-		this.setState({
-			showArticle1: false,
-			showArticle2: true
-		})
+		if (article.state.showArticle === false){
+			showArticle1 = true;
+		};
+		console.log(showArticle2);
+		console.log(showArticle1);
 	},
 	renderArticles: function(articles){
+		console.log(articles);
 		return(
 			<div className="pair row">
 				<Article options={articles[0]} onClick={this.handleClick}/>
 				<Article options={articles[1]} onClick={this.handleClick}/>
-				{ this.state.showArticle1? <Iframe url={this.props.articles[0].url}/> : null }
-				{ this.state.showArticle2? <Iframe url={this.props.articles[1].url}/> : null }
 				<hr/>
 			</div>
 		);
@@ -60,16 +63,21 @@ var Pair = React.createClass({
 })
 
 
-
+				// { this.state.showArticle1? <Iframe url={articles[0].url}/> : null }
+				// { this.state.showArticle2? <Iframe url={articles[1].url}/> : null }
 // for security reasons...you can't access the url of an iframe.
 var Article = React.createClass({
+	getInitialState: function(){
+		return {showArticle: false};
+	},
 	propagateClick: function(url){
 		this.props.onClick(this);
+
 	},
 	render: function(){
 		return (
-			<div>
-				<div className = 'article large-6 columns' onClick={this.propagateClick}>
+			<div className = 'article large-6 columns' >
+				<div className = {this.props.options.url}>
 					<h2>{this.props.options.title}</h2>
 					<h6 className="subheader">{this.props.options.source}</h6>
 					<p>{this.props.options.slug}</p>
@@ -96,3 +104,17 @@ function renderPair(){
 	document.getElementById('container')
 	);
 }
+
+$('div').on("click",".article",function(e){
+	e.preventDefault();
+	var url = this.firstChild.className;
+	console.log(url);
+	console.log(this);
+	console.log($('iframe'));
+	if ($('iframe').length !== 0){
+		$('iframe').remove();
+	}
+		
+	$(this.parentElement).append('<div className = "large-12 columns article-view"><iframe src='+url+' className = "large-12 columns widescreen" height="600"></iframe></div>');
+});
+
