@@ -3,7 +3,7 @@ class Category < ActiveRecord::Base
   has_many :pairs
 
   def make_pair(number_of_keywords)
-    find_relevent_keywords(number_of_keywords)
+    find_relevant_keywords(number_of_keywords)
     pair = find_pair
     Pair.create(article1_id: pair[0].id,
                 article2_id: pair[1].id,
@@ -11,7 +11,7 @@ class Category < ActiveRecord::Base
                 difference_score: pair[2])
   end
 
-  def find_relevent_keywords(number)
+  def find_relevant_keywords(number)
     tag_count = Hash.new(0)
     self.articles.each do |article|
       article.tags.each do |tag|
@@ -23,15 +23,15 @@ class Category < ActiveRecord::Base
     cut_off = tag_count.sort_by {|k,v| v}.reverse[number-1][1]
 
     #select the n-most frequent;y appearing tags
-    @relevent_tags = tag_count.select {|k,v| v >= cut_off}.keys
+    @relevant_tags = tag_count.select {|k,v| v >= cut_off}.keys
   end
 
-  #find_relevent_keywords NEEDS TO be run before this.
-  def relevent_articles
+  #find_relevant_keywords NEEDS TO be run before this.
+  def relevant_articles
     self.articles.select do |article|
       false_count = 0
 
-      @relevent_tags.each do |tag|
+      @relevant_tags.each do |tag|
         unless article.tags.includes(tag)
           false_count +=1
         end
@@ -41,13 +41,13 @@ class Category < ActiveRecord::Base
     end
   end
 
-  #find_relevent_keywords NEEDS TO be run before this.
+  #find_relevant_keywords NEEDS TO be run before this.
   def find_pair
     article_pair = [0,0,0]
-    self.relevent_articles.each do |article1|
-      self.relevent_articles.each do |article2|
-        a1_scores = article1.relevent_sentiment_scores(@relevant_tags)
-        a2_scores = article2.relevent_sentiment_scores(@relevant_tags)
+    self.relevant_articles.each do |article1|
+      self.relevant_articles.each do |article2|
+        a1_scores = article1.relevant_sentiment_scores(@relevant_tags)
+        a2_scores = article2.relevant_sentiment_scores(@relevant_tags)
         difference = sum_differences(a1_scores, a2_scores)
         article_pair_array = [article1,article2,difference] if difference > article_pair_array[2]
       end

@@ -21,7 +21,7 @@ class Article < ActiveRecord::Base
     end
   end
 
-  def relevent_sentiment_scores(tags)
+  def relevant_sentiment_scores(tags)
     scores = []
     tags.each do |tag|
       scores << self.article_tags.where(tag_id: tag.id)[0].sentiment_score
