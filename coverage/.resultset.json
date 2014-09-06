@@ -61,10 +61,10 @@
         null,
         null,
         1,
-        0,
-        0,
+        3,
+        3,
         null,
-        0,
+        3,
         null,
         null,
         null,
@@ -87,8 +87,16 @@
         null,
         null,
         null
+      ],
+      "/Users/apprentice/Desktop/FlipSide/app/models/pair.rb": [
+        1,
+        1,
+        1,
+        1,
+        null,
+        null
       ]
     },
-    "timestamp": 1410016261
+    "timestamp": 1410025397
   }
 }

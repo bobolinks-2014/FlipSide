@@ -28,11 +28,11 @@ gem 'spring',        group: :development
 
 gem 'simplecov', '~> 0.9.0',		group: :development
 
-
+gem 'selenium-webdriver', '~> 2.42.0'
 gem 'rest-client', '~> 1.7.2'
 
 gem 'json'
-
+gem 'whenever', :require => false
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -57,4 +57,5 @@ group :test do
   gem 'poltergeist'
   gem 'database_cleaner', '~> 1.2.0'
   gem 'capybara-webkit'
+  gem 'jasmine'
 end
