@@ -60,6 +60,31 @@ var Article = React.createClass({
 		);
 	}
 });
+
+
+var Home = React.createClass({
+	getInitialState: function(){
+		console.log("hello");
+		return {home: this.getHome()}
+	},
+	getHome: function(){
+		console.log("here")
+		return ( <div>
+						<div id = "landing" className = "large-12 columns full-page"></div>
+						<div id="manifesto" className= "row">
+							<h1>We live in an <div className="accentWord"> information cocoon</div> of media that constantly mirrors our existing beliefs. So we built an <div className="accentWord">anti-echo</div> chamber. Welcome to the <div id ="enter" className="inline"><div id="flipWord" className = "inline">ᖷlip</div>/<div id="sideWord" className = "inline">Side</div></div>
+							</h1>
+						</div>
+					</div>)
+	},
+	render: function(){
+		return(
+			<div>{this.state.home}</div>
+		)
+	}
+});
+
+
 // http://stackoverflow.com/questions/22639534/pass-props-to-parent-component-in-react-js
 // var Iframe = React.createClass({
 // 	render: function(){
@@ -73,13 +98,19 @@ var Article = React.createClass({
 // });
 
 function renderPair(){
-	console.log("here");
+
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
 	);
 }
-
+function renderHome(){
+	console.log("here");
+	React.renderComponent(
+	<Home/>,
+	document.getElementById('container')
+	);
+}
 function removeIFrame(){
 	if ($('iframe').length !== 0){
 		$('iframe').remove();

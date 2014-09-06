@@ -5,7 +5,6 @@ class WelcomeController < ApplicationController
   # all the pairs
   def pairs
     # get pairs from today
-  	p params
     if params[:category] == "all"
       # find stuff created in the last 24 hours (86400 seconds)
       @pairs = Pair.all.where("created_at >= ?", Time.zone.now.ago(86400))
