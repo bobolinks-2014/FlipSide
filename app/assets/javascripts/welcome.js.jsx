@@ -1,10 +1,5 @@
 /*** @jsx React.DOM */
-// a pair model
-// this describes the pair functionality
-// this renders the pair
-// has two articles
-	var showArticle1= false;
-	var showArticle2= false;
+
 var Pair = React.createClass({
 
 	getInitialState: function(){
@@ -24,17 +19,7 @@ var Pair = React.createClass({
 		}.bind(this));
 		return {pairs: ""};
 	},
-	handleClick: function(article){
-		console.log(this); // this is the current pair
-		console.log(article); // article is the article we clicked
-		if (article.state.showArticle === false){
-			showArticle1 = true;
-		};
-		console.log(showArticle2);
-		console.log(showArticle1);
-	},
 	renderArticles: function(articles){
-		console.log(articles);
 		return(
 			<div className="pair row">
 				<Article options={articles[0]} onClick={this.handleClick}/>
@@ -50,15 +35,6 @@ var Pair = React.createClass({
 	}
 })
 
-
-			// <div>
-			// 	<form onSubmit={this.getPairs}>
-			// 		<input type = "submit" className= 'button' value = "load articles"/>
-			// 	</form>
-			// </div>
-
-				// { this.state.showArticle1? <Iframe url={articles[0].url}/> : null }
-				// { this.state.showArticle2? <Iframe url={articles[1].url}/> : null }
 // for security reasons...you can't access the url of an iframe.
 
 var Article = React.createClass({
@@ -81,18 +57,17 @@ var Article = React.createClass({
 		);
 	}
 });
-				// { this.state.showArticle? <Iframe url={this.props.options.url}/> : null }
 // http://stackoverflow.com/questions/22639534/pass-props-to-parent-component-in-react-js
-var Iframe = React.createClass({
-	render: function(){
-		return(
-			<div className = "row article-view">
+// var Iframe = React.createClass({
+// 	render: function(){
+// 		return(
+// 			<div className = "row article-view">
 
-		    <iframe src={this.props.url} className = "large-12 columns widescreen" height="600"></iframe>
-		  </div>
-		)
-	}
-});
+// 		    <iframe src={this.props.url} className = "large-12 columns widescreen" height="600"></iframe>
+// 		  </div>
+// 		)
+// 	}
+// });
 
 function renderPair(){
 	console.log("here");
