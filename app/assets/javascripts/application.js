@@ -17,4 +17,9 @@
 //= require react
 //= require_tree .
 
-$(function(){ $(document).foundation(); });
+$(function(){
+  $(document).foundation();
+  console.log("how often do i print?");
+  renderPair();
+
+});
