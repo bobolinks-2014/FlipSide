@@ -41,7 +41,7 @@ boo_america = Article.create({
 yay_america = Article.create({
 	title: "'Murica",
 	source: "Wall Street Journal",
-	url: "http://online.wsj.com/articles/why-putin-saysrussia-is-exceptional-1401473667",
+	url: "http://online.wsj.com/articles/why-putin-says-russia-is-exceptional-1401473667",
 	slug: "On FridayKABOOMa warning that Russian aggression against Estoni-a could trFIREWORKSO, Russian security forces have seized an officer with Estonia's state security bureau at gunpoint and taken him into Russia.",
 	category: category2
 	})
@@ -58,13 +58,14 @@ pair2 = Pair.create({
 	article2: yay_america,
 	difference_score: 0.83
 	})
+p "*Tags"* 100
 russia = Tag.create(name: "Russia")
 putin = Tag.create(name: "Putin")
 america = Tag.create(name: "America")
 obama = Tag.create(name: "Obama")
-
-ArticleTag.create(article: 1, tag: 1, sentiment_score: -0.6)
-ArticleTag.create(article: 1, tag: 2, sentiment_score: -0.5)
-ArticleTag.create(article: 2, tag: 3, sentiment_score: 0.4)
-ArticleTag.create(article: 2, tag: 4, sentiment_score: 0.3)
+p "*"* 100
+ArticleTag.create(article: boo_russia, tag: russia, sentiment_score: -0.9)
+ArticleTag.create(article: yay_russia, tag: putin, sentiment_score: 0.5)
+ArticleTag.create(article: boo_america, tag: america, sentiment_score: -0.5)
+ArticleTag.create(article: yay_america, tag: obama, sentiment_score: 0.3)
 

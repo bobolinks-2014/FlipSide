@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
     <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -15,14 +16,12 @@
   <body>
   <nav class="top-bar" data-topbar role="navigation">
     <ul class="title-area">
-      <li class="name">
-        <h1><a href="#">Flip/Side</a></h1>
+      <li class="name" id="goHome">
+        <h1><a href="#">ᖷlip/Side</a></h1>
       </li>
     </ul>
     </section>
   </nav>
-
-<!--   <iframe src="http://www.cnn.com/" class= "large-12 columns" height="600px"></iframe> -->
   <div id = "container">
     <!-- It all gets rendered in here -->
   </div>
