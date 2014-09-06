@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
@@ -34,7 +33,7 @@ gem 'rest-client', '~> 1.7.2'
 
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara'
   gem 'database_cleaner', '~> 1.3.0'
   gem 'shoulda-matchers', require: false
