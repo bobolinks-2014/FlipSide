@@ -16,19 +16,8 @@
 //= require turbolinks
 //= require react
 //= require_tree .
-
+// <div id = "landing" class = "large-12 columns full-page"></div><div id="manifesto" class= "row"> <h1>We live in an <div class="accentWord"> information cocoon</div> of media that constantly mirrors our existing beliefs. So we built an <div class="accentWord">anti-echo</div> chamber. Welcome to the <div id ="enter" class="inline"><div id="flipWord" class = "inline">ᖷlip</div>/<div id="sideWord" class = "inline">Side</div></div></h1></div>
 $(function(){
   $(document).foundation();
-  $('body').append('<div id = "landing" class = "large-12 columns full-page"></div><div id="manifesto" class= "row"> <h1>We live in an <div class="accentWord"> information cocoon</div> of media that constantly mirrors our existing beliefs. So we built an <div class="accentWord">anti-echo</div> chamber. Welcome to the <div id ="enter" class="inline"><div id="flipWord" class = "inline">ᖷlip</div>/<div id="sideWord" class = "inline">Side</div></div></h1></div>')
-  $('#enter').on("click", function(e){
-    e.preventDefault();
-    $( '#landing' ).fadeOut( 1000 );
-    $( '#manifesto' ).fadeOut( 1000 );
-    renderPair();
-  });
-
-  $('#enter').hover(function(){
-    $( this ).fadeOut( 1000 );
-    $( this ).fadeIn( 1000 );
-  });
+  renderHome();
 });

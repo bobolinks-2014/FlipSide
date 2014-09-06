@@ -1,14 +1,13 @@
 /*** @jsx React.DOM */
-// a pair model
-// this describes the pair functionality
-// this renders the pair
-// has two articles
-	var showArticle1= false;
-	var showArticle2= false;
+
 var Pair = React.createClass({
 
 	getInitialState: function(){
-		request = $.get('pairs');
+		this.getArticles("all");
+		return {pairs: ""};
+	},
+	getArticles: function(category){
+		request = $.get('pairs', {category: category});
 		pair_arr = [];
 		request.done(function(data){
 			$.each(data, function(index){
@@ -22,19 +21,8 @@ var Pair = React.createClass({
 				pairs: pair_arr,
 			});
 		}.bind(this));
-		return {pairs: ""};
-	},
-	handleClick: function(article){
-		console.log(this); // this is the current pair
-		console.log(article); // article is the article we clicked
-		if (article.state.showArticle === false){
-			showArticle1 = true;
-		};
-		console.log(showArticle2);
-		console.log(showArticle1);
 	},
 	renderArticles: function(articles){
-		console.log(articles);
 		return(
 			<div className="pair row">
 				<Article options={articles[0]} onClick={this.handleClick}/>
@@ -50,15 +38,6 @@ var Pair = React.createClass({
 	}
 })
 
-
-			// <div>
-			// 	<form onSubmit={this.getPairs}>
-			// 		<input type = "submit" className= 'button' value = "load articles"/>
-			// 	</form>
-			// </div>
-
-				// { this.state.showArticle1? <Iframe url={articles[0].url}/> : null }
-				// { this.state.showArticle2? <Iframe url={articles[1].url}/> : null }
 // for security reasons...you can't access the url of an iframe.
 
 var Article = React.createClass({
@@ -81,36 +60,88 @@ var Article = React.createClass({
 		);
 	}
 });
-				// { this.state.showArticle? <Iframe url={this.props.options.url}/> : null }
-// http://stackoverflow.com/questions/22639534/pass-props-to-parent-component-in-react-js
-var Iframe = React.createClass({
+
+
+var Home = React.createClass({
+	getInitialState: function(){
+		console.log("hello");
+		return {home: this.getHome()}
+	},
+	getHome: function(){
+		console.log("here")
+		return ( <div>
+						<div id = "landing" className = "large-12 columns full-page"></div>
+						<div id="manifesto" className= "row">
+							<h1>We live in an <div className="accentWord"> information cocoon</div> of media that constantly mirrors our existing beliefs. So we built an <div className="accentWord">anti-echo</div> chamber. Welcome to the <div id ="enter" className="inline"><div id="flipWord" className = "inline">ᖷlip</div>/<div id="sideWord" className = "inline">Side</div></div>
+							</h1>
+						</div>
+					</div>)
+	},
 	render: function(){
 		return(
-			<div className = "row article-view">
-		    <iframe src={this.props.url} className = "large-12 columns widescreen" height="600"></iframe>
-		  </div>
+			<div>{this.state.home}</div>
 		)
 	}
 });
 
+
+// http://stackoverflow.com/questions/22639534/pass-props-to-parent-component-in-react-js
+// var Iframe = React.createClass({
+// 	render: function(){
+// 		return(
+// 			<div className = "row article-view">
+
+// 		    <iframe src={this.props.url} className = "large-12 columns widescreen" height="600"></iframe>
+// 		  </div>
+// 		)
+// 	}
+// });
+
 function renderPair(){
-	console.log("here");
+
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
 	);
 }
+function renderHome(){
+	console.log("here");
+	React.renderComponent(
+	<Home/>,
+	document.getElementById('container')
+	);
+}
+function removeIFrame(){
+	if ($('iframe').length !== 0){
+		$('iframe').remove();
+		$('.button.close').remove();
+	}
+}
 
 $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
-	console.log(url);
-	console.log(this);
-	console.log($('iframe'));
-	if ($('iframe').length !== 0){
-		$('iframe').remove();
-	}
-
-	$(this.parentElement).append('<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
+	removeIFrame();
+	$(this.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
+$('div').on("click",'.close', function(e){
+	e.preventDefault();
+	removeIFrame();
+});
+
+$("#goHome").on("click", function(e){
+	e.preventDefault();
+	renderHome();
+})
+$('div').on("click","#enter", function(e){
+    e.preventDefault();
+    $( '#landing' ).fadeOut( 1000 );
+    $( '#manifesto' ).fadeOut( 1000 );
+    renderPair();
+  });
+
+$('div').on("mouseover","#enter", function(){
+  $("#enter").fadeOut( 1000 );
+  $("#enter").fadeIn( 1000 );
+});
