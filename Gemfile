@@ -30,10 +30,18 @@ gem 'spring',        group: :development
 gem 'simplecov', '~> 0.9.0',		group: :development
 
 
-
 gem 'rest-client', '~> 1.7.2'
 
-gem 'json'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'capybara'
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'shoulda-matchers', require: false
+  gem 'binding_of_caller'
+end
+
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

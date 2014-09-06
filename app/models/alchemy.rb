@@ -12,12 +12,12 @@ class Alchemy
     response["keywords"]
   end
 
-  def self.test_alchemize
-    test_url= 'http://online.wsj.com/articles/russia-says-ukraine-nato-ambitions-threaten-peace-efforts-1409828434'
-    tags = Alchemy.alchemize(test_url)
-    c = Category.first
-    a = Article.first
-    a.make_tags(tags, 5)
-  end
+  # def self.test_alchemize
+  #   test_url= 'http://online.wsj.com/articles/russia-says-ukraine-nato-ambitions-threaten-peace-efforts-1409828434'
+  #   tags = Alchemy.alchemize(test_url)
+  #   c = Category.first
+  #   a = Article.first
+  #   a.make_tags(tags, 5)
+  # end
 
 end
