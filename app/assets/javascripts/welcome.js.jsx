@@ -3,7 +3,11 @@
 var Pair = React.createClass({
 
 	getInitialState: function(){
-		request = $.get('pairs', {category: "all"});
+		this.getArticles("all");
+		return {pairs: ""};
+	},
+	getArticles: function(category){
+		request = $.get('pairs', {category: category});
 		pair_arr = [];
 		request.done(function(data){
 			$.each(data, function(index){
@@ -17,7 +21,6 @@ var Pair = React.createClass({
 				pairs: pair_arr,
 			});
 		}.bind(this));
-		return {pairs: ""};
 	},
 	renderArticles: function(articles){
 		return(
