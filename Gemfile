@@ -27,7 +27,7 @@ gem 'json'
 gem 'spring',        group: :development
 
 gem 'simplecov', '~> 0.9.0',		group: :development
-
+gem 'pry'
 
 gem 'rest-client', '~> 1.7.2'
 
