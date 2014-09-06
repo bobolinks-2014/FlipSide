@@ -33,3 +33,12 @@ pair1 = Pair.create({
 	difference_score: 0.95
 	})
 
+russia = Tag.create(name: "Russia")
+putin = Tag.create(name: "Putin")
+america = Tag.create(name: "America")
+obama = Tag.create(name: "Obama")
+
+ArticleTag.create(article: 1, tag: 1, sentiment_score: -0.6)
+ArticleTag.create(article: 1, tag: 2, sentiment_score: -0.5)
+ArticleTag.create(article: 2, tag: 3, sentiment_score: 0.4)
+ArticleTag.create(article: 2, tag: 4, sentiment_score: 0.3)
