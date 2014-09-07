@@ -15,7 +15,7 @@ class UsersController < ApplicationController
   def profile
     if session[:user_id]
       user = User.find(session[:user_id])
-      render :json => {success: true}
+      render :json => {success: true, user: {email: user.email, name: user.name}}
     end
   end
 
