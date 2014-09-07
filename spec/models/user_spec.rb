@@ -60,7 +60,6 @@ describe User do
     end
 
     it "returns a hash with tags as keys" do
-      binding.pry
       expect(@user.opinions.keys[0]).to be_an_instance_of(Tag)
     end
 

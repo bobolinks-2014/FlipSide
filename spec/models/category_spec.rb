@@ -134,4 +134,11 @@ describe Category do
       expect(before_count).to eq(after_count-1)
     end
   end
+
+  describe "#compare_tags" do
+    it "checks if two articles share atleast n tags (if they are abt to pair)" do
+      expect(@category.compare_tags(@article, @article3,2)).to be(true)
+    end
+
+  end
 end
