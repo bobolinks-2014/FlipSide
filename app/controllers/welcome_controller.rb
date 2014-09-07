@@ -14,7 +14,7 @@ class WelcomeController < ApplicationController
     end
 
     if request.xhr?
-      render :json => @pairs.to_json(:include => [:article1, :article2])
+      render :json => @pairs.to_json(:include => [:article1 => :article_tag, :article2 => :article_tag])
     end
   end
 

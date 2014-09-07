@@ -14,7 +14,7 @@ var Pair = React.createClass({
 				var articles = [];
 				articles.push(data[index].article1);
 				articles.push(data[index].article2);
-				pairRendered = this.renderArticles(articles);
+				pairRendered = this.renderArticles(articles, data[index].difference_score);
 				pair_arr.push(pairRendered);
 			}.bind(this));
 			this.setState({
@@ -22,11 +22,14 @@ var Pair = React.createClass({
 			});
 		}.bind(this));
 	},
-	renderArticles: function(articles){
+	renderArticles: function(articles, difference_score){
 		return(
 			<div className="pair row">
-				<Article options={articles[0]} onClick={this.handleClick}/>
-				<Article options={articles[1]} onClick={this.handleClick}/>
+				<p className="text-center">These articles have a sentiment difference of {difference_score}</p>
+				<div className="paired_articles">
+					<Article options={articles[0]} onClick={this.handleClick}/>
+					<Article options={articles[1]} onClick={this.handleClick}/>
+				</div>
 				<hr/>
 			</div>
 		);
@@ -77,7 +80,6 @@ var Rating = React.createClass({
 		}
 	},
 	onClick: function(e){
-
 		e.target.style.color = this.state.clicked;
 		$(e.target).siblings()[0].style.color = this.state.not_clicked;
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
