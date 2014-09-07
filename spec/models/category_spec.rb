@@ -14,21 +14,21 @@ describe Category do
 
 
     @article = Article.create!(title: "qwertyugvu",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
-    @article_tag2 = ArticleTag.create!(article_id: @article.id, tag_id: @tag2.id,sentiment_score:0.8)
-    @article_tag3 = ArticleTag.create!(article_id: @article.id, tag_id: @tag3.id,sentiment_score:-0.3)
-    @article_tag4 = ArticleTag.create!(article_id: @article.id, tag_id: @tag4.id,sentiment_score:-0.111)
+    @article_tag2 = ArticleTag.create!(article_id: @article.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
+    @article_tag3 = ArticleTag.create!(article_id: @article.id, tag_id: @tag3.id,sentiment_score:-0.3, relevance: 1.0)
+    @article_tag4 = ArticleTag.create!(article_id: @article.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
 
 
     @article2 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
-    @article_tag5 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:0.8)
-    @article_tag6 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag6.id,sentiment_score:-0.3)
-    @article_tag4 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag4.id,sentiment_score:-0.111)
+    @article_tag5 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
+    @article_tag6 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag6.id,sentiment_score:-0.3, relevance: 1.0)
+    @article_tag4 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
 
 
     @article3 = Article.create!(title: "YOLAAAAAA",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
-    @article_tag13 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag2.id,sentiment_score:0.8)
-    @article_tag12 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag1.id,sentiment_score:-0.3)
-    @article_tag11 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag4.id,sentiment_score:-0.111)
+    @article_tag13 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
+    @article_tag12 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag1.id,sentiment_score:-0.3, relevance: 1.0)
+    @article_tag11 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
 
 
 
@@ -46,7 +46,7 @@ describe Category do
     end
 
     it "should do something with ties" do
-      @article_tag5 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag5.id,sentiment_score:0.8)
+      @article_tag5 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
       @category.find_relevant_keywords(2)
       expect(@category.relevant_tags.length).to eq(2)
     end
@@ -70,14 +70,14 @@ describe Category do
      before do
 
       @article4 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
-      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1)
-      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2)
-      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1)
+      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1, relevance: 1.0)
+      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2, relevance: 1.0)
+      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1, relevance: 1.0)
 
       @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
-      @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1)
-      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1)
-      @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1)
+      @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1, relevance: 1.0)
+      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1, relevance: 1.0)
+      @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1, relevance: 1.0)
 
     end
     it "should properly sum differences, like a 9 year old." do
@@ -89,14 +89,14 @@ describe Category do
     before do
 
       @article4 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
-      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1)
-      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2)
-      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1)
+      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1, relevance: 1.0)
+      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2, relevance: 1.0)
+      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1, relevance: 1.0)
 
       @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
-      @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1)
-      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1)
-      @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1)
+      @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1, relevance: 1.0)
+      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1, relevance: 1.0)
+      @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1, relevance: 1.0)
 
     end
     it "should return an array of length 3" do
@@ -118,14 +118,14 @@ describe Category do
     it "should make one pair object" do
 
       @article4 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
-      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1)
-      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2)
-      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1)
+      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1, relevance: 1.0)
+      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2, relevance: 1.0)
+      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1, relevance: 1.0)
 
       @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
-      @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1)
-      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag1.id,sentiment_score:-0.1)
-      @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1)
+      @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1, relevance: 1.0)
+      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag1.id,sentiment_score:-0.1, relevance: 1.0)
+      @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1, relevance: 1.0)
 
       before_count = Pair.all.length
       @category.make_pair
