@@ -64,8 +64,8 @@ putin = Tag.create(name: "Putin")
 america = Tag.create(name: "America")
 obama = Tag.create(name: "Obama")
 p "*"* 100
-ArticleTag.create(article: boo_russia, tag: russia, sentiment_score: -0.9)
-ArticleTag.create(article: yay_russia, tag: putin, sentiment_score: 0.5)
-ArticleTag.create(article: boo_america, tag: america, sentiment_score: -0.5)
-ArticleTag.create(article: yay_america, tag: obama, sentiment_score: 0.3)
+ArticleTag.create(article: boo_russia, tag: russia, sentiment_score: -0.9, relevance: 0.9)
+ArticleTag.create(article: yay_russia, tag: putin, sentiment_score: 0.5, relevance: 0.8)
+ArticleTag.create(article: boo_america, tag: america, sentiment_score: -0.5, relevance: 0.9)
+ArticleTag.create(article: yay_america, tag: obama, sentiment_score: 0.3, relevance: 0.8)
 

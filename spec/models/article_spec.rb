@@ -19,9 +19,9 @@ describe 'Article' do
 
     @article2 = Article.create!(title: "FUUUUUUCK",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
 
-    @article_tag2 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag1.id,sentiment_score:0.8)
-    @article_tag3 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:-0.3)
-    @article_tag4 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag6.id,sentiment_score:-0.111)
+    @article_tag2 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag1.id,sentiment_score:0.8, relevance: 0.5)
+    @article_tag3 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:-0.3, relevance: 1.0)
+    @article_tag4 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag6.id,sentiment_score:-0.111, relevance: 0.3)
 
   end
   describe '#make_tags' do
