@@ -44,22 +44,40 @@ var Article = React.createClass({
 	getInitialState: function(){
 		return {showArticle: false};
 	},
-	propagateClick: function(url){
-		this.props.onClick(this);
-
-	},
 	render: function(){
 		return (
-			<div className = 'article large-6 columns' >
-				<div className = {this.props.options.url}>
-					<h2>{this.props.options.title}</h2>
-					<h6 className="subheader">{this.props.options.source}</h6>
-					<p>{this.props.options.slug}</p>
+			<div className = 'large-6 columns'>
+				<div className = 'article' id= {this.props.options.id} >
+					<div className = {this.props.options.url}>
+						<h2>{this.props.options.title}</h2>
+						<h6 className="subheader">{this.props.options.source}</h6>
+						<p>{this.props.options.slug}</p>
+					</div>
 				</div>
+				<Rating article_id= {this.props.options.id} />
 			</div>
 		);
 	}
 });
+
+var Rating = React.createClass({
+	getInitialState: function(){
+		return {rating: ""}
+	},
+	onClick: function(e){
+
+		request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
+	},
+	render: function(){
+		console.log(this.props);
+		return(
+			<div className="rating inline" onClick={this.onClick}>
+				<div className="agree">agree</div>
+				<div className="disagree">disagree</div>
+			</div>
+		)
+	}
+})
 
 
 var Home = React.createClass({
@@ -122,7 +140,7 @@ $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
 	removeIFrame();
-	$(this.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
+	$(this.parentElement.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
 $('div').on("click",'.close', function(e){
