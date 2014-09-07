@@ -1,5 +1,12 @@
 /*** @jsx React.DOM */
-
+var Tag = React.createClass({
+	render: function(){
+		console.log(this.props.tags);
+		return(
+			<div>tags go here</div>
+		)
+	}
+})
 var Pair = React.createClass({
 
 	getInitialState: function(){
@@ -14,6 +21,7 @@ var Pair = React.createClass({
 				var articles = [];
 				articles.push(data[index].article1);
 				articles.push(data[index].article2);
+				// the first tag name for article 1 data[0].article1.article_tags[0].tag.name
 				pairRendered = this.renderArticles(articles, data[index].difference_score);
 				pair_arr.push(pairRendered);
 			}.bind(this));
@@ -48,8 +56,10 @@ var Article = React.createClass({
 		return {showArticle: false};
 	},
 	render: function(){
+
 		return (
 			<div className = 'large-6 columns'>
+				<Tag tags={this.props.options.article_tags}/>
 				<div className = 'article' id= {this.props.options.id} >
 					<div className = {this.props.options.url}>
 						<h2>{this.props.options.title}</h2>

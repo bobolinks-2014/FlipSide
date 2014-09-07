@@ -15,13 +15,14 @@ class WelcomeController < ApplicationController
     end
 
     if request.xhr?
-      render :json => @pairs.to_json(:include=>{
-      :article1=>{:include => {
-        :article_tags=>{:include=> :tags}},
-      :article2=>{:include => {
-        :article_tags=>{:include=> :tags}}
-      })
+
     end
+      #     render :json => @pairs.to_json(:include=>{
+      # :article1=>{:include => {
+      #   :article_tags=>{:include=> :tag}}},
+      # :article2=>{:include => {
+      #   :article_tags=>{:include=> :tag}}}
+      # })
   end
 
   def rate
