@@ -13,19 +13,19 @@ describe Category do
     @tag6 = Tag.create!(name:"this_is_text6")
 
 
-    @article = Article.create!(title: "YOLO",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article = Article.create!(title: "qwertyugvu",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
     @article_tag2 = ArticleTag.create!(article_id: @article.id, tag_id: @tag2.id,sentiment_score:0.8)
     @article_tag3 = ArticleTag.create!(article_id: @article.id, tag_id: @tag3.id,sentiment_score:-0.3)
     @article_tag4 = ArticleTag.create!(article_id: @article.id, tag_id: @tag4.id,sentiment_score:-0.111)
 
 
-    @article2 = Article.create!(title: "FUUUUUUCK",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article2 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
     @article_tag5 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:0.8)
     @article_tag6 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag6.id,sentiment_score:-0.3)
     @article_tag4 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag4.id,sentiment_score:-0.111)
 
 
-    @article3 = Article.create!(title: "YOLAAAAAA",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article3 = Article.create!(title: "YOLAAAAAA",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
     @article_tag13 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag2.id,sentiment_score:0.8)
     @article_tag12 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag1.id,sentiment_score:-0.3)
     @article_tag11 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag4.id,sentiment_score:-0.111)
@@ -34,7 +34,7 @@ describe Category do
 
   end
 
-  describe '#find_relevant_keywords' do
+  pending '#find_relevant_keywords' do
     it "sets the @relevent_tags instance variabls to the n most frequently appearing tags in that category" do
       @category.find_relevant_keywords(2)
       expect(@category.relevant_tags[0]).to eq(@tag4)
@@ -52,7 +52,7 @@ describe Category do
     end
   end
 
-  describe '#relevant_articles' do
+  pending '#relevant_articles' do
     it "returns all articles with relevant tags" do
       @category.find_relevant_keywords(2)
 
@@ -67,10 +67,21 @@ describe Category do
   end
 
   describe '#sum_differences' do
+     before do
+
+      @article4 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1)
+      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2)
+      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1)
+
+      @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1)
+      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1)
+      @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1)
+
+    end
     it "should properly sum differences, like a 9 year old." do
-      @score_array1 = [0.4,-0.27,0]
-      @score_array2 = [0.2,0.7,0.9112]
-      expect(@category.sum_differences(@score_array1, @score_array2)).to eq(2.0812)
+      expect(@category.sum_differences(@article4, @article5)).to eq(2.2)
     end
   end
 
@@ -84,10 +95,8 @@ describe Category do
 
       @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
       @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1)
-      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag1.id,sentiment_score:-0.1)
+      @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1)
       @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1)
-
-      @category.find_relevant_keywords(2)
 
     end
     it "should return an array of length 3" do
@@ -100,7 +109,7 @@ describe Category do
     it "should return two articles and their differences" do
       expect(@category.find_pair[0]).to eq(@article4)
       expect(@category.find_pair[1]).to eq(@article5)
-      expect(@category.find_pair[2].to_f).to eq(4.0)
+      expect(@category.find_pair[2].to_f).to eq(2.2)
 
     end
   end
@@ -119,7 +128,7 @@ describe Category do
       @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1)
 
       before_count = Pair.all.length
-      @category.make_pair(2)
+      @category.make_pair
       after_count = Pair.all.length
 
       expect(before_count).to eq(after_count-1)

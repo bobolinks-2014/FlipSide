@@ -84,7 +84,6 @@ class Category < ActiveRecord::Base
       end
       articles_left.shift
     end
-    binding.pry
     article_pair
   end
 
