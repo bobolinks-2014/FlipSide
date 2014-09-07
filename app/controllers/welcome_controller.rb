@@ -20,8 +20,9 @@ class WelcomeController < ApplicationController
 
   def rate
 
-    # TODO call method to rate the article etc etc
-
+    @article = Article.find(params[:article_id])
+    rating = params[:rating] == "agree" ? true : false
+    current_user.vote(@article, rating)
     if request.xhr?
       render :json => {status: "ok"}
     end
