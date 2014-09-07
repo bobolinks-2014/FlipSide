@@ -96,7 +96,6 @@ var Home = React.createClass({
 // });
 
 function renderPair(){
-
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
@@ -145,8 +144,10 @@ $('div').on("mouseover","#enter", function(){
 
 $("#signin_form").on('submit', function(e) {
 	e.preventDefault();
-	var email = $("#signup_email").val();
-	var password = $("#signup_password").val();
+	console.log("signin form on submit");
+
+	var email = $("#signin_email").val();
+	var password = $("#signin_password").val();
 
 	var request = $.ajax({
 		type: "POST",
@@ -155,52 +156,22 @@ $("#signin_form").on('submit', function(e) {
 	});
 
 	request.done(function(response) {
-		$('#signin_button').modal('hide');
-		renderHome();
+		$('#signin_button').foundation('reveal', 'close');
+		$('#not_logged_in').hide();
+		$('#logged_in').show();
+		renderPair();
 	})
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 $("#signup_form").on('submit', function(e) {
 	e.preventDefault();
+	console.log("signup form on submit");
+
 	var name = $("#signup_name").val();
 	var email = $("#signup_email").val();
 	var password = $("#signup_password").val();
 	var password_confirmation = $("#signup_password_confirmation").val();
-
+	console.log(email);
 	var request = $.ajax({
 		type: "POST",
 		url: '/users',
@@ -209,25 +180,19 @@ $("#signup_form").on('submit', function(e) {
 	});
 
 	request.done(function(response) {
+		console.log("the request is done");
 		if(response.success == true) {
-			$('#signup_button').hide;
-			renderHome();
+			console.log('success');
+			$('#signup_button').foundation('reveal', 'close');
+			$('#not_logged_in').hide();
+			$('#logged_in').show();
+			renderPair();
 		} else {
-      renderLoginFail(response);
+			console.log('failed');
+			$("#error").html('<p>'+response.error[0]+'</p>');
+      // renderLoginFail(response);
       renderHome();
     }
 	})
-
 	return request;
 });
-
-
-
-
-
-
-
-
-
-
-

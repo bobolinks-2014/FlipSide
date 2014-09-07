@@ -1,9 +1,8 @@
 class UsersController < ApplicationController
   include SessionsHelper
   before_filter :signed_in_user,
-                only: [:index, :edit, :update, :destroy, :following, :followers]
+                only: [:index, :edit, :update, :destroy]
   before_filter :correct_user,   only: [:edit, :update]
-  before_filter :admin_user,     only: :destroy
 
   def index
     @users = User.paginate(page: params[:page])
@@ -18,14 +17,15 @@ class UsersController < ApplicationController
   end
 
   def create
+
     @user = User.new(strong_params)
-    puts "Fuck you"
+    p params
     if @user.save
       session[:user_id] = @user.id
       render :json => {success: true, user: @user.email}
     else
-      puts "Fuck you"
-      render 'new'
+
+      render :json => {fail: true, error: @user.errors.full_messages}
     end
   end
 

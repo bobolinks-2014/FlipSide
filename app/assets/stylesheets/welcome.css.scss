@@ -53,8 +53,25 @@ h2{
     min-width:400px;
     min-height: 180px;
 }
+
 .b-close {
     cursor:pointer;
     position:absolute;
     right:10px;
 }
+
+#logged_in {
+  display: none;
+}
+
+#logout_button {
+
+}
+
+.button {
+  display: inline;
+  float: right;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+

@@ -6,7 +6,7 @@
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
     <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -20,51 +20,49 @@
         <h1><a href="#">ᖷlip/Side</a></h1>
       </li>
     </ul>
-    <% if signed_in? %>
-      <span>
-<!--  -->
-      </span>
-      <span>
+
+    <div id="logged_in">
+      <button class="button" id="logout_button">
         <%= link_to "Log Out", signout_path, :method => :delete %>
-      </span>
+      </button>
 
-    <% else %>
+      <button class="button" id="profile_button">
+        <%= link_to "User Profile", user_path %>
+      </button>
+    </div>
 
-      <span>
-        <a href="#" data-reveal-id="signin_button">Log In</a>
+    <div id="not_logged_in">
+      <a href="#" data-reveal-id="signin_button" class="button">Log In</a>
 
-        <div id="signin_button" class="reveal-modal" data-reveal>
-          <h2>Log In</h2>
-          <form action="/signin" method="get" id="signin_form">
-            <div>
-              <input type="text" name="email" placeholder="Email" required></input>
-              <input type="password" name="password" placeholder="Password" required></input>
-            </div>
-            <button type="submit" value="Sign In" name="signin">Sign In</button>
-          </form>
-          <a class="close-reveal-modal">&#215;</a>
-        </div>
-      </span>
+      <div id="signin_button" class="reveal-modal" data-reveal>
+        <h2>Log In</h2>
+        <form action="/signin" method="get" id="signin_form">
+          <div>
+            <input type="text" name="email" placeholder="Email" id="signin_email" required></input>
+            <input type="password" name="password" placeholder="Password" id="signin_password" required></input>
+          </div>
+          <button type="submit" value="Sign In" name="signin" >Sign In</button>
+        </form>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
 
-      <span>
-        <a href="#" data-reveal-id="signup_button">Sign Up</a>
+      <a href="#" data-reveal-id="signup_button" class="button">Sign Up</a>
 
-        <div id="signup_button" class="reveal-modal" data-reveal>
-          <h2>Sign Up</h2>
-          <form action="/signup" method="get" id="signup_form">
-            <div>
-              <input id="signup_name", type="text" name="name" placeholder="Name" required></input>
-              <input id="signup_email", type="text" name="email" placeholder="Email" req(uired></input>
-              <input id="signup_password", type="password" name="password" placeholder="Password" required></input>
-              <input id="signup_password_confirmation", type="password" name="password_confirmation" placeholder="Password Confirmation" required></input>
-            </div>
-            <button type="submit" value="Sign Up" name="signup">Sign Up</button>
-          </form>
-          <a class="close-reveal-modal">&#215;</a>
-        </div>
-      </span>
-
-    <% end %>
+      <div id="signup_button" class="reveal-modal" data-reveal>
+        <h2>Sign Up</h2>
+        <form action="/signup" method="get" id="signup_form">
+          <div>
+            <input id="signup_name", type="text" name="name" placeholder="Name" required></input>
+            <input id="signup_email", type="text" name="email" placeholder="Email" required></input>
+            <input id="signup_password", type="password" name="password" placeholder="Password" required></input>
+            <input id="signup_password_confirmation", type="password" name="password_confirmation" placeholder="Password Confirmation" required></input>
+          </div>
+          <button type="submit" value="Sign Up" name="signup">Sign Up</button>
+          <div id = "error"></div>
+        </form>
+        <a class="close-reveal-modal">&#215;</a>
+      </div>
+    </div>
 
     </section>
   </nav>
