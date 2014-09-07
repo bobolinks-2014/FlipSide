@@ -5,11 +5,18 @@ class UsersController < ApplicationController
   before_filter :correct_user,   only: [:edit, :update]
 
   def index
-    @users = User.paginate(page: params[:page])
+    @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+  end
+
+  def profile
+    if session[:user_id]
+      user = User.find(session[:user_id])
+      render :json => {success: true}
+    end
   end
 
   def new

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
 
+  get 'profile' => 'users#profile'
 
   get 'pairs' => 'welcome#pairs'
   # The priority is based upon order of creation: first created -> highest priority.

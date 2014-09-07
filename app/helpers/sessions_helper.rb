@@ -10,7 +10,7 @@ module SessionsHelper
 
   def current_user
     # remember_token = User.encrypt(cookies[:remember_token])
-    @current_user ||= User.find_by(user.id)
+    @current_user ||= User.find_by(session[:user_id])
   end
 
   def current_user?(user)

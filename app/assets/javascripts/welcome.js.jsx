@@ -101,12 +101,14 @@ function renderPair(){
 	document.getElementById('container')
 	);
 }
+
 function renderHome(){
 	React.renderComponent(
 	<Home/>,
 	document.getElementById('container')
 	);
 }
+
 function removeIFrame(){
 	if ($('iframe').length !== 0){
 		$('iframe').remove();
@@ -156,10 +158,16 @@ $("#signin_form").on('submit', function(e) {
 	});
 
 	request.done(function(response) {
-		$('#signin_button').foundation('reveal', 'close');
-		$('#not_logged_in').hide();
-		$('#logged_in').show();
-		renderPair();
+		if(response.success == true) {
+			$('#signin_button').foundation('reveal', 'close');
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
+			renderPair();
+		} else {
+		console.log('failed');
+			$("div#error ul").append('<li>'+response.error+'</li>');
+      renderHome();
+    }
 	})
 });
 
@@ -180,19 +188,44 @@ $("#signup_form").on('submit', function(e) {
 	});
 
 	request.done(function(response) {
-		console.log("the request is done");
 		if(response.success == true) {
 			console.log('success');
 			$('#signup_button').foundation('reveal', 'close');
-			$('#not_logged_in').hide();
-			$('#logged_in').show();
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
 			renderPair();
 		} else {
-			console.log('failed');
-			$("#error").html('<p>'+response.error[0]+'</p>');
-      // renderLoginFail(response);
-      renderHome();
+			$.each(response.error, function(i) {
+				$("div#error ul").append('<li>'+response.error[i]+'</li>');
+		});
+    renderHome();
     }
 	})
 	return request;
+});
+
+$('a.close-reveal-modal').on("click", function() {
+	$("div#error ul li").remove();
+});
+
+$("#user_profile_link").on('click', function(e) {
+	e.preventDefault();
+	console.log("you made it!");
+
+	var request = $.ajax({
+		type: "get",
+		url: '/profile',
+	});
+
+	request.done(function(response) {
+		if(response.success == true) {
+			$('#signin_button').foundation('reveal', 'close');
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
+			renderPair();
+		} else {
+		console.log('failed');
+      renderHome();
+    }
+	})
 });

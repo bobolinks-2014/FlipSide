@@ -60,18 +60,7 @@ h2{
     right:10px;
 }
 
-#logged_in {
+ul.logged_in{
+  color:red;
   display: none;
 }
-
-#logout_button {
-
-}
-
-.button {
-  display: inline;
-  float: right;
-  margin-right: 15px;
-  margin-left: 15px;
-}
-

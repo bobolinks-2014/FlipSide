@@ -8,17 +8,13 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      puts "loggggggggged in"
-      redirect_to root_url
+      render :json => {success: true, user_id: user.id}
     else
-      puts "eeeeeerrroooor"
       if request.xhr?
-        render :json => {fail: true, error: user.errors.full_messages}
-      else
-        flash.now[:error] = 'Invalid email/password combination'
-        render 'new'
+        render :json => {fail: true, error: "Invalid user name or password."}
       end
     end
+
   end
 
   def destroy
