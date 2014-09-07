@@ -5,17 +5,16 @@ require 'pry'
 NUMBER_OF_KEYWORDS = 3
 
 class Kimono
-  @@categories_created = []
-
   def self.start
     #test
     # returnVal = RestClient.get 'https://www.kimonolabs.com/api/csk458cq?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
     # real
-    # returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+    returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
     #stephanie's test
     # returnVal= response = RestClient.get 'https://www.kimonolabs.com/api/95y8ownk?apikey=7eKJi6sY1ZTl8RSHvmeVOEl1kCfNAqeZ'
-    file = File.read('app/models/kimonoData.json')
-    json_obj = JSON.parse(file)
+    # file = File.read('app/models/kimonoData.json')
+    # json_obj = JSON.parse(file)
+    json_obj = JSON.parse(returnVal)
     add_categories(json_obj)
 
     kimono_parser(json_obj)
@@ -39,7 +38,6 @@ class Kimono
     json_collection.each do |article_hash|
       unless article_hash["category"] == category.name
         category = Category.create(name:article_hash["category"])
-        @@categories_created << category
       end
 
       title   = article_hash["title"]["text"]
@@ -60,11 +58,9 @@ class Kimono
   end
 
   def self.process_categories(number_of_keywords)
-    @@categories_created.each do |category|
-      category.make_pair(number_of_keywords)
+    Category.all[-10..-1].each do |category|
+      category.make_pair
     end
-
-    @@categories_created = []
 
   end
 end
