@@ -26,6 +26,7 @@ class Article < ActiveRecord::Base
     tags.each do |tag|
       scores << self.article_tags.where(tag_id: tag.id)[0].sentiment_score
     end
+    p scores
     scores
   end
 

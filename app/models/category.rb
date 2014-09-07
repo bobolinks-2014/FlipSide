@@ -5,8 +5,9 @@ class Category < ActiveRecord::Base
 
   attr_reader :relevant_tags
   #Runner method; returns a pair object given the number of keywords
-  def make_pair(number_of_keywords)
-    find_relevant_keywords(number_of_keywords)
+  def make_pair#number_of_keywords)
+    # find_relevant_keywords(number_of_keywords)
+    return self.articles.first if self.articles.size == 1
     pair = find_pair
     Pair.create(article1_id: pair[0].id,
                 article2_id: pair[1].id,
@@ -16,47 +17,69 @@ class Category < ActiveRecord::Base
 
 
   #should return the N most frequently appearing tags in the catgegory's articles
-  def find_relevant_keywords(number)
-    tag_count = Hash.new(0)
-    self.articles.each do |article|
-      article.tags.each do |tag|
-        tag_count[tag] += 1
-      end
-    end
-    ord_array = tag_count.sort_by {|k,v| -v}
+  # def find_relevant_keywords(number)
+  #   tag_count = Hash.new(0)
+  #   self.articles.each do |article|
+  #     article.tags.each do |tag|
+  #       tag_count[tag] += 1
+  #     end
+  #   end
+  #   ord_array = tag_count.sort_by {|k,v| -v}
 
-    @relevant_tags = ord_array[0...number].map{|tag| tag[0]}
-  end
+  #   @relevant_tags = ord_array[0...number].map{|tag| tag[0]}
+  # end
 
   #find_relevant_keywords NEEDS TO be run before this.
   #given all relevent tags, selects all articles that have all relevent tags
-  def relevant_articles
-    self.articles.select do |article|
-      false_count = 0
+  # def relevant_articles
+  #   self.articles.select do |article|
+  #     false_count = 0
 
-      @relevant_tags.each do |tag|
-        false_count +=1 unless article.tags.include?(tag)
-      end
+  #     @relevant_tags.each do |tag|
+  #       false_count +=1 unless article.tags.include?(tag)
+  #     end
 
-      false_count == 0
-    end
-  end
+  #     false_count == 0
+  #   end
+  # end
 
   # find_relevant_keywords NEEDS TO be run before this.
   # test after relevant articles
   # returns the most different article pair based on relevant tags differences
+
+  #simplest
+  # for all the articles in a category
+  # compare avg sentiments of the tags and find max difference
+
+  # Better
+  # for all the articles in a category
+  # intialize article pair
+  # initial sentiment difference: 0
+  # find look for articles with at least 1-2 tags in common
+  # if they have tags in common
+    # find their sentiment difference
+    # if the sentiment difference is greater than the current reigning sentiment difference, reassign article to pair
+    # then make a pair
+
+  # of if they have tags in common
+    # find their sentiment different
+    # if the sentiment differnece is greater than some threshold, make a pair
+
+
   def find_pair
     article_pair = [0,0,0]
-    articles_left = self.relevant_articles[1..-1]
-    self.relevant_articles.each do |article1|
-      a1_scores = article1.relevant_sentiment_scores(@relevant_tags)
+
+    # articles_left = self.relevant_articles[1..-1]
+    articles_left = self.articles[1..-1]
+    self.articles.each do |article1|
+      # a1_scores = article1.relevant_sentiment_scores(@relevant_tags)
 
       articles_left.each do |article2|
 
-        a2_scores = article2.relevant_sentiment_scores(@relevant_tags)
-        difference = sum_differences(a1_scores, a2_scores)
+        # a2_scores = article2.relevant_sentiment_scores(@relevant_tags)
+        difference = sum_differences(article1, article2)
 
-        article_pair = [article1,article2,difference] if difference > article_pair.last
+        article_pair = [article1, article2, difference] if difference > article_pair.last
 
       end
       articles_left.shift
@@ -65,11 +88,31 @@ class Category < ActiveRecord::Base
   end
 
   #method for evaluating differences between articles' relevant tags scores'
-  def sum_differences(scores1, scores2)
+  def sum_differences(article1, article2)
     sum = 0
-    scores1.each_index do |i|
-      sum += (scores1[i] - scores2[i]).abs
+
+    article1.article_tags.each do |article_tag1|
+      article_tag2 = article2.article_tags.find_by(tag_id: article_tag1.id)
+
+      a1_score = article_tag1.sentiment_score
+      a2_score = article_tag2.nil? ? 0 : article_tag2.sentiment_score
+
+      sum += (a1_score - a2_score).abs
     end
-    sum
+
+    return sum
   end
+
+
+
+
+
+  #   article1.article_tags.each_index do |i|
+  #     # check if the article tag exists in article2
+  #     # if it doesn't set sentiment to 0
+
+  #     sum += (scores1[i] - scores2[i]).abs
+  #   end
+  #   sum
+  # end
 end

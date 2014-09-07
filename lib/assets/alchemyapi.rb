@@ -93,7 +93,8 @@ class AlchemyAPI
 
 		begin
 			# key = File.read('api_key.txt')
-			key = 'e2b5ef0456182f9d9bd456ab17d19e880d5970e9'
+			# new key
+			key = 'b3308acb4846ed61eef5260e4930d33ee5383ff5'
 			key.strip!
 
 			if key.empty?
