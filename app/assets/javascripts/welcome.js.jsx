@@ -64,11 +64,9 @@ var Article = React.createClass({
 
 var Home = React.createClass({
 	getInitialState: function(){
-		console.log("hello");
 		return {home: this.getHome()}
 	},
 	getHome: function(){
-		console.log("here")
 		return ( <div>
 						<div id = "landing" className = "large-12 columns full-page"></div>
 						<div id="manifesto" className= "row">
@@ -105,7 +103,6 @@ function renderPair(){
 	);
 }
 function renderHome(){
-	console.log("here");
 	React.renderComponent(
 	<Home/>,
 	document.getElementById('container')
@@ -145,3 +142,92 @@ $('div').on("mouseover","#enter", function(){
   $("#enter").fadeOut( 1000 );
   $("#enter").fadeIn( 1000 );
 });
+
+$("#signin_form").on('submit', function(e) {
+	e.preventDefault();
+	var email = $("#signup_email").val();
+	var password = $("#signup_password").val();
+
+	var request = $.ajax({
+		type: "POST",
+		url: '/sessions',
+    data: { email: email, password: password },
+	});
+
+	request.done(function(response) {
+		$('#signin_button').modal('hide');
+		renderHome();
+	})
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$("#signup_form").on('submit', function(e) {
+	e.preventDefault();
+	var name = $("#signup_name").val();
+	var email = $("#signup_email").val();
+	var password = $("#signup_password").val();
+	var password_confirmation = $("#signup_password_confirmation").val();
+
+	var request = $.ajax({
+		type: "POST",
+		url: '/users',
+		data: { user: {name: name, email: email, password: password, password_confirmation: password_confirmation} },
+		dataType: "json"
+	});
+
+	request.done(function(response) {
+		if(response.success == true) {
+			$('#signup_button').hide;
+			renderHome();
+		} else {
+      renderLoginFail(response);
+      renderHome();
+    }
+	})
+
+	return request;
+});
+
+
+
+
+
+
+
+
+
+
+

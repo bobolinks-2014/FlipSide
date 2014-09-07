@@ -18,12 +18,13 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(user_params)
+    @user = User.new(strong_params)
+    puts "Fuck you"
     if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the FlipSide"
-      redirect_to @user
+      session[:user_id] = @user.id
+      render :json => {success: true, user: @user.email}
     else
+      puts "Fuck you"
       render 'new'
     end
   end
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
 
   private
 
-    def user_params
+    def strong_params
       params.require(:user).permit(:name, :email, :password,
                                    :password_confirmation)
     end
