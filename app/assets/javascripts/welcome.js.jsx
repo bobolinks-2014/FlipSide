@@ -1,12 +1,34 @@
 /*** @jsx React.DOM */
-var Tag = React.createClass({
-	render: function(){
-		console.log(this.props.tags);
+
+var TagCollection = React.createClass({
+	getInitialState: function(){
+
+		return {tagCollection: this.getTags(this.props.tags)};
+	},
+	getTags: function(tags){
+		tag_arr = [];
+		$.each(tags, function(i){
+			tag_arr.push(this.renderTag(tags[i]));
+		}.bind(this));
+		return tag_arr;
+	},
+	renderTag: function(tag){
 		return(
-			<div>tags go here</div>
+			<div className="tag">
+				<p>{tag.sentiment_score}</p>
+				<p>{tag.tag.name}</p>
+			</div>
+		)
+	},
+	render: function(){
+
+		return(
+			<div className="tagCollection">{this.state.tagCollection}</div>
 		)
 	}
-})
+});
+
+
 var Pair = React.createClass({
 
 	getInitialState: function(){
@@ -22,7 +44,7 @@ var Pair = React.createClass({
 				articles.push(data[index].article1);
 				articles.push(data[index].article2);
 				// the first tag name for article 1 data[0].article1.article_tags[0].tag.name
-				pairRendered = this.renderArticles(articles, data[index].difference_score);
+				pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
 				pair_arr.push(pairRendered);
 			}.bind(this));
 			this.setState({
@@ -30,13 +52,33 @@ var Pair = React.createClass({
 			});
 		}.bind(this));
 	},
-	renderArticles: function(articles, difference_score){
+	getCommonTags: function(articles){
+		var tags1 = articles[0].article_tags;
+		var tags2 = articles[1].article_tags;
+		commonTags = [];
+		article1tags = [];
+		article2tags = [];
+		$.each(tags1, function(i){
+			$.each(tags2, function(j){
+				if (tags1[i].tag.name === tags2[j].tag.name){
+					// if the names are the same...
+					// (russia1, russia2)
+					// (putin1, putin2)
+					article1tags.push(tags1[i]);
+					article2tags.push(tags2[j]);
+				}
+			})
+		})
+		// this is an array of common tags where each element of the array is an article tag...because i needed that.
+		return [article1tags, article2tags];
+	},
+	renderArticles: function(articles, difference_score, tags){
 		return(
 			<div className="pair row">
 				<p className="text-center">These articles have a sentiment difference of {difference_score}</p>
 				<div className="paired_articles">
-					<Article options={articles[0]} onClick={this.handleClick}/>
-					<Article options={articles[1]} onClick={this.handleClick}/>
+					<Article options={articles[0]} tags = {tags[0]} onClick={this.handleClick}/>
+					<Article options={articles[1]} tags ={tags[1]} onClick={this.handleClick}/>
 				</div>
 				<hr/>
 			</div>
@@ -56,10 +98,9 @@ var Article = React.createClass({
 		return {showArticle: false};
 	},
 	render: function(){
-
 		return (
 			<div className = 'large-6 columns'>
-				<Tag tags={this.props.options.article_tags}/>
+				<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} >
 					<div className = {this.props.options.url}>
 						<h2>{this.props.options.title}</h2>
