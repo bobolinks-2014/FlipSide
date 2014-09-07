@@ -1,3 +1,4 @@
+require 'pry'
 class WelcomeController < ApplicationController
   def welcome
   end
@@ -14,15 +15,19 @@ class WelcomeController < ApplicationController
     end
 
     if request.xhr?
-      render :json => @pairs.to_json(:include => [:article1 => :article_tag, :article2 => :article_tag])
+      render :json => @pairs.to_json(:include=>{
+      :article1=>{:include => {
+        :article_tags=>{:include=> :tags}},
+      :article2=>{:include => {
+        :article_tags=>{:include=> :tags}}
+      })
     end
   end
 
   def rate
-    current_user = User.create(name: "fake", email: "hell0@jello.com", password: "123456", password_confirmation: "123456")
-    @article = Article.find(params[:article_id])
-    rating = params[:rating] == "agree" ? true : false
-    current_user.vote(@article, rating)
+
+    # TODO call method to rate the article etc etc
+
     if request.xhr?
       render :json => {status: "ok"}
     end
