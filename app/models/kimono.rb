@@ -55,13 +55,13 @@ class Kimono
 
       keywords = Alchemy.alchemize(new_article.url)
       # binding.pry
-      new_article.make_tags(keywords, 6)
+      new_article.make_tags(keywords, 10)
     end
   end
 
   def self.process_categories(number_of_keywords)
     @@categories_created.each do |category|
-      category.make_pair(number_of_keywords)
+      category.make_pair
     end
 
     @@categories_created = []

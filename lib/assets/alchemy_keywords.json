@@ -1,0 +1,568 @@
+{"text"=>"Ukraine", "relevance"=>"0.959405", "sentiment"=>{"type"=>"negative", "score"=>"-0.156086", "mixed"=>"1"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.894596", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"eastern Ukraine marks", "relevance"=>"0.807088", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.768499", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine President Petro", "relevance"=>"0.745781", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine economy", "relevance"=>"0.641446", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Putin views", "relevance"=>"0.635275", "sentiment"=>{"type"=>"negative", "score"=>"-0.584917"}}
+{"text"=>"east Ukraine", "relevance"=>"0.634467", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine analyst", "relevance"=>"0.615247", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Soviet republics", "relevance"=>"0.57953", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"cease-fire agreement", "relevance"=>"0.558759", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"ethnic Russian separatists", "relevance"=>"0.553283", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President George W.", "relevance"=>"0.551134", "sentiment"=>{"type"=>"negative", "score"=>"-0.409252"}}
+{"text"=>"Defense Department official", "relevance"=>"0.543513", "sentiment"=>{"type"=>"negative", "score"=>"-0.409252"}}
+{"text"=>"ongoing territorial dispute", "relevance"=>"0.5206", "sentiment"=>{"type"=>"negative", "score"=>"-0.513694"}}
+{"text"=>"Separatist leader Igor", "relevance"=>"0.51714", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"German politician Marieluise", "relevance"=>"0.51232", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO policy", "relevance"=>"0.481946", "sentiment"=>{"type"=>"negative", "score"=>"-0.409252"}}
+{"text"=>"Ian Brzezinski", "relevance"=>"0.481729", "sentiment"=>{"type"=>"positive", "score"=>"0.316556"}}
+{"text"=>"NATO membership", "relevance"=>"0.472794", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Russian-backed separatists", "relevance"=>"0.468282", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"forced Kiev", "relevance"=>"0.468084", "sentiment"=>{"type"=>"negative", "score"=>"-0.36839"}}
+{"text"=>"Kiev government", "relevance"=>"0.464562", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO presence", "relevance"=>"0.459423", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"military union", "relevance"=>"0.44903", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"European Union", "relevance"=>"0.440062", "sentiment"=>{"type"=>"negative", "score"=>"-0.584917"}}
+{"text"=>"fragile cease-fire", "relevance"=>"0.436964", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"insurgent force", "relevance"=>"0.436941", "sentiment"=>{"type"=>"negative", "score"=>"-0.430971"}}
+{"text"=>"real setback", "relevance"=>"0.435608", "sentiment"=>{"type"=>"negative", "score"=>"-0.65271"}}
+{"text"=>"territory", "relevance"=>"0.434678", "sentiment"=>{"type"=>"negative", "score"=>"-0.430971"}}
+{"text"=>"Ukraine", "relevance"=>"0.956378", "sentiment"=>{"type"=>"positive", "score"=>"0.0402932", "mixed"=>"1"}}
+{"text"=>"ceasefire", "relevance"=>"0.924712", "sentiment"=>{"type"=>"positive", "score"=>"0.00976187", "mixed"=>"1"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.816988", "sentiment"=>{"type"=>"negative", "score"=>"-0.418778"}}
+{"text"=>"KIEV/MARIUPOL Ukraine", "relevance"=>"0.75017", "sentiment"=>{"type"=>"negative", "score"=>"-0.418778"}}
+{"text"=>"southeastern Ukraine", "relevance"=>"0.699958", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian government forces", "relevance"=>"0.698544", "sentiment"=>{"type"=>"negative", "score"=>"-0.418778"}}
+{"text"=>"Ukraine conflict", "relevance"=>"0.685994", "sentiment"=>{"type"=>"negative", "score"=>"-0.470919"}}
+{"text"=>"Ukraine crisis", "relevance"=>"0.680928", "sentiment"=>{"type"=>"positive", "score"=>"0.4525"}}
+{"text"=>"independent Ukraine", "relevance"=>"0.676258", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"main flashpoint", "relevance"=>"0.668922", "sentiment"=>{"type"=>"negative", "score"=>"-0.64301"}}
+{"text"=>"industrial facility ablaze", "relevance"=>"0.657115", "sentiment"=>{"type"=>"negative", "score"=>"-0.367789"}}
+{"text"=>"Vladimir Putin", "relevance"=>"0.637908", "sentiment"=>{"type"=>"positive", "score"=>"0.82704"}}
+{"text"=>"agitated-looking pro-government militia", "relevance"=>"0.637741", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"OSCE security watchdog", "relevance"=>"0.630433", "sentiment"=>{"type"=>"positive", "score"=>"0.272975"}}
+{"text"=>"armored personnel carriers", "relevance"=>"0.629426", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"southern coastal town", "relevance"=>"0.627961", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Petro Poroshenko", "relevance"=>"0.626572", "sentiment"=>{"type"=>"positive", "score"=>"0.82704"}}
+{"text"=>"major rebel offensive", "relevance"=>"0.62526", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"rebel-held industrial city", "relevance"=>"0.623019", "sentiment"=>{"type"=>"negative", "score"=>"-0.56049"}}
+{"text"=>"new economic sanctions", "relevance"=>"0.619357", "sentiment"=>{"type"=>"negative", "score"=>"-0.270902"}}
+{"text"=>"new Cold War", "relevance"=>"0.611844", "sentiment"=>{"type"=>"negative", "score"=>"-0.470919"}}
+{"text"=>"U.S. President Barack", "relevance"=>"0.605967", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Western food imports", "relevance"=>"0.604439", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"key flashpoint", "relevance"=>"0.568879", "sentiment"=>{"type"=>"negative", "score"=>"-0.367789"}}
+{"text"=>"peace road-map", "relevance"=>"0.549903", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian serviceman", "relevance"=>"0.548068", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russian separatists", "relevance"=>"0.545989", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Reuters reporter", "relevance"=>"0.543526", "sentiment"=>{"type"=>"negative", "score"=>"-0.367789"}}
+{"text"=>"strategic port", "relevance"=>"0.542729", "sentiment"=>{"type"=>"negative", "score"=>"-0.418778"}}
+{"text"=>"gas station", "relevance"=>"0.537182", "sentiment"=>{"type"=>"negative", "score"=>"-0.367789"}}
+{"text"=>"two-day NATO summit", "relevance"=>"0.969365", "sentiment"=>{"type"=>"negative", "score"=>"-0.271682"}}
+{"text"=>"NATO Secretary-General Anders", "relevance"=>"0.727408", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO Special Operations", "relevance"=>"0.692879", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO members", "relevance"=>"0.633322", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO countries", "relevance"=>"0.59848", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO leaders", "relevance"=>"0.598393", "sentiment"=>{"type"=>"negative", "score"=>"-0.385211"}}
+{"text"=>"pro-Russia separatists", "relevance"=>"0.590315", "sentiment"=>{"type"=>"negative", "score"=>"-0.330203"}}
+{"text"=>"conditional cease-fire agreement", "relevance"=>"0.544708", "sentiment"=>{"type"=>"negative", "score"=>"-0.266388"}}
+{"text"=>"new rapid response", "relevance"=>"0.54318", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Eastern Europe", "relevance"=>"0.535473", "sentiment"=>{"type"=>"negative", "score"=>"-0.230707"}}
+{"text"=>"President Petro Poroshenko", "relevance"=>"0.530686", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Air Force lieutenant", "relevance"=>"0.516567", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"overt military intervention", "relevance"=>"0.51409", "sentiment"=>{"type"=>"negative", "score"=>"-0.531868"}}
+{"text"=>"Ukraine", "relevance"=>"0.508319", "sentiment"=>{"type"=>"positive", "score"=>"0.0810304", "mixed"=>"1"}}
+{"text"=>"group Islamic State", "relevance"=>"0.503312", "sentiment"=>{"type"=>"negative", "score"=>"-0.385211"}}
+{"text"=>"hybrid Osprey aircraft", "relevance"=>"0.502851", "sentiment"=>{"type"=>"positive", "score"=>"0.337352"}}
+{"text"=>"Minister David Cameron", "relevance"=>"0.498324", "sentiment"=>{"type"=>"positive", "score"=>"0.399316"}}
+{"text"=>"Marshall Bradley Webb", "relevance"=>"0.498135", "sentiment"=>{"type"=>"positive", "score"=>"0.46012"}}
+{"text"=>"new sanctions", "relevance"=>"0.48335", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"new cease-fire", "relevance"=>"0.46799", "sentiment"=>{"type"=>"negative", "score"=>"-0.271682"}}
+{"text"=>"Fogh Rasmussen", "relevance"=>"0.465305", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Obama", "relevance"=>"0.443684", "sentiment"=>{"type"=>"negative", "score"=>"-0.271682"}}
+{"text"=>"Western alliance", "relevance"=>"0.438633", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"past experience", "relevance"=>"0.438351", "sentiment"=>{"type"=>"negative", "score"=>"-0.390475"}}
+{"text"=>"big countries", "relevance"=>"0.437785", "sentiment"=>{"type"=>"negative", "score"=>"-0.611381"}}
+{"text"=>"little countries", "relevance"=>"0.437649", "sentiment"=>{"type"=>"negative", "score"=>"-0.611381"}}
+{"text"=>"Western pressure", "relevance"=>"0.436315", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"rapid-response force", "relevance"=>"0.43599", "sentiment"=>{"type"=>"positive", "score"=>"0.471867"}}
+{"text"=>"Heidi Tagliavini", "relevance"=>"0.435007", "sentiment"=>{"type"=>"negative", "score"=>"-0.236821"}}
+{"text"=>"alliance countries", "relevance"=>"0.434811", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine", "relevance"=>"0.999852", "sentiment"=>{"type"=>"negative", "score"=>"-0.442004"}}
+{"text"=>"deadly Ukraine conflict", "relevance"=>"0.998942", "sentiment"=>{"type"=>"negative", "score"=>"-0.367038"}}
+{"text"=>"NATO summit", "relevance"=>"0.985742", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.981253", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Putin spokesman Dmitry", "relevance"=>"0.977293", "sentiment"=>{"type"=>"negative", "score"=>"-0.259381"}}
+{"text"=>"separatists", "relevance"=>"0.943905", "sentiment"=>{"type"=>"negative", "score"=>"-0.650161"}}
+{"text"=>"Russian troops", "relevance"=>"0.943559", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Petro Poroshenko", "relevance"=>"0.942754", "sentiment"=>{"type"=>"negative", "score"=>"-0.708384"}}
+{"text"=>"self-proclaimed Luhansk People", "relevance"=>"0.939768", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russia separatists", "relevance"=>"0.935814", "sentiment"=>{"type"=>"negative", "score"=>"-0.708384"}}
+{"text"=>"Ukraine s sovereignty", "relevance"=>"0.931397", "sentiment"=>{"type"=>"negative", "score"=>"-0.591938"}}
+{"text"=>"strategic southeastern port", "relevance"=>"0.920668", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Kremlin-backed separatists", "relevance"=>"0.916", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"peace plan", "relevance"=>"0.914927", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"European security alliance", "relevance"=>"0.914534", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine s Crimea", "relevance"=>"0.907838", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Russian Foreign Ministry", "relevance"=>"0.901982", "sentiment"=>{"type"=>"negative", "score"=>"-0.367038"}}
+{"text"=>"major national agreements", "relevance"=>"0.897998", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"member state", "relevance"=>"0.8959", "sentiment"=>{"type"=>"negative", "score"=>"-0.30595"}}
+{"text"=>"new federal structure", "relevance"=>"0.895051", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Eastern Europe", "relevance"=>"0.894706", "sentiment"=>{"type"=>"negative", "score"=>"-0.224558"}}
+{"text"=>"European Union diplomats", "relevance"=>"0.89173", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"EU member states", "relevance"=>"0.889755", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO member", "relevance"=>"0.88811", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"United Nations casualty", "relevance"=>"0.887853", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO countries", "relevance"=>"0.880297", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO members", "relevance"=>"0.87877", "sentiment"=>{"type"=>"negative", "score"=>"-0.224558"}}
+{"text"=>"5-month-old conflict", "relevance"=>"0.857158", "sentiment"=>{"type"=>"negative", "score"=>"-0.708384"}}
+{"text"=>"bloody conflict", "relevance"=>"0.832718", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"embattled east", "relevance"=>"0.830688", "sentiment"=>{"type"=>"negative", "score"=>"-0.708384"}}
+{"text"=>"ceasefire", "relevance"=>"0.95903", "sentiment"=>{"type"=>"positive", "score"=>"0.23135", "mixed"=>"1"}}
+{"text"=>"ceasefire talks", "relevance"=>"0.805248", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine", "relevance"=>"0.761958", "sentiment"=>{"type"=>"negative", "score"=>"-0.0677941", "mixed"=>"1"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.740291", "sentiment"=>{"type"=>"negative", "score"=>"-0.564281"}}
+{"text"=>"Ukraine Mikhail Zurabov", "relevance"=>"0.703291", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Petro Poroshenko", "relevance"=>"0.627172", "sentiment"=>{"type"=>"positive", "score"=>"0.283934"}}
+{"text"=>"Ukraine crisis", "relevance"=>"0.617049", "sentiment"=>{"type"=>"negative", "score"=>"-0.251317"}}
+{"text"=>"Ukrainian President Leonid", "relevance"=>"0.613241", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Interfax news agency", "relevance"=>"0.573376", "sentiment"=>{"type"=>"negative", "score"=>"-0.305289"}}
+{"text"=>"heavy artillery barrages", "relevance"=>"0.572345", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Commander Stepan Poltorak", "relevance"=>"0.57068", "sentiment"=>{"type"=>"negative", "score"=>"-0.305289"}}
+{"text"=>"humanitarian relief supplies", "relevance"=>"0.567662", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Barack Obama", "relevance"=>"0.556555", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"12-point peace plan", "relevance"=>"0.554971", "sentiment"=>{"type"=>"negative", "score"=>"-0.258175"}}
+{"text"=>"European Commission President", "relevance"=>"0.549718", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"rebels", "relevance"=>"0.543161", "sentiment"=>{"type"=>"negative", "score"=>"-0.301129"}}
+{"text"=>"pro-Russia rebels", "relevance"=>"0.539621", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"EU asset freeze", "relevance"=>"0.535644", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Jose Manuel Barroso", "relevance"=>"0.529138", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"multi-national rapid-reaction force", "relevance"=>"0.526281", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russian rebels", "relevance"=>"0.521915", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian government", "relevance"=>"0.488831", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Humanitarian aid", "relevance"=>"0.474857", "sentiment"=>{"type"=>"positive", "score"=>"0.506889"}}
+{"text"=>"humanitarian assistance", "relevance"=>"0.460943", "sentiment"=>{"type"=>"positive", "score"=>"0.338344"}}
+{"text"=>"humanitarian corridor", "relevance"=>"0.458556", "sentiment"=>{"type"=>"positive", "score"=>"0.558886"}}
+{"text"=>"President Poroshenko", "relevance"=>"0.457686", "sentiment"=>{"type"=>"negative", "score"=>"-0.258175"}}
+{"text"=>"Richard Galpin", "relevance"=>"0.457149", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"eastern battlefields", "relevance"=>"0.457098", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Fergal Keane", "relevance"=>"0.456152", "sentiment"=>{"type"=>"positive", "score"=>"0.247077"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.455641", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Mr. Putin", "relevance"=>"0.944173", "sentiment"=>{"type"=>"negative", "score"=>"-0.29803", "mixed"=>"1"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.789911", "sentiment"=>{"type"=>"negative", "score"=>"-0.47734"}}
+{"text"=>"Ukraine", "relevance"=>"0.657773", "sentiment"=>{"type"=>"positive", "score"=>"0.186745", "mixed"=>"1"}}
+{"text"=>"NATO summit decisions", "relevance"=>"0.609104", "sentiment"=>{"type"=>"positive", "score"=>"0.30809"}}
+{"text"=>"cease-fire agreement", "relevance"=>"0.604943", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Petro Poroshenko", "relevance"=>"0.596479", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"strategic southern coast", "relevance"=>"0.585513", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"political solution", "relevance"=>"0.584081", "sentiment"=>{"type"=>"positive", "score"=>"0.288133"}}
+{"text"=>"10-kilometer buffer zone", "relevance"=>"0.580632", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Eastern European members", "relevance"=>"0.579813", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"possible political solution", "relevance"=>"0.573364", "sentiment"=>{"type"=>"positive", "score"=>"0.268175"}}
+{"text"=>"4,000-person rapid reaction", "relevance"=>"0.547152", "sentiment"=>{"type"=>"positive", "score"=>"0.392731"}}
+{"text"=>"military command structure", "relevance"=>"0.544812", "sentiment"=>{"type"=>"positive", "score"=>"0.563286"}}
+{"text"=>"NATO leaders", "relevance"=>"0.518701", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO members", "relevance"=>"0.493527", "sentiment"=>{"type"=>"positive", "score"=>"0.353151"}}
+{"text"=>"main story", "relevance"=>"0.481585", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"unpredictable provocateur", "relevance"=>"0.479972", "sentiment"=>{"type"=>"negative", "score"=>"-0.47734"}}
+{"text"=>"tougher sanctions", "relevance"=>"0.478517", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"heavy setbacks", "relevance"=>"0.464319", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Cold War", "relevance"=>"0.460201", "sentiment"=>{"type"=>"negative", "score"=>"-0.47734"}}
+{"text"=>"defensive help", "relevance"=>"0.45847", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"expansionist vision", "relevance"=>"0.457121", "sentiment"=>{"type"=>"negative", "score"=>"-0.743922"}}
+{"text"=>"southeastern region", "relevance"=>"0.456351", "sentiment"=>{"type"=>"negative", "score"=>"-0.345905"}}
+{"text"=>"economic sanctions", "relevance"=>"0.454554", "sentiment"=>{"type"=>"negative", "score"=>"-0.743922"}}
+{"text"=>"easy path", "relevance"=>"0.453411", "sentiment"=>{"type"=>"negative", "score"=>"-0.47734"}}
+{"text"=>"deceitful manner", "relevance"=>"0.453054", "sentiment"=>{"type"=>"positive", "score"=>"0.671923"}}
+{"text"=>"worst conflict", "relevance"=>"0.452287", "sentiment"=>{"type"=>"negative", "score"=>"-0.47734"}}
+{"text"=>"summit meeting", "relevance"=>"0.451491", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"regional autonomy", "relevance"=>"0.451491", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.449399", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"ceasefire", "relevance"=>"0.975983", "sentiment"=>{"type"=>"positive", "score"=>"0.0121034", "mixed"=>"1"}}
+{"text"=>"peace plan", "relevance"=>"0.843794", "sentiment"=>{"type"=>"positive", "score"=>"0.617708"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.842132", "sentiment"=>{"type"=>"negative", "score"=>"-0.694627"}}
+{"text"=>"proper peace plan", "relevance"=>"0.803104", "sentiment"=>{"type"=>"positive", "score"=>"0.796325"}}
+{"text"=>"tentative ceasefire", "relevance"=>"0.777951", "sentiment"=>{"type"=>"negative", "score"=>"-0.727852"}}
+{"text"=>"ceasefire time", "relevance"=>"0.726768", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Vladimir Putin produced a seven-point", "relevance"=>"0.716066", "sentiment"=>{"type"=>"positive", "score"=>"0.260472"}}
+{"text"=>"Nato summit", "relevance"=>"0.649901", "sentiment"=>{"type"=>"negative", "score"=>"-0.57569"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.632438", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"possible rebel onslaught", "relevance"=>"0.624304", "sentiment"=>{"type"=>"negative", "score"=>"-0.631717"}}
+{"text"=>"Ukrainian president Leonid", "relevance"=>"0.624059", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian army", "relevance"=>"0.616183", "sentiment"=>{"type"=>"negative", "score"=>"-0.343753"}}
+{"text"=>"general Ban Ki-moon", "relevance"=>"0.611914", "sentiment"=>{"type"=>"positive", "score"=>"0.221091"}}
+{"text"=>"heavy military involvement", "relevance"=>"0.611158", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"strategic port city", "relevance"=>"0.605757", "sentiment"=>{"type"=>"negative", "score"=>"-0.631717"}}
+{"text"=>"Russian army soldiers", "relevance"=>"0.604926", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"far-right Azov volunteer", "relevance"=>"0.602017", "sentiment"=>{"type"=>"negative", "score"=>"-0.336665"}}
+{"text"=>"regular Russian soldiers", "relevance"=>"0.597364", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"de-facto independent state", "relevance"=>"0.596733", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"joint military exercises", "relevance"=>"0.592407", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"heavy artillery", "relevance"=>"0.583624", "sentiment"=>{"type"=>"negative", "score"=>"-0.436149"}}
+{"text"=>"separatist rebels", "relevance"=>"0.573297", "sentiment"=>{"type"=>"negative", "score"=>"-0.727852"}}
+{"text"=>"government forces", "relevance"=>"0.552297", "sentiment"=>{"type"=>"negative", "score"=>"-0.270504"}}
+{"text"=>"rebel forces", "relevance"=>"0.542737", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Nato statements", "relevance"=>"0.538817", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Nato countries", "relevance"=>"0.538631", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"extremist forces", "relevance"=>"0.531558", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"disputed chunk", "relevance"=>"0.529289", "sentiment"=>{"type"=>"negative", "score"=>"-0.661403"}}
+{"text"=>"five-month conflict", "relevance"=>"0.528807", "sentiment"=>{"type"=>"negative", "score"=>"-0.727852"}}
+{"text"=>"Petro Poroshenko", "relevance"=>"0.528626", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.907298", "sentiment"=>{"type"=>"negative", "score"=>"-0.584754"}}
+{"text"=>"ceasefire", "relevance"=>"0.85252", "sentiment"=>{"type"=>"negative", "score"=>"-0.0528611", "mixed"=>"1"}}
+{"text"=>"ceasefire deal", "relevance"=>"0.793233", "sentiment"=>{"type"=>"negative", "score"=>"-0.264137"}}
+{"text"=>"Sporadic heavy artillery barrages and machine gun fire could", "relevance"=>"0.76328", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian government", "relevance"=>"0.745528", "sentiment"=>{"type"=>"negative", "score"=>"-0.40201"}}
+{"text"=>"previous unilateral ceasefire", "relevance"=>"0.680959", "sentiment"=>{"type"=>"negative", "score"=>"-0.471313"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.678884", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"news agency Itar-Tass", "relevance"=>"0.676075", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"southeastern Ukrainian city", "relevance"=>"0.629325", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian National Security", "relevance"=>"0.622194", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian government forces", "relevance"=>"0.621725", "sentiment"=>{"type"=>"negative", "score"=>"-0.273417"}}
+{"text"=>"southeastern Ukraine", "relevance"=>"0.608625", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian President Petro", "relevance"=>"0.603339", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian border town", "relevance"=>"0.596489", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.586225", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Russian news agency", "relevance"=>"0.584885", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Victoria Butenko also contributed from Kiev .", "relevance"=>"0.584046", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian President Leonid", "relevance"=>"0.581212", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"new EU sanctions", "relevance"=>"0.579343", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Luhansk city council", "relevance"=>"0.572562", "sentiment"=>{"type"=>"negative", "score"=>"-0.26851"}}
+{"text"=>"self-styled Donetsk People", "relevance"=>"0.570307", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russian rebels", "relevance"=>"0.570105", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Novosti new agency", "relevance"=>"0.569352", "sentiment"=>{"type"=>"negative", "score"=>"-0.421106"}}
+{"text"=>"RIA Novosti", "relevance"=>"0.56141", "sentiment"=>{"type"=>"negative", "score"=>"-0.125592", "mixed"=>"1"}}
+{"text"=>"Russian state-run news", "relevance"=>"0.561344", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Col. Andriy Lysenko", "relevance"=>"0.560752", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Russian aid convoy", "relevance"=>"0.556784", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Russian Deputy Foreign", "relevance"=>"0.552565", "sentiment"=>{"type"=>"positive", "score"=>"0.295514"}}
+{"text"=>"pro-Russian rebel groups", "relevance"=>"0.551034", "sentiment"=>{"type"=>"negative", "score"=>"-0.273417"}}
+{"text"=>"rare positive sign", "relevance"=>"0.548645", "sentiment"=>{"type"=>"negative", "score"=>"-0.477226"}}
+{"text"=>"Ukrainian President Petro", "relevance"=>"0.91976", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.897161", "sentiment"=>{"type"=>"negative", "score"=>"-0.227803"}}
+{"text"=>"Ukrainian regions Donetsk", "relevance"=>"0.895014", "sentiment"=>{"type"=>"positive", "score"=>"0.349183"}}
+{"text"=>"local breakaway governments", "relevance"=>"0.857132", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Black Sea", "relevance"=>"0.844881", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Russian imperialist vision", "relevance"=>"0.843659", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Black Sea Fleet", "relevance"=>"0.832373", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Russian client states", "relevance"=>"0.824362", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.788835", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"separatist ambitions", "relevance"=>"0.749068", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russian separatists", "relevance"=>"0.733779", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"paramilitary forces", "relevance"=>"0.728907", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"separatist hands", "relevance"=>"0.726163", "sentiment"=>{"type"=>"positive", "score"=>"0.349183"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.720665", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian border", "relevance"=>"0.71643", "sentiment"=>{"type"=>"negative", "score"=>"-0.407324"}}
+{"text"=>"industrial hotbeds", "relevance"=>"0.708516", "sentiment"=>{"type"=>"negative", "score"=>"-0.548939"}}
+{"text"=>"breakaway republic", "relevance"=>"0.704714", "sentiment"=>{"type"=>"negative", "score"=>"-0.407324"}}
+{"text"=>"greater Russia", "relevance"=>"0.70326", "sentiment"=>{"type"=>"negative", "score"=>"-0.227803"}}
+{"text"=>"Soviet nostalgia", "relevance"=>"0.697805", "sentiment"=>{"type"=>"negative", "score"=>"-0.227803"}}
+{"text"=>"human life", "relevance"=>"0.69696", "sentiment"=>{"type"=>"positive", "score"=>"0.594702"}}
+{"text"=>"South Ossetia", "relevance"=>"0.695453", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"highest value", "relevance"=>"0.694734", "sentiment"=>{"type"=>"positive", "score"=>"0.594702"}}
+{"text"=>"swift takeover", "relevance"=>"0.693968", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"satellite imagery", "relevance"=>"0.688", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"new facts", "relevance"=>"0.686956", "sentiment"=>{"type"=>"positive", "score"=>"0.544111"}}
+{"text"=>"brief quiet", "relevance"=>"0.686801", "sentiment"=>{"type"=>"positive", "score"=>"0.544111"}}
+{"text"=>"mythic project", "relevance"=>"0.683575", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Soviet Union", "relevance"=>"0.682508", "sentiment"=>{"type"=>"negative", "score"=>"-0.407324"}}
+{"text"=>"industrial heartland", "relevance"=>"0.675808", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"18th century", "relevance"=>"0.672881", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Col. Andriy Lysenko", "relevance"=>"0.967289", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.923815", "sentiment"=>{"type"=>"negative", "score"=>"-0.297095"}}
+{"text"=>"Ukraine", "relevance"=>"0.918156", "sentiment"=>{"type"=>"negative", "score"=>"-0.458785"}}
+{"text"=>"Friday night", "relevance"=>"0.906806", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"late Friday afternoon", "relevance"=>"0.904552", "sentiment"=>{"type"=>"negative", "score"=>"-0.215589"}}
+{"text"=>"Ukrainian government troops", "relevance"=>"0.895047", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"national security council", "relevance"=>"0.893103", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"agency RIA Novosti", "relevance"=>"0.886226", "sentiment"=>{"type"=>"negative", "score"=>"-0.428662"}}
+{"text"=>"cease-fire", "relevance"=>"0.880109", "sentiment"=>{"type"=>"positive", "score"=>"0.0102367", "mixed"=>"1"}}
+{"text"=>"previous 10-day cease-fire", "relevance"=>"0.879302", "sentiment"=>{"type"=>"negative", "score"=>"-0.459077"}}
+{"text"=>"President Barack Obama", "relevance"=>"0.855865", "sentiment"=>{"type"=>"positive", "score"=>"0.266956"}}
+{"text"=>"two-day NATO summit", "relevance"=>"0.855003", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"United Nations estimates", "relevance"=>"0.84582", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.81977", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"daily shelling", "relevance"=>"0.813636", "sentiment"=>{"type"=>"positive", "score"=>"0.363808"}}
+{"text"=>"Russian-backed separatists", "relevance"=>"0.7985", "sentiment"=>{"type"=>"negative", "score"=>"-0.210927"}}
+{"text"=>"Kremlin-backed separatists", "relevance"=>"0.785549", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"cease-fire agreement", "relevance"=>"0.780543", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian economy", "relevance"=>"0.77202", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"pro-Russian rebels", "relevance"=>"0.769848", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"Donetsk", "relevance"=>"0.76744", "sentiment"=>{"type"=>"negative", "score"=>"-0.22241"}}
+{"text"=>"cease-fire deal", "relevance"=>"0.764859", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"tougher sanctions", "relevance"=>"0.761996", "sentiment"=>{"type"=>"positive", "score"=>"0.677935"}}
+{"text"=>"separatist leader", "relevance"=>"0.761398", "sentiment"=>{"type"=>"negative", "score"=>"-0.222133"}}
+{"text"=>"largest city", "relevance"=>"0.749439", "sentiment"=>{"type"=>"negative", "score"=>"-0.210927"}}
+{"text"=>"new sanctions", "relevance"=>"0.74925", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"residential areas", "relevance"=>"0.748915", "sentiment"=>{"type"=>"positive", "score"=>"0.363808"}}
+{"text"=>"Alexander Zakharchenko", "relevance"=>"0.747086", "sentiment"=>{"type"=>"positive", "score"=>"0.268032"}}
+{"text"=>"Belarusian capital", "relevance"=>"0.743493", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"devastated cities", "relevance"=>"0.742745", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian port city", "relevance"=>"0.988922", "sentiment"=>{"type"=>"negative", "score"=>"-0.416257"}}
+{"text"=>"cease-fire", "relevance"=>"0.975646", "sentiment"=>{"type"=>"negative", "score"=>"-0.0286347", "mixed"=>"1"}}
+{"text"=>"Russian-backed separatist rebels", "relevance"=>"0.969936", "sentiment"=>{"type"=>"negative", "score"=>"-0.416257"}}
+{"text"=>"Ukrainian President Petro", "relevance"=>"0.94164", "sentiment"=>{"type"=>"positive", "score"=>"0.341613"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.92451", "sentiment"=>{"type"=>"negative", "score"=>"-0.297095"}}
+{"text"=>"Ukrainian government troops", "relevance"=>"0.918348", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"Grad rockets", "relevance"=>"0.915602", "sentiment"=>{"type"=>"negative", "score"=>"-0.416257"}}
+{"text"=>"Ukrainian Orthodox Church-Kiev", "relevance"=>"0.913013", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Col. Andriy Lysenko", "relevance"=>"0.903389", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"previous 10-day cease-fire", "relevance"=>"0.901414", "sentiment"=>{"type"=>"negative", "score"=>"-0.459077"}}
+{"text"=>"volunteer Azov Battalion", "relevance"=>"0.900955", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"second-largest rebel-held city", "relevance"=>"0.898987", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"late Friday afternoon", "relevance"=>"0.898701", "sentiment"=>{"type"=>"negative", "score"=>"-0.215589"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.898033", "sentiment"=>{"type"=>"positive", "score"=>"0.341613"}}
+{"text"=>"Friday night", "relevance"=>"0.895796", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"agency RIA Novosti", "relevance"=>"0.883327", "sentiment"=>{"type"=>"negative", "score"=>"-0.428662"}}
+{"text"=>"national security council", "relevance"=>"0.879921", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"separate Kremlin statement", "relevance"=>"0.878491", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine", "relevance"=>"0.87283", "sentiment"=>{"type"=>"negative", "score"=>"-0.439218"}}
+{"text"=>"President Barack Obama", "relevance"=>"0.868922", "sentiment"=>{"type"=>"positive", "score"=>"0.220797"}}
+{"text"=>"Ukrainian troops", "relevance"=>"0.867237", "sentiment"=>{"type"=>"negative", "score"=>"-0.233215"}}
+{"text"=>"main Orthodox churches", "relevance"=>"0.865679", "sentiment"=>{"type"=>"negative", "score"=>"-0.291326"}}
+{"text"=>"Ukrainian fighters", "relevance"=>"0.864611", "sentiment"=>{"type"=>"negative", "score"=>"-0.416257"}}
+{"text"=>"United Nations estimates", "relevance"=>"0.864143", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"two-day NATO summit", "relevance"=>"0.850797", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"cease-fire regime", "relevance"=>"0.843044", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.839105", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"cease-fire agreement", "relevance"=>"0.838196", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian economy", "relevance"=>"0.836418", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"daily shelling", "relevance"=>"0.834184", "sentiment"=>{"type"=>"positive", "score"=>"0.223248"}}
+{"text"=>"Ukraine", "relevance"=>"0.995053", "sentiment"=>{"type"=>"positive", "score"=>"0.038873", "mixed"=>"1"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.914945", "sentiment"=>{"type"=>"positive", "score"=>"0.238122", "mixed"=>"1"}}
+{"text"=>"eastern regions of Ukraine will be governed .", "relevance"=>"0.787184", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"two-day NATO summit", "relevance"=>"0.739965", "sentiment"=>{"type"=>"negative", "score"=>"-0.390942"}}
+{"text"=>"peace plan", "relevance"=>"0.736835", "sentiment"=>{"type"=>"positive", "score"=>"0.410416"}}
+{"text"=>"NATO military officer", "relevance"=>"0.732557", "sentiment"=>{"type"=>"negative", "score"=>"-0.41419"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.730978", "sentiment"=>{"type"=>"positive", "score"=>"0.785681"}}
+{"text"=>"Russia", "relevance"=>"0.729463", "sentiment"=>{"type"=>"positive", "score"=>"0.228548", "mixed"=>"1"}}
+{"text"=>"Russian President Vladimir", "relevance"=>"0.727636", "sentiment"=>{"type"=>"positive", "score"=>"0.785681"}}
+{"text"=>"President Petro Poroshenko", "relevance"=>"0.725719", "sentiment"=>{"type"=>"positive", "score"=>"0.785681"}}
+{"text"=>"President Barack Obama", "relevance"=>"0.710156", "sentiment"=>{"type"=>"positive", "score"=>"0.302822"}}
+{"text"=>"U.S. President Barack", "relevance"=>"0.709498", "sentiment"=>{"type"=>"positive", "score"=>"0.302822"}}
+{"text"=>"Ukrainian government forces", "relevance"=>"0.685288", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"ceasefire", "relevance"=>"0.675916", "sentiment"=>{"type"=>"negative", "score"=>"-0.200665", "mixed"=>"1"}}
+{"text"=>"southeastern Ukraine", "relevance"=>"0.673272", "sentiment"=>{"type"=>"negative", "score"=>"-0.263109"}}
+{"text"=>"ceasefire agreements Poroshenko", "relevance"=>"0.670854", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russian separatists", "relevance"=>"0.666341", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO leaders", "relevance"=>"0.666226", "sentiment"=>{"type"=>"negative", "score"=>"-0.20099"}}
+{"text"=>"Ukrainian President Petro", "relevance"=>"0.662165", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"entire Ukraine", "relevance"=>"0.659391", "sentiment"=>{"type"=>"positive", "score"=>"0.260961"}}
+{"text"=>"NATO Secretary-General Anders", "relevance"=>"0.653371", "sentiment"=>{"type"=>"negative", "score"=>"-0.24998"}}
+{"text"=>"Russia Vladimir Putin", "relevance"=>"0.641065", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"separatist leaders", "relevance"=>"0.634625", "sentiment"=>{"type"=>"negative", "score"=>"-0.323392"}}
+{"text"=>"Russian-backed separatist rebels", "relevance"=>"0.631401", "sentiment"=>{"type"=>"negative", "score"=>"-0.553902"}}
+{"text"=>"new Ukraine-related sanctions", "relevance"=>"0.631296", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Mariupol", "relevance"=>"0.629518", "sentiment"=>{"type"=>"negative", "score"=>"-0.45158"}}
+{"text"=>"cease-fire", "relevance"=>"0.621603", "sentiment"=>{"type"=>"positive", "score"=>"0.201105", "mixed"=>"1"}}
+{"text"=>"Russian combat troops", "relevance"=>"0.620524", "sentiment"=>{"type"=>"negative", "score"=>"-0.554446"}}
+{"text"=>"ceasefire regime", "relevance"=>"0.6177", "sentiment"=>{"type"=>"positive", "score"=>"0.554733"}}
+{"text"=>"bilateral ceasefire", "relevance"=>"0.617477", "sentiment"=>{"type"=>"positive", "score"=>"0.429866"}}
+{"text"=>"separatist leader", "relevance"=>"0.91879", "sentiment"=>{"type"=>"negative", "score"=>"-0.286369"}}
+{"text"=>"pro-Russian separatist leader", "relevance"=>"0.90839", "sentiment"=>{"type"=>"negative", "score"=>"-0.350605"}}
+{"text"=>"Interfax news agency", "relevance"=>"0.883481", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Commander Stepan Poltorak", "relevance"=>"0.880982", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"late Friday afternoon", "relevance"=>"0.865628", "sentiment"=>{"type"=>"negative", "score"=>"-0.215589"}}
+{"text"=>"agency RIA Novosti", "relevance"=>"0.864716", "sentiment"=>{"type"=>"negative", "score"=>"-0.428662"}}
+{"text"=>"previous 10-day cease-fire", "relevance"=>"0.863424", "sentiment"=>{"type"=>"negative", "score"=>"-0.459077"}}
+{"text"=>"Ukrainian government troops", "relevance"=>"0.848039", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"President Barack Obama", "relevance"=>"0.845725", "sentiment"=>{"type"=>"positive", "score"=>"0.266956"}}
+{"text"=>"two-day NATO summit", "relevance"=>"0.845063", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"United Nations estimates", "relevance"=>"0.835369", "sentiment"=>{"type"=>"negative", "score"=>"-0.428703"}}
+{"text"=>"new measures", "relevance"=>"0.833437", "sentiment"=>{"type"=>"positive", "score"=>"0.333462"}}
+{"text"=>"Associated Press", "relevance"=>"0.813551", "sentiment"=>{"type"=>"negative", "score"=>"-0.486227"}}
+{"text"=>"daily shelling", "relevance"=>"0.812337", "sentiment"=>{"type"=>"positive", "score"=>"0.363808"}}
+{"text"=>"dairy product imports", "relevance"=>"0.803748", "sentiment"=>{"type"=>"negative", "score"=>"-0.275465"}}
+{"text"=>"Russian-backed separatists", "relevance"=>"0.796531", "sentiment"=>{"type"=>"negative", "score"=>"-0.210927"}}
+{"text"=>"tougher sanctions", "relevance"=>"0.792888", "sentiment"=>{"type"=>"positive", "score"=>"0.677935"}}
+{"text"=>"new sanctions", "relevance"=>"0.783281", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.782077", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"EU sanctions", "relevance"=>"0.780846", "sentiment"=>{"type"=>"negative", "score"=>"-0.371109"}}
+{"text"=>"Kremlin-backed separatists", "relevance"=>"0.780247", "sentiment"=>{"type"=>"negative", "score"=>"-0.301509"}}
+{"text"=>"cease-fire agreement", "relevance"=>"0.763487", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"cease-fire deal", "relevance"=>"0.76196", "sentiment"=>{"type"=>"negative", "score"=>"-0.301509"}}
+{"text"=>"rebellious east", "relevance"=>"0.757302", "sentiment"=>{"type"=>"negative", "score"=>"-0.350605"}}
+{"text"=>"fragile deal", "relevance"=>"0.753385", "sentiment"=>{"type"=>"negative", "score"=>"-0.350605"}}
+{"text"=>"largest city", "relevance"=>"0.745206", "sentiment"=>{"type"=>"negative", "score"=>"-0.210927"}}
+{"text"=>"residential areas", "relevance"=>"0.744699", "sentiment"=>{"type"=>"positive", "score"=>"0.363808"}}
+{"text"=>"Donetsk", "relevance"=>"0.743994", "sentiment"=>{"type"=>"negative", "score"=>"-0.22241"}}
+{"text"=>"Friday night", "relevance"=>"0.738562", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Belarusian capital", "relevance"=>"0.737723", "sentiment"=>{"type"=>"negative", "score"=>"-0.301509"}}
+{"text"=>"Ukraine", "relevance"=>"0.919472", "sentiment"=>{"type"=>"negative", "score"=>"-0.23669", "mixed"=>"1"}}
+{"text"=>"Crimea", "relevance"=>"0.906282", "sentiment"=>{"type"=>"positive", "score"=>"0.0379883", "mixed"=>"1"}}
+{"text"=>"geographically isolated Crimea", "relevance"=>"0.80024", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"present-day southern Ukraine", "relevance"=>"0.770232", "sentiment"=>{"type"=>"positive", "score"=>"0.212944"}}
+{"text"=>"Black Sea", "relevance"=>"0.739658", "sentiment"=>{"type"=>"negative", "score"=>"-0.248801"}}
+{"text"=>"New Russia", "relevance"=>"0.739566", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"embattled Ukraine", "relevance"=>"0.725531", "sentiment"=>{"type"=>"negative", "score"=>"-0.737564"}}
+{"text"=>"Wild Fields", "relevance"=>"0.7177", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"mainland Ukraine", "relevance"=>"0.712407", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"18th century", "relevance"=>"0.709964", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Right-Bank Ukraine", "relevance"=>"0.705963", "sentiment"=>{"type"=>"positive", "score"=>"0.369936"}}
+{"text"=>"Russian news agencies", "relevance"=>"0.692919", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine Invasion", "relevance"=>"0.676237", "sentiment"=>{"type"=>"negative", "score"=>"-0.480319"}}
+{"text"=>"self-proclaimed Luhansk People", "relevance"=>"0.673243", "sentiment"=>{"type"=>"negative", "score"=>"-0.26285"}}
+{"text"=>"hastily called referendum", "relevance"=>"0.670303", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"ten-kilometer buffer zone", "relevance"=>"0.668495", "sentiment"=>{"type"=>"negative", "score"=>"-0.21081"}}
+{"text"=>"Russian imperial expansion", "relevance"=>"0.667116", "sentiment"=>{"type"=>"positive", "score"=>"0.212944"}}
+{"text"=>"hastily finished bridge", "relevance"=>"0.664256", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ottoman Empire", "relevance"=>"0.663907", "sentiment"=>{"type"=>"positive", "score"=>"0.264812"}}
+{"text"=>"Kerch Strait", "relevance"=>"0.660546", "sentiment"=>{"type"=>"negative", "score"=>"-0.331665"}}
+{"text"=>"pro-Russian territorial gains", "relevance"=>"0.657358", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Black Sea peninsula", "relevance"=>"0.656744", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"unresolved political status", "relevance"=>"0.656068", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"partially built bridge", "relevance"=>"0.654621", "sentiment"=>{"type"=>"positive", "score"=>"0.455283"}}
+{"text"=>"Russian troops", "relevance"=>"0.651729", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"southeastern port city", "relevance"=>"0.645947", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russian forces", "relevance"=>"0.644078", "sentiment"=>{"type"=>"negative", "score"=>"-0.298089"}}
+{"text"=>"late 18th century", "relevance"=>"0.642344", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"southern coastal territory", "relevance"=>"0.64161", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"German 17th Army", "relevance"=>"0.634527", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian port city", "relevance"=>"0.933638", "sentiment"=>{"type"=>"negative", "score"=>"-0.413863"}}
+{"text"=>"Russian-backed separatist rebels", "relevance"=>"0.933061", "sentiment"=>{"type"=>"negative", "score"=>"-0.413863"}}
+{"text"=>"Grad rockets", "relevance"=>"0.876532", "sentiment"=>{"type"=>"negative", "score"=>"-0.413863"}}
+{"text"=>"Ukrainian President Petro", "relevance"=>"0.854717", "sentiment"=>{"type"=>"positive", "score"=>"0.341613"}}
+{"text"=>"volunteer Azov Battalion", "relevance"=>"0.845313", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Col. Andriy Lysenko", "relevance"=>"0.838203", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukrainian forces", "relevance"=>"0.833186", "sentiment"=>{"type"=>"negative", "score"=>"-0.297095"}}
+{"text"=>"second-largest rebel-held city", "relevance"=>"0.809993", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.801002", "sentiment"=>{"type"=>"positive", "score"=>"0.341613"}}
+{"text"=>"agency RIA Novosti", "relevance"=>"0.797047", "sentiment"=>{"type"=>"negative", "score"=>"-0.428662"}}
+{"text"=>"separate Kremlin statement", "relevance"=>"0.791385", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"cease-fire", "relevance"=>"0.785473", "sentiment"=>{"type"=>"negative", "score"=>"-0.10155", "mixed"=>"1"}}
+{"text"=>"national security council", "relevance"=>"0.78378", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"late Friday afternoon", "relevance"=>"0.777798", "sentiment"=>{"type"=>"negative", "score"=>"-0.215589"}}
+{"text"=>"Ukrainian fighters", "relevance"=>"0.746289", "sentiment"=>{"type"=>"negative", "score"=>"-0.413863"}}
+{"text"=>"Ukrainian troops", "relevance"=>"0.730423", "sentiment"=>{"type"=>"negative", "score"=>"-0.233215"}}
+{"text"=>"daily shelling", "relevance"=>"0.729059", "sentiment"=>{"type"=>"positive", "score"=>"0.363808"}}
+{"text"=>"late Saturday", "relevance"=>"0.716344", "sentiment"=>{"type"=>"negative", "score"=>"-0.233215"}}
+{"text"=>"cease-fire regime", "relevance"=>"0.692049", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"separatist leader", "relevance"=>"0.691742", "sentiment"=>{"type"=>"negative", "score"=>"-0.222133"}}
+{"text"=>"volunteer battalion", "relevance"=>"0.686409", "sentiment"=>{"type"=>"negative", "score"=>"-0.413863"}}
+{"text"=>"Donetsk", "relevance"=>"0.683689", "sentiment"=>{"type"=>"negative", "score"=>"-0.22241"}}
+{"text"=>"heavy explosions", "relevance"=>"0.683514", "sentiment"=>{"type"=>"negative", "score"=>"-0.233215"}}
+{"text"=>"Russian-backed separatists", "relevance"=>"0.683156", "sentiment"=>{"type"=>"negative", "score"=>"-0.210927"}}
+{"text"=>"largest city", "relevance"=>"0.68087", "sentiment"=>{"type"=>"negative", "score"=>"-0.210927"}}
+{"text"=>"cease-fire agreement", "relevance"=>"0.680046", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Mariupol", "relevance"=>"0.675765", "sentiment"=>{"type"=>"negative", "score"=>"-0.323539"}}
+{"text"=>"city council", "relevance"=>"0.673659", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"eastern outskirts", "relevance"=>"0.670445", "sentiment"=>{"type"=>"negative", "score"=>"-0.233215"}}
+{"text"=>"Associated Press", "relevance"=>"0.669162", "sentiment"=>{"type"=>"negative", "score"=>"-0.233215"}}
+{"text"=>"ceasefire", "relevance"=>"0.946351", "sentiment"=>{"type"=>"negative", "score"=>"-0.0305674", "mixed"=>"1"}}
+{"text"=>"ceasefire deal", "relevance"=>"0.816651", "sentiment"=>{"type"=>"negative", "score"=>"-0.215155"}}
+{"text"=>"ceasefire talks", "relevance"=>"0.734223", "sentiment"=>{"type"=>"negative", "score"=>"-0.333123"}}
+{"text"=>"Petro Poroshenko", "relevance"=>"0.706198", "sentiment"=>{"type"=>"positive", "score"=>"0.187804", "mixed"=>"1"}}
+{"text"=>"pro-Russian rebels", "relevance"=>"0.612834", "sentiment"=>{"type"=>"negative", "score"=>"-0.216182"}}
+{"text"=>"Ukraine", "relevance"=>"0.593857", "sentiment"=>{"type"=>"positive", "score"=>"0.0803595", "mixed"=>"1"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.584887", "sentiment"=>{"type"=>"negative", "score"=>"-0.262695"}}
+{"text"=>"Nato chief Anders", "relevance"=>"0.556019", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Fergal Keane reports", "relevance"=>"0.550645", "sentiment"=>{"type"=>"negative", "score"=>"-0.540113"}}
+{"text"=>"President Petro Poroshenko", "relevance"=>"0.540904", "sentiment"=>{"type"=>"negative", "score"=>"-0.293097"}}
+{"text"=>"political dialogue", "relevance"=>"0.538704", "sentiment"=>{"type"=>"positive", "score"=>"0.40876"}}
+{"text"=>"southern Crimea peninsula", "relevance"=>"0.529913", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russia rebels", "relevance"=>"0.528099", "sentiment"=>{"type"=>"negative", "score"=>"-0.215155"}}
+{"text"=>"Ukrainian battle tanks", "relevance"=>"0.526175", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"12-point peace plan", "relevance"=>"0.518799", "sentiment"=>{"type"=>"negative", "score"=>"-0.293097"}}
+{"text"=>"President Vladimir Putin", "relevance"=>"0.518789", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"European Commission President", "relevance"=>"0.517231", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"President Barack Obama", "relevance"=>"0.511308", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"rapid reaction force", "relevance"=>"0.510447", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"EU asset freeze", "relevance"=>"0.507211", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Jose Manuel Barroso", "relevance"=>"0.503701", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"constructive political process", "relevance"=>"0.50044", "sentiment"=>{"type"=>"positive", "score"=>"0.405798"}}
+{"text"=>"Nato summit", "relevance"=>"0.48614", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Ukraine situation", "relevance"=>"0.481241", "sentiment"=>{"type"=>"negative", "score"=>"-0.262792"}}
+{"text"=>"sanctions", "relevance"=>"0.467332", "sentiment"=>{"type"=>"negative", "score"=>"-0.566932"}}
+{"text"=>"joint Nato", "relevance"=>"0.466926", "sentiment"=>{"type"=>"negative", "score"=>"-0.245795"}}
+{"text"=>"Mariupol", "relevance"=>"0.461859", "sentiment"=>{"type"=>"negative", "score"=>"-0.464244"}}
+{"text"=>"truce deal", "relevance"=>"0.460625", "sentiment"=>{"type"=>"negative", "score"=>"-0.224909"}}
+{"text"=>"large explosions", "relevance"=>"0.439248", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Lubov Vasylivna", "relevance"=>"0.43852", "sentiment"=>{"type"=>"positive", "score"=>"0.323974"}}
+{"text"=>"counterpart Vladimir Putin", "relevance"=>"0.992627", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"MOSCOW—Ukrainian President Petro", "relevance"=>"0.854436", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"pro-Russian separatists", "relevance"=>"0.628832", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Kiev", "relevance"=>"0.524581", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"similar statements", "relevance"=>"0.50212", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Kremlin", "relevance"=>"0.427408", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Friday", "relevance"=>"0.380286", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Saturday", "relevance"=>"0.37592", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Poroshenko", "relevance"=>"0.329426", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"State Henry Kissinger", "relevance"=>"0.955415", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"ISIS", "relevance"=>"0.933255", "sentiment"=>{"type"=>"positive", "score"=>"0.0983525", "mixed"=>"1"}}
+{"text"=>"Scott Simon", "relevance"=>"0.886861", "sentiment"=>{"type"=>"negative", "score"=>"-0.443487"}}
+{"text"=>"bigger problem", "relevance"=>"0.884494", "sentiment"=>{"type"=>"negative", "score"=>"-0.57709"}}
+{"text"=>"Russian patrimony", "relevance"=>"0.872055", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Iran", "relevance"=>"0.858479", "sentiment"=>{"type"=>"positive", "score"=>"0.357551", "mixed"=>"1"}}
+{"text"=>"ancient Persian Empire", "relevance"=>"0.854731", "sentiment"=>{"type"=>"negative", "score"=>"-0.308395"}}
+{"text"=>"new international borders", "relevance"=>"0.854259", "sentiment"=>{"type"=>"negative", "score"=>"-0.308395"}}
+{"text"=>"superior air power", "relevance"=>"0.839567", "sentiment"=>{"type"=>"positive", "score"=>"0.641685"}}
+{"text"=>"Islamic State", "relevance"=>"0.834877", "sentiment"=>{"type"=>"negative", "score"=>"-0.444888"}}
+{"text"=>"different bombing pattern", "relevance"=>"0.830573", "sentiment"=>{"type"=>"negative", "score"=>"-0.586502"}}
+{"text"=>"American drone attacks", "relevance"=>"0.828875", "sentiment"=>{"type"=>"negative", "score"=>"-0.513771"}}
+{"text"=>"fewer civilian casualties", "relevance"=>"0.828094", "sentiment"=>{"type"=>"negative", "score"=>"-0.513771"}}
+{"text"=>"good president", "relevance"=>"0.818893", "sentiment"=>{"type"=>"positive", "score"=>"0.464718"}}
+{"text"=>"Ukraine", "relevance"=>"0.782752", "sentiment"=>{"type"=>"positive", "score"=>"0.412311", "mixed"=>"1"}}
+{"text"=>"Gero Breloer/AP", "relevance"=>"0.772557", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"World Order", "relevance"=>"0.757051", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"world affairs", "relevance"=>"0.756634", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Presidents Nixon", "relevance"=>"0.755025", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"90th birthday", "relevance"=>"0.754708", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"foreign policy", "relevance"=>"0.753917", "sentiment"=>{"type"=>"positive", "score"=>"0.21852"}}
+{"text"=>"recent interview", "relevance"=>"0.753739", "sentiment"=>{"type"=>"negative", "score"=>"-0.237231"}}
+{"text"=>"new book", "relevance"=>"0.75071", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"orderly place", "relevance"=>"0.747595", "sentiment"=>{"type"=>"positive", "score"=>"0.346171"}}
+{"text"=>"Russian state", "relevance"=>"0.746973", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Interview Highlights", "relevance"=>"0.74565", "sentiment"=>{"type"=>"positive", "score"=>"0.613837"}}
+{"text"=>"long-range problem", "relevance"=>"0.745172", "sentiment"=>{"type"=>"negative", "score"=>"-0.241845"}}
+{"text"=>"Shia label", "relevance"=>"0.744829", "sentiment"=>{"type"=>"negative", "score"=>"-0.308395"}}
+{"text"=>"current affairs", "relevance"=>"0.742244", "sentiment"=>{"type"=>"negative", "score"=>"-0.603948"}}
+{"text"=>"best solution", "relevance"=>"0.741529", "sentiment"=>{"type"=>"positive", "score"=>"0.650535"}}
+{"text"=>"internationally observed referendum", "relevance"=>"0.94646", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"rapid reaction force", "relevance"=>"0.926455", "sentiment"=>{"type"=>"positive", "score"=>"0.443657"}}
+{"text"=>"successful Scottish Referendum", "relevance"=>"0.90462", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"key Nato summit", "relevance"=>"0.899227", "sentiment"=>{"type"=>"positive", "score"=>"0.443657"}}
+{"text"=>"real political support", "relevance"=>"0.764805", "sentiment"=>{"type"=>"positive", "score"=>"0.531659"}}
+{"text"=>"separatist rebels", "relevance"=>"0.693121", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"unnecessary bloodshed", "relevance"=>"0.584233", "sentiment"=>{"type"=>"positive", "score"=>"0.292758"}}
+{"text"=>"live coverage", "relevance"=>"0.53786", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"peaceful solution", "relevance"=>"0.494679", "sentiment"=>{"type"=>"positive", "score"=>"0.292758"}}
+{"text"=>"latest updates", "relevance"=>"0.49086", "sentiment"=>{"type"=>"positive", "score"=>"0.845699"}}
+{"text"=>"expert analysis", "relevance"=>"0.489208", "sentiment"=>{"type"=>"positive", "score"=>"0.845699"}}
+{"text"=>"UK/Scottish Government", "relevance"=>"0.470007", "sentiment"=>{"type"=>"positive", "score"=>"0.531659"}}
+{"text"=>"potential route", "relevance"=>"0.46854", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"ceasefire", "relevance"=>"0.463641", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"special status", "relevance"=>"0.457029", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"Donbas region", "relevance"=>"0.455713", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"real step", "relevance"=>"0.441456", "sentiment"=>{"type"=>"positive", "score"=>"0.292758"}}
+{"text"=>"correspondents", "relevance"=>"0.222606", "sentiment"=>{"type"=>"positive", "score"=>"0.845699"}}
+{"text"=>"twitter", "relevance"=>"0.208207", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"ukraine", "relevance"=>"0.944177", "sentiment"=>{"type"=>"negative", "score"=>"-0.18336", "mixed"=>"1"}}
+{"text"=>"obama", "relevance"=>"0.7983", "sentiment"=>{"type"=>"negative", "score"=>"-0.055259", "mixed"=>"1"}}
+{"text"=>"russia", "relevance"=>"0.783742", "sentiment"=>{"type"=>"negative", "score"=>"-0.216616", "mixed"=>"1"}}
+{"text"=>"exactly abandoning Ukraine", "relevance"=>"0.773615", "sentiment"=>{"type"=>"negative", "score"=>"-0.621182"}}
+{"text"=>"Russian invasion", "relevance"=>"0.773429", "sentiment"=>{"type"=>"negative", "score"=>"-0.448855"}}
+{"text"=>"Obama White House", "relevance"=>"0.67527", "sentiment"=>{"type"=>"negative", "score"=>"-0.415357"}}
+{"text"=>"President Obama", "relevance"=>"0.665766", "sentiment"=>{"type"=>"positive", "score"=>"0.049453", "mixed"=>"1"}}
+{"text"=>"Ukraine invasion", "relevance"=>"0.631595", "sentiment"=>{"type"=>"negative", "score"=>"-0.345747"}}
+{"text"=>"ongoing Russian invasion", "relevance"=>"0.616583", "sentiment"=>{"type"=>"negative", "score"=>"-0.264357"}}
+{"text"=>"Russian aggression", "relevance"=>"0.604643", "sentiment"=>{"type"=>"negative", "score"=>"-0.531332"}}
+{"text"=>"eastern Ukraine", "relevance"=>"0.589135", "sentiment"=>{"type"=>"negative", "score"=>"-0.226672"}}
+{"text"=>"NATO military exercises", "relevance"=>"0.587904", "sentiment"=>{"type"=>"positive", "score"=>"0.315042"}}
+{"text"=>"eastern European country", "relevance"=>"0.574405", "sentiment"=>{"type"=>"negative", "score"=>"-0.231922"}}
+{"text"=>"big deal", "relevance"=>"0.563392", "sentiment"=>{"type"=>"positive", "score"=>"0.532543"}}
+{"text"=>"western Ukraine", "relevance"=>"0.552341", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"United States", "relevance"=>"0.548981", "sentiment"=>{"type"=>"negative", "score"=>"-0.304202"}}
+{"text"=>"President Joe Biden", "relevance"=>"0.545907", "sentiment"=>{"type"=>"positive", "score"=>"0.489419"}}
+{"text"=>"Western economic sanctions", "relevance"=>"0.524916", "sentiment"=>{"type"=>"negative", "score"=>"-0.345747"}}
+{"text"=>"nice symbolic gesture", "relevance"=>"0.511186", "sentiment"=>{"type"=>"positive", "score"=>"0.287211"}}
+{"text"=>"non-NATO country", "relevance"=>"0.5067", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"North Atlantic Treaty", "relevance"=>"0.502505", "sentiment"=>{"type"=>"positive", "score"=>"0.281375"}}
+{"text"=>"eastern European states", "relevance"=>"0.501089", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"invasion list", "relevance"=>"0.484817", "sentiment"=>{"type"=>"negative", "score"=>"-0.231922"}}
+{"text"=>"Putin", "relevance"=>"0.473325", "sentiment"=>{"type"=>"negative", "score"=>"-0.295519", "mixed"=>"1"}}
+{"text"=>"NATO country", "relevance"=>"0.467709", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"NATO countries", "relevance"=>"0.462635", "sentiment"=>{"type"=>"neutral"}}
+{"text"=>"mid-August invasion", "relevance"=>"0.462298", "sentiment"=>{"type"=>"negative", "score"=>"-0.226672"}}
+{"text"=>"NATO forces", "relevance"=>"0.438555", "sentiment"=>{"type"=>"negative", "score"=>"-0.54978"}}
+{"text"=>"military alliance", "relevance"=>"0.420847", "sentiment"=>{"type"=>"negative", "score"=>"-0.315443"}}
+{"text"=>"member state", "relevance"=>"0.410091", "sentiment"=>{"type"=>"negative", "score"=>"-0.315443"}}
