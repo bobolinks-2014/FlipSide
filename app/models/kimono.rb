@@ -8,10 +8,14 @@ class Kimono
   @@categories_created = []
 
   def self.start
-
-    returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-    json_obj = JSON.parse(returnVal)
-
+    #test
+    # returnVal = RestClient.get 'https://www.kimonolabs.com/api/csk458cq?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+    # real
+    # returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+    #stephanie's test
+    # returnVal= response = RestClient.get 'https://www.kimonolabs.com/api/95y8ownk?apikey=7eKJi6sY1ZTl8RSHvmeVOEl1kCfNAqeZ'
+    file = File.read('app/models/kimonoData.json')
+    json_obj = JSON.parse(file)
     add_categories(json_obj)
 
     kimono_parser(json_obj)
@@ -50,6 +54,7 @@ class Kimono
                      category_id: category.id)
 
       keywords = Alchemy.alchemize(new_article.url)
+      # binding.pry
       new_article.make_tags(keywords, 6)
     end
   end
