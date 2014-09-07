@@ -79,7 +79,7 @@ class Category < ActiveRecord::Base
         # a2_scores = article2.relevant_sentiment_scores(@relevant_tags)
         difference = sum_differences(article1, article2)
 
-        article_pair = [article1, article2, difference] if difference > article_pair.last
+        article_pair = [article1, article2, difference] if difference > article_pair.last && compare_tags(article1, article2, 2)
 
       end
       articles_left.shift
@@ -103,6 +103,19 @@ class Category < ActiveRecord::Base
     return sum
   end
 
+  def compare_tags(article1, article2, number)
+    similarities = 0
+    article1.tags.each do |tag1|
+      article2.tags.each do |tag2|
+        if tag1 == tag2
+          similarities += 1
+        end
+      end
+    end
+
+    similarities >= number
+
+  end
 
 
 
