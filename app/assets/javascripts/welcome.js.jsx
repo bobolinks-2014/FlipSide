@@ -95,11 +95,9 @@ var Rating = React.createClass({
 
 var Home = React.createClass({
 	getInitialState: function(){
-		console.log("hello");
 		return {home: this.getHome()}
 	},
 	getHome: function(){
-		console.log("here")
 		return ( <div>
 						<div id = "landing" className = "large-12 columns full-page"></div>
 						<div id="manifesto" className= "row">
@@ -129,19 +127,19 @@ var Home = React.createClass({
 // });
 
 function renderPair(){
-
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
 	);
 }
+
 function renderHome(){
-	console.log("here");
 	React.renderComponent(
 	<Home/>,
 	document.getElementById('container')
 	);
 }
+
 function removeIFrame(){
 	if ($('iframe').length !== 0){
 		$('iframe').remove();
@@ -175,4 +173,106 @@ $('div').on("click","#enter", function(e){
 $('div').on("mouseover","#enter", function(){
   $("#enter").fadeOut( 1000 );
   $("#enter").fadeIn( 1000 );
+});
+
+$("#signin_form").on('submit', function(e) {
+	e.preventDefault();
+	console.log("signin form on submit");
+
+	var email = $("#signin_email").val();
+	var password = $("#signin_password").val();
+
+	var request = $.ajax({
+		type: "POST",
+		url: '/sessions',
+    data: { email: email, password: password },
+	});
+
+	request.done(function(response) {
+		if(response.success == true) {
+			$('#signin_button').foundation('reveal', 'close');
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
+			renderPair();
+		} else {
+		console.log('failed');
+			$("div#error ul").append('<li>'+response.error+'</li>');
+      renderHome();
+    }
+	})
+});
+
+$("#signup_form").on('submit', function(e) {
+	e.preventDefault();
+	console.log("signup form on submit");
+
+	var name = $("#signup_name").val();
+	var email = $("#signup_email").val();
+	var password = $("#signup_password").val();
+	var password_confirmation = $("#signup_password_confirmation").val();
+	console.log(email);
+	var request = $.ajax({
+		type: "POST",
+		url: '/users',
+		data: { user: {name: name, email: email, password: password, password_confirmation: password_confirmation} },
+		dataType: "json"
+	});
+
+	request.done(function(response) {
+		if(response.success == true) {
+			console.log('success');
+			$('#signup_button').foundation('reveal', 'close');
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
+			renderPair();
+		} else {
+			$.each(response.error, function(i) {
+				$("div#error ul").append('<li>'+response.error[i]+'</li>');
+		});
+    renderHome();
+    }
+	})
+	return request;
+});
+
+$('a.close-reveal-modal').on("click", function() {
+	$("div#error ul li").remove();
+});
+
+var UserProfile = React.createClass({
+  render: function() {
+    return (
+      <div className="userProfile">
+        <p>Welcome to your user profile, {this.props.user.name}.</p>
+        <p>Your email address is {this.props.user.email}.</p>
+      </div>
+    )
+  }
+})
+
+function renderUserProfile(user){
+  React.renderComponent(
+    <UserProfile user={user}/>,
+    document.getElementById('container')
+  );
+}
+
+$("#user_profile_link").on('click', function(e) {
+  e.preventDefault();
+
+  var request = $.ajax({
+    type: "get",
+    url: '/profile',
+  });
+
+  request.done(function(response) {
+    if(response.success == true) {
+      $('#signin_button').foundation('reveal', 'close');
+      $('.not_logged_in').hide();
+      $('.logged_in').show();
+      renderUserProfile(response.user);
+    } else {
+      renderHome();
+    }
+  })
 });
