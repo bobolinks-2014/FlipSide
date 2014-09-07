@@ -44,22 +44,53 @@ var Article = React.createClass({
 	getInitialState: function(){
 		return {showArticle: false};
 	},
-	propagateClick: function(url){
-		this.props.onClick(this);
-
-	},
 	render: function(){
 		return (
-			<div className = 'article large-6 columns' >
-				<div className = {this.props.options.url}>
-					<h2>{this.props.options.title}</h2>
-					<h6 className="subheader">{this.props.options.source}</h6>
-					<p>{this.props.options.slug}</p>
+			<div className = 'large-6 columns'>
+				<div className = 'article' id= {this.props.options.id} >
+					<div className = {this.props.options.url}>
+						<h2>{this.props.options.title}</h2>
+						<h6 className="subheader">{this.props.options.source}</h6>
+						<p>{this.props.options.slug}</p>
+					</div>
 				</div>
+				<Rating article_id= {this.props.options.id} />
 			</div>
 		);
 	}
 });
+
+var Rating = React.createClass({
+	getInitialState: function(){
+		var style = {
+			color: "black"
+		};
+		return {
+			clicked: "red",
+			not_clicked: "black",
+			content:(
+				<ul className="bottom right inline-list">
+					<li className="agree inline" style={style}>agree</li>
+					<li className="disagree inline" style={style} >disagree</li>
+				</ul>
+			)
+		}
+	},
+	onClick: function(e){
+
+		e.target.style.color = this.state.clicked;
+		$(e.target).siblings()[0].style.color = this.state.not_clicked;
+		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
+	},
+	render: function(){
+		return(
+			<div className="rating inline" onClick={this.onClick}>
+				{this.state.content}
+			</div>
+		)
+	}
+})
+
 
 
 var Home = React.createClass({
@@ -122,7 +153,7 @@ $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
 	removeIFrame();
-	$(this.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
+	$(this.parentElement.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
 $('div').on("click",'.close', function(e){
