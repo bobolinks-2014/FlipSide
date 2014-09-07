@@ -66,24 +66,26 @@ class Category < ActiveRecord::Base
     # if the sentiment differnece is greater than some threshold, make a pair
 
 
-  def find_pair
+  def find_pair(article=nil)
     article_pair = [0,0,0]
+    if article
+      all_articles = [article]
+      articles_left = self.articles[0..1]
+    else
+      all_articles = self.articles
+      articles_left = self.articles[1..-1]
+    end
 
-    # articles_left = self.relevant_articles[1..-1]
-    articles_left = self.articles[1..-1]
-    self.articles.each do |article1|
-      # a1_scores = article1.relevant_sentiment_scores(@relevant_tags)
-
+    all_articles.each do |article1|
       articles_left.each do |article2|
 
-        # a2_scores = article2.relevant_sentiment_scores(@relevant_tags)
         difference = sum_differences(article1, article2)
-
         article_pair = [article1, article2, difference] if difference > article_pair.last && compare_tags(article1, article2, 2)
 
       end
       articles_left.shift
     end
+
     article_pair
   end
 
@@ -117,6 +119,10 @@ class Category < ActiveRecord::Base
 
   end
 
+  #takes an article which was matched with a user for some reason, and makes a pair with the most opposite article
+  def make_user_pair(article)
+    find_pair(article)
+  end
 
 
 
