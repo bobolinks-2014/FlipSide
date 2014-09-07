@@ -19,8 +19,8 @@ class WelcomeController < ApplicationController
   end
 
   def rate
-    p params
-    # call method to rate the article etc etc
+
+    # TODO call method to rate the article etc etc
 
     if request.xhr?
       render :json => {status: "ok"}

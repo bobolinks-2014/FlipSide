@@ -62,22 +62,35 @@ var Article = React.createClass({
 
 var Rating = React.createClass({
 	getInitialState: function(){
-		return {rating: ""}
+		var style = {
+			color: "black"
+		};
+		return {
+			clicked: "red",
+			not_clicked: "black",
+			content:(
+				<div>
+					<div className="agree" style={style}>agree</div>
+					<div className="disagree" style={style} >disagree</div>
+				</div>
+			)
+		}
 	},
 	onClick: function(e){
 
-		request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
+		e.target.style.color = this.state.clicked;
+		$(e.target).siblings()[0].style.color = this.state.not_clicked;
+		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
 	},
 	render: function(){
-		console.log(this.props);
 		return(
 			<div className="rating inline" onClick={this.onClick}>
-				<div className="agree">agree</div>
-				<div className="disagree">disagree</div>
+				{this.state.content}
 			</div>
 		)
 	}
 })
+
 
 
 var Home = React.createClass({
