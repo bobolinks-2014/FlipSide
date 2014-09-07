@@ -22,12 +22,6 @@ class WelcomeController < ApplicationController
         :article_tags=>{:include=> :tag}}}
       })
     end
-      #     render :json => @pairs.to_json(:include=>{
-      # :article1=>{:include => {
-      #   :article_tags=>{:include=> :tag}}},
-      # :article2=>{:include => {
-      #   :article_tags=>{:include=> :tag}}}
-      # })
   end
 
   def rate

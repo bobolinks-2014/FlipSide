@@ -13,11 +13,9 @@ var TagCollection = React.createClass({
 		return tag_arr;
 	},
 	renderTag: function(tag){
+			// <p>{tag.sentiment_score}</p>
 		return(
-			<div className="tag">
-				<p>{tag.sentiment_score}</p>
-				<p>{tag.tag.name}</p>
-			</div>
+			<p>{tag.tag.name}</p>
 		)
 	},
 	render: function(){
@@ -27,7 +25,6 @@ var TagCollection = React.createClass({
 		)
 	}
 });
-
 
 var Pair = React.createClass({
 
@@ -43,7 +40,6 @@ var Pair = React.createClass({
 				var articles = [];
 				articles.push(data[index].article1);
 				articles.push(data[index].article2);
-				// the first tag name for article 1 data[0].article1.article_tags[0].tag.name
 				pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
 				pair_arr.push(pairRendered);
 			}.bind(this));
@@ -61,9 +57,6 @@ var Pair = React.createClass({
 		$.each(tags1, function(i){
 			$.each(tags2, function(j){
 				if (tags1[i].tag.name === tags2[j].tag.name){
-					// if the names are the same...
-					// (russia1, russia2)
-					// (putin1, putin2)
 					article1tags.push(tags1[i]);
 					article2tags.push(tags2[j]);
 				}
@@ -167,19 +160,6 @@ var Home = React.createClass({
 		)
 	}
 });
-
-
-// http://stackoverflow.com/questions/22639534/pass-props-to-parent-component-in-react-js
-// var Iframe = React.createClass({
-// 	render: function(){
-// 		return(
-// 			<div className = "row article-view">
-
-// 		    <iframe src={this.props.url} className = "large-12 columns widescreen" height="600"></iframe>
-// 		  </div>
-// 		)
-// 	}
-// });
 
 function renderPair(){
 
