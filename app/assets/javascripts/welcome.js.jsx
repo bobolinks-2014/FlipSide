@@ -72,10 +72,10 @@ var Rating = React.createClass({
 			clicked: "red",
 			not_clicked: "black",
 			content:(
-				<div>
-					<div className="agree" style={style}>agree</div>
-					<div className="disagree" style={style} >disagree</div>
-				</div>
+				<ul className="bottom right inline-list">
+					<li className="agree inline" style={style}>agree</li>
+					<li className="disagree inline" style={style} >disagree</li>
+				</ul>
 			)
 		}
 	},
