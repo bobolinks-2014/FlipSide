@@ -7,11 +7,7 @@ NUMBER_OF_KEYWORDS = 3
 class Kimono
   #untested
   def self.start
-    returnVal= response = RestClient.get 'https://www.kimonolabs.com/api/95y8ownk?apikey=7eKJi6sY1ZTl8RSHvmeVOEl1kCfNAqeZ'
-
-    json_obj = JSON.parse(returnVal)
-
-    urls_array = array_of_urls(json_obj)
+    urls_array = MyNoko.world_news_parse("https://news.google.com/news/section?pz=1&cf=all&ned=us&topic=w")
 
     urls_array.each do |url|
       MyNoko.parse(url)
