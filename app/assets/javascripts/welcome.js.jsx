@@ -334,6 +334,7 @@ $('a.close-reveal-modal').on("click", function() {
 	$("div#error ul li").remove();
 });
 
+
 // USER PROFILE //
 
 var UserProfile = React.createClass({
