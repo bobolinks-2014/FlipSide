@@ -36,7 +36,7 @@ class Category < ActiveRecord::Base
 
         difference = sum_differences(article1, article2)
 
-        if difference > article_pair.last && compare_tags(article1, article2, 2)
+        if (difference > article_pair.last) && (compare_tags(article1, article2, 2)) && (article1.source != article2.source)
           article_pair = [article1, article2, difference]
         end
 
