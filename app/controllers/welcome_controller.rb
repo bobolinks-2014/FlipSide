@@ -1,6 +1,12 @@
 require 'pry'
+
 class WelcomeController < ApplicationController
+  include SessionsHelper
+
   def index
+    if @current_user
+      render :json => {user: @current_user}
+    end
   end
 
   # all the pairs
@@ -27,7 +33,14 @@ class WelcomeController < ApplicationController
   def rate
 
     # TODO call method to rate the article etc etc
-
+    # current_user = User.create(name: "fake", email: "hell0@jello.com", password: "123456", password_confirmation: "123456")
+    @article = Article.find(params[:article_id])
+    p "*"*100
+    p current_user
+    rating = params[:rating] == "agree" ? true : false
+    current_user.vote(@article, rating)
+    p "*"* 100
+    p @current_user.opinions
     if request.xhr?
       render :json => {status: "ok"}
     end
