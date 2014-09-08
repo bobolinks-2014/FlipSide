@@ -99,8 +99,7 @@ class AlchemyAPI
 			# 68a8634ab9a7ee5ff59e15bdf35fa9be83009ec6
 			# 5d57c3197fbc790fe4e443d551672c5a8b2fc9d2
 			# b4445cdb812e14b45e9bf5c57bc30bb6fa344639
-			# eaa8f280e561c496c8934a31ccb088ea9caf7653
-			key = 'eaa8f280e561c496c8934a31ccb088ea9caf7653'
+			key = '68a8634ab9a7ee5ff59e15bdf35fa9be83009ec6'
 			key.strip!
 
 			if key.empty?
