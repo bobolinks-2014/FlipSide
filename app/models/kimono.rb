@@ -5,28 +5,29 @@ require 'pry'
 NUMBER_OF_KEYWORDS = 3
 
 class Kimono
+  #untested
   def self.start
-    #test
-    # returnVal = RestClient.get 'https://www.kimonolabs.com/api/csk458cq?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-    # real
+    returnVal= response = RestClient.get 'https://www.kimonolabs.com/api/95y8ownk?apikey=7eKJi6sY1ZTl8RSHvmeVOEl1kCfNAqeZ'
 
-    # world news
-# returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-
-#national news categories
-# returnVal= RestClient.get 'https://www.kimonolabs.com/api/4rqnhjt0?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-
-  # seed national news
-  returnVal = RestClient.get('https://www.kimonolabs.com/api/cnzmzwry?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn', {'authorization' => 'Bearer g12q4HHQXONnUpBxPaN8xTQs0Jd19gkJ'});
-    #stephanie's test
-    # returnVal= response = RestClient.get 'https://www.kimonolabs.com/api/95y8ownk?apikey=7eKJi6sY1ZTl8RSHvmeVOEl1kCfNAqeZ'
-    # file = File.read('app/models/kimonoData.json')
-    # json_obj = JSON.parse(file)
     json_obj = JSON.parse(returnVal)
-    add_categories(json_obj)
 
-    kimono_parser(json_obj)
+    urls_array = array_of_urls(json_obj)
+
+    urls_array.each do |url|
+      MyNoko.parse(url)
+    end
+
     process_categories(NUMBER_OF_KEYWORDS)
+
+  end
+  #untested
+
+  def array_of_urls(json_obj)
+    array_of_urls = []
+    json_obj["results"]["collection1"].each do |item|
+      array_of_urls << item["title"]["href"]
+    end
+    array_of_urls
   end
 
   def self.add_categories(collection)
@@ -72,7 +73,6 @@ class Kimono
 
   end
 end
-
 
 # returnVal = RestClient.get 'https://www.kimonolabs.com/api/8awe8hva?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'# json_str = returnVal.to_json
 
