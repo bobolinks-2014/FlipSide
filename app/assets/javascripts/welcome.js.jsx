@@ -164,7 +164,7 @@ var Article = React.createClass({
 			<div className = 'large-6 columns' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 					<Rating article_id= {this.props.options.id} />
 					<TagCollection tags={this.props.tags}/>
-				<div className = 'article' id= {this.props.options.id} >
+				<div className = 'article' id= {this.props.options.id} data-reveal-id="myModal">
 					<div className = {this.props.options.url}>
 						<h2>{this.props.options.title}</h2>
 						<h6 className="subheader">{this.props.options.source}</h6>
@@ -231,13 +231,14 @@ $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
 	removeIFrame();
-	$(this.parentElement.parentElement).append('<div class= "close right button tiny radius round">X</div><iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
+	console.log('stuff')
+	$('#myModal').append('<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
 });
 
-$('div').on("click",'.close', function(e){
-	e.preventDefault();
-	removeIFrame();
-});
+// $('div').on("click",'.close', function(e){
+// 	e.preventDefault();
+// 	removeIFrame();
+// });
 
 $("#goHome").on("click", function(e){
 	e.preventDefault();
@@ -255,6 +256,30 @@ $('div').on("mouseover","#enter", function(){
   $("#enter").fadeIn( 1000 );
 });
 
+//////////////////////////////////////////////////////////////////////////////
+
+// var Site = React.createClass({
+
+// 	render: function(url){
+// 		return (
+// 			<iframe src={url} class= "large-12 columns" height="600px"></iframe>
+// 			)
+// 	}
+// })
+
+// $('div').on('click', function(e){
+// 	e.preventDefault();
+// 	var url = this.firstChild.className;
+// 	removeIFrame();
+
+// 	var iframe = '<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>'
+
+// // console.log('stuff is happnin')
+
+// 	$(renderSite(url)).foundation('reveal', 'close');
+
+// })
+///////////////////////////////////////////////////////////////////////////////
 $("#signin_form").on('submit', function(e) {
 	e.preventDefault();
 	console.log("signin form on submit");
