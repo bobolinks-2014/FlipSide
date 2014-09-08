@@ -49,11 +49,11 @@ describe 'Article' do
 
   end
 
-  describe '#relevent_sentiment_scores' do
+  describe '#relevant_sentiment_scores' do
     it 'should return an array of three numbers' do
 
-      p @article2.relevent_sentiment_scores(@tags)
-      expect( @article2.relevent_sentiment_scores(@tags)[0]).to be_kind_of(BigDecimal)
+      p @article2.relevant_sentiment_scores(@tags)
+      expect( @article2.relevant_sentiment_scores(@tags)[0]).to be_kind_of(BigDecimal)
 
     end
 
