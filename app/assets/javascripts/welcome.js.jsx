@@ -13,7 +13,6 @@ var TagCollection = React.createClass({
 		return tag_arr;
 	},
 	renderTag: function(tag){
-		console.log(tag);
 		if (tag.sentiment_score > 0.7 ){
 			var style = {
 				backgroundColor: "#fb9e9e",
@@ -57,13 +56,11 @@ var TagCollection = React.createClass({
 });
 
 var Pair = React.createClass({
-
 	getInitialState: function(){
-		this.getArticles("all");
 		return {pairs: ""};
 	},
-	getArticles: function(category){
-		request = $.get('pairs', {category: category});
+	getArticles: function(){
+		request = $.get('pairs');
 		pair_arr = [];
 		request.done(function(data){
 			$.each(data, function(index){
@@ -95,25 +92,30 @@ var Pair = React.createClass({
 		// this is an array of common tags where each element of the array is an article tag...because i needed that.
 		return [article1tags, article2tags];
 	},
+	componentDidMount: function(){
+		console.log("componentDidMount");
+		this.getArticles();
+	},
 	renderArticles: function(articles, difference_score, tags){
 		return(
 			<div className="pair row">
 				<p className="text-center"> These articles discuss some category </p>
 				<div className="paired_articles">
-					<Article options={articles[0]} tags = {tags[0]} onClick={this.handleClick}/>
-					<Article options={articles[1]} tags ={tags[1]} onClick={this.handleClick}/>
+					<Article options={articles[0]} tags = {tags[0]} />
+					<Article options={articles[1]} tags ={tags[1]} />
 				</div>
 				<hr/>
 			</div>
 		);
 	},
 	render:function(){
+
+		console.log("rendering pairs");
 		var styleE = {backgroundColor: "#fb9e9e", color:"white"}
     var styleD = {backgroundColor: "#d15f5f", color:"white"}
     var styleC = {backgroundColor: "#aa3535", color:"white"}
     var styleB = {backgroundColor: "#831414", color:"white"}
     var styleA = {backgroundColor: "#570000", color:"white"}
-
 		return (
 			<div className='newsFeed large-12 columns'>
 				<p>Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location</p>
@@ -134,11 +136,26 @@ var Pair = React.createClass({
 
 var Article = React.createClass({
 	getInitialState: function(){
-		return {showArticle: false};
+		return {
+			showArticle: false,
+			style: {}
+		};
+	},
+	onMouseOver: function(){
+		this.setState({
+			style:{
+				boxShadow: "5px 5px 5px #888888",
+				cursor: "pointer"
+			}
+		});
+
+	},
+	onMouseLeave: function(){
+		this.setState({style: {boxShadow: "none"}});
 	},
 	render: function(){
 		return (
-			<div className = 'large-6 columns'>
+			<div className = 'large-6 columns' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 					<Rating article_id= {this.props.options.id} />
 					<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} >
@@ -165,6 +182,7 @@ var Rating = React.createClass({
 		}
 	},
 	onClick: function(e){
+		debugger;
 		$(e.target).addClass('disabled');
 		$(e.target).siblings().addClass('disabled');
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
@@ -201,6 +219,7 @@ var Home = React.createClass({
 });
 
 function renderPair(){
+	console.log("renderPair method")
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
@@ -267,6 +286,7 @@ $("#signin_form").on('submit', function(e) {
 			$('#signin_button').foundation('reveal', 'close');
 			$('.not_logged_in').hide();
 			$('.logged_in').show();
+			console.log("SIGN IN");
 			renderPair();
 		} else {
 		console.log('failed');
