@@ -1,21 +1,29 @@
 class SessionsController < ApplicationController
-
+  include SessionsHelper
   def new
+    p "new session"
   end
 
   def create
-    user = User.find_by_email(params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      sign_in user
-      redirect_back_or user
+    user = User.find_by_email(params[:email].downcase)
+    p "created/found #{user}"
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      render :json => {success: true, user_id: user.id}
     else
-      flash.now[:error] = 'Invalid email/password combination'
-      render 'new'
+
+      if request.xhr?
+        render :json => {fail: true, error: "Invalid user name or password."}
+      end
     end
+
   end
 
   def destroy
     sign_out
+    session.clear
+    p "#{signed_in?}"
     redirect_to root_url
   end
+
 end

@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
@@ -23,18 +22,29 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+gem 'json'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
 gem 'simplecov', '~> 0.9.0',		group: :development
-
-
+gem 'pry'
+gem 'pry-nav'
 gem 'rest-client', '~> 1.7.2'
+gem 'nokogiri'
 
-gem 'json'
+group :development, :test do
+  gem 'rspec-rails', '~> 2.14.1'
+  gem 'capybara'
+  gem 'database_cleaner', '~> 1.3.0'
+  gem 'shoulda-matchers', require: false
+  gem 'binding_of_caller'
+end
+
+gem 'rails_12factor'
+
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
+gem 'bcrypt', '~> 3.1.7'
+gem 'whenever', :require => false
 # Use unicorn as the app server
 # gem 'unicorn'
 
@@ -43,3 +53,10 @@ gem 'json'
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+#Add React framework to project
+gem 'react-rails', '~> 1.0.0.pre', github: 'reactjs/react-rails'
+
+# Add Foundation CSS framework
+gem 'foundation-rails'
+

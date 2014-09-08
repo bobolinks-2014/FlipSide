@@ -1,0 +1,66 @@
+// Place all the styles related to the Welcome controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+  font-family: 'Raleway', sans-serif;
+  font-weight:400;
+}
+#manifesto h1{
+  color: white;
+}
+
+.article p {
+  font-family: 'Playfair Display', serif;
+}
+
+.full-page{
+  top: 0px;
+  position:fixed;
+  z-index:-1;
+  height:100%;
+}
+
+.accentWord{
+  font-family: 'Raleway', sans-serif;
+  font-weight:100;
+  color: #801515;
+  display: inline;
+}
+
+#manifesto{
+  postion: fixed;
+  z-index: 999;
+  margin-top: 15%;
+  background-color: #000;
+  opacity: 0.8;
+  padding: 25px;
+}
+
+#enter{
+  font-family: 'Raleway', sans-serif;
+  font-weight:100;
+  color: #801515;
+  text-decoration: underline;
+  display:inline;
+}
+
+.inline{
+  display:inline;
+}
+
+#login_form {
+    background-color:#fff;
+    border-radius:15px;
+    color:#000;
+    display:none;
+    padding:20px;
+    min-width:400px;
+    min-height: 180px;
+}
+
+.b-close {
+    cursor:pointer;
+    position:absolute;
+    right:10px;
+}
