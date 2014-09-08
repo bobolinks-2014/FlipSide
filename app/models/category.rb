@@ -16,58 +16,9 @@ class Category < ActiveRecord::Base
   end
 
 
-  #should return the N most frequently appearing tags in the catgegory's articles
-  # def find_relevant_keywords(number)
-  #   tag_count = Hash.new(0)
-  #   self.articles.each do |article|
-  #     article.tags.each do |tag|
-  #       tag_count[tag] += 1
-  #     end
-  #   end
-  #   ord_array = tag_count.sort_by {|k,v| -v}
-
-  #   @relevant_tags = ord_array[0...number].map{|tag| tag[0]}
-  # end
-
-  #find_relevant_keywords NEEDS TO be run before this.
-  #given all relevent tags, selects all articles that have all relevent tags
-  # def relevant_articles
-  #   self.articles.select do |article|
-  #     false_count = 0
-
-  #     @relevant_tags.each do |tag|
-  #       false_count +=1 unless article.tags.include?(tag)
-  #     end
-
-  #     false_count == 0
-  #   end
-  # end
-
-  # find_relevant_keywords NEEDS TO be run before this.
-  # test after relevant articles
-  # returns the most different article pair based on relevant tags differences
-
-  #simplest
-  # for all the articles in a category
-  # compare avg sentiments of the tags and find max difference
-
-  # Better
-  # for all the articles in a category
-  # intialize article pair
-  # initial sentiment difference: 0
-  # find look for articles with at least 1-2 tags in common
-  # if they have tags in common
-    # find their sentiment difference
-    # if the sentiment difference is greater than the current reigning sentiment difference, reassign article to pair
-    # then make a pair
-
-  # of if they have tags in common
-    # find their sentiment different
-    # if the sentiment differnece is greater than some threshold, make a pair
-
-
   def find_pair(article=nil)
     article_pair = [0,0,0]
+
     if article
       all_articles = [article]
       articles_left = self.articles[0..1]
@@ -80,7 +31,10 @@ class Category < ActiveRecord::Base
       articles_left.each do |article2|
 
         difference = sum_differences(article1, article2)
-        article_pair = [article1, article2, difference] if difference > article_pair.last && compare_tags(article1, article2, 2)
+
+        if difference > article_pair.last && compare_tags(article1, article2, 2)
+          article_pair = [article1, article2, difference]
+        end
 
       end
       articles_left.shift
@@ -106,17 +60,8 @@ class Category < ActiveRecord::Base
   end
 
   def compare_tags(article1, article2, number)
-    similarities = 0
-    article1.tags.each do |tag1|
-      article2.tags.each do |tag2|
-        if tag1 == tag2
-          similarities += 1
-        end
-      end
-    end
-
+    similarities = (article1.tags & article2.tags).size
     similarities >= number
-
   end
 
   #takes an article which was matched with a user for some reason, and makes a pair with the most opposite article
@@ -133,5 +78,32 @@ class Category < ActiveRecord::Base
   #     sum += (scores1[i] - scores2[i]).abs
   #   end
   #   sum
+  # end
+
+  #should return the N most frequently appearing tags in the catgegory's articles
+  # def find_relevant_keywords(number)
+  #   tag_count = Hash.new(0)
+  #   self.articles.each do |article|
+  #     article.tags.each do |tag|
+  #       tag_count[tag] += 1
+  #     end
+  #   end
+  #   ord_array = tag_count.sort_by {|k,v| -v}
+
+  #   @relevant_tags = ord_array[0...number].map{|tag| tag[0]}
+  # end
+
+  #find_relevant_keywords NEEDS TO be run before this.
+  #given all relevent tags, selects all articles that have all relevent tags
+  # def relevant_articles
+  #   self.articles.select do |article|
+  #     false_count = 0
+
+  #     @relevant_tags.each do |tag|
+  #       false_count +=1 unless article.tags.include?(tag)
+  #     end
+
+  #     false_count == 0
+  #   end
   # end
 end

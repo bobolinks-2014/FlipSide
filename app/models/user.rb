@@ -41,30 +41,38 @@ class User < ActiveRecord::Base
     end
     opinions_hash
   end
+
   #make sentiment, agreement, relevance attr_reader
   def weighted_tag_score(tag)
     user_tags = self.user_tags.where(tag_id: tag.id)
+
     numerator = 0
+    denominator = user_tags.pluck(:relevance).inject(:+)
+
     user_tags.each do |user_tag|
       direction = user_tag.agreement ? 1 : -1
-      score = user_tag.sentiment_score*user_tag.relevance*direction
+      score = user_tag.sentiment_score * user_tag.relevance * direction
       numerator += score
     end
-    denominator = user_tags.pluck(:relevance).inject(:+)
+
     weighted_tag_score = numerator/denominator
   end
 
   def possible_article_matches(category)
-    storage_array = []
+    possible_matches = []
     articles = category.articles
+
     articles.each do |article|
       overlapping_tags = overlapping_tags(article)
+
       if vote_count(overlapping_tags) >=20
         quotient = find_quotient(article)
-        storage_array << {article => quotient}
+        possible_matches << {article => quotient}
       end
+
     end
-    storage_array.sort_by{|hash| hash.values[0]}
+
+    possible_matches.sort_by { |hash| hash.values[0] }
   end
 
   def find_quotient(article)
@@ -72,9 +80,8 @@ class User < ActiveRecord::Base
     user_opinions = self.opinions
 
     overlapping_tags(article).each do |tag|
-      article_tag = article.article_tags.find_by(tag_id: tag.id)
-
-      user_quotient = user_opinions[tag]
+      article_tag     = article.article_tags.find_by(tag_id: tag.id)
+      user_quotient   = user_opinions[tag]
       article_sentiment = article_tag.sentiment_score
 
       quotient += (user_quotient-article_sentiment).abs
