@@ -150,7 +150,7 @@ var Article = React.createClass({
 		return {
 			showArticle: false,
 			style: {},
-			titleStyle: {}
+			titleStyle: {textDecoration: "underline"}
 		};
 	},
 	onMouseOver: function(){
@@ -159,14 +159,19 @@ var Article = React.createClass({
 				boxShadow: "0px 1px 10px #888888",
 				cursor: "pointer"
 			},
-			titleStyle: {textDecoration: "underline"}
+			titleStyle: {color: "gray", textDecoration: "underline"}
 		});
 
 	},
+	onMouseDown: function(){
+		this.setState({
+			titleStyle: {color: "gray", textDecoration: "underline"}
+		});
+	},
 	onMouseLeave: function(){
 		this.setState({
-			style: {},
-			titleStyle: {textDecoration: "none"}
+			style: {boxShadow: 'none'},
+			titleStyle: {color: "black", textDecoration: "underline"}
 		});
 	},
 	render: function(){
