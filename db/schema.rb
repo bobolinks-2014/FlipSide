@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140907154231) do
     t.integer  "category_id"
     t.integer  "article1_id"
     t.integer  "article2_id"
+    t.integer  "user_id"
     t.decimal  "difference_score"
     t.datetime "created_at"
     t.datetime "updated_at"

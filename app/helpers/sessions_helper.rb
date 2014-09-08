@@ -9,7 +9,7 @@ module SessionsHelper
   end
 
   def current_user
-    @current_user ||= User.find(session[:user_id])
+    @current_user = signed_in? ? User.find(session[:user_id]) : nil
   end
 
   def current_user?(user)

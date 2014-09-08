@@ -58,6 +58,22 @@ class User < ActiveRecord::Base
     weighted_tag_score = numerator/denominator
   end
 
+  def custom_match(category)
+    closest_matching_article = possible_article_matches(category)[-1].keys[0]
+
+    unless closest_matching_article.nil?
+      new_pair = category.find_pair(closest_matching_article)
+
+      Pair.find_or_create_by(article1_id: new_pair[0].id,
+              article2_id: new_pair[1].id,
+              category_id: category.id,
+              difference_score: new_pair[2])
+    else
+      Pair.defaults.find_by(category: category)
+    end
+
+  end
+
   def possible_article_matches(category)
     possible_matches = []
     articles = category.articles
@@ -69,9 +85,9 @@ class User < ActiveRecord::Base
         quotient = find_quotient(article)
         possible_matches << {article => quotient}
       end
-
     end
 
+    return [{nil => nil}] if possible_matches.empty?
     possible_matches.sort_by { |hash| hash.values[0] }
   end
 
