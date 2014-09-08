@@ -139,6 +139,32 @@ describe Category do
     it "checks if two articles share atleast n tags (if they are abt to pair)" do
       expect(@category.compare_tags(@article, @article3,2)).to be(true)
     end
-
   end
+
+  describe "#make_user_pair" do
+    before do
+
+      @article4 = Article.create!(title: "YOLAAAAAA",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article")
+      @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
+      @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.3, relevance: 1.0)
+      @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
+      @article_tag133 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
+      @article_tag123 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.3, relevance: 1.0)
+      @article_tag113 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
+
+    end
+    it "should return the article it was passed" do
+      expect(@category.make_user_pair(@article4)[0]).to eq(@article4)
+    end
+
+    it "returns the most opposite article in the category" do
+
+      expect(@category.make_user_pair(@article4)[1]).to eq(@article)
+
+    end
+    it "returns a big decimal in the last index of the pair array" do
+      expect(@category.make_user_pair(@article4)[2]).to be_an_instance_of(BigDecimal)
+    end
+  end
+
 end
