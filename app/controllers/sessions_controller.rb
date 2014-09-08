@@ -1,15 +1,17 @@
 class SessionsController < ApplicationController
   include SessionsHelper
   def new
+    p "new session"
   end
 
   def create
     user = User.find_by_email(params[:email].downcase)
-
+    p "created/found #{user}"
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       render :json => {success: true, user_id: user.id}
     else
+
       if request.xhr?
         render :json => {fail: true, error: "Invalid user name or password."}
       end
@@ -19,6 +21,8 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
+    session.clear
+    p "#{signed_in?}"
     redirect_to root_url
   end
 
