@@ -17,32 +17,37 @@ var TagCollection = React.createClass({
 	renderTag: function(tag){
 		if (tag.sentiment_score > 0.7 ){
 			var style = {
-				backgroundColor: "#fb9e9e",
-				color: "white"
+				backgroundColor: "#004400",
+				color: "white",
+				cursor: "default"
 			};
 		}
 		else if (tag.sentiment_score > 0.2 ){
 			var style = {
-				backgroundColor: "#d15f5f",
-				color: "white"
+				backgroundColor: "#2d882d",
+				color: "white",
+				cursor: "default"
 			};
 		}
 		else if (tag.sentiment_score > -0.2 ){
 			var style = {
-				backgroundColor: "#aa3535",
-				color: "white"
+				backgroundColor: "gray",
+				color: "white",
+				cursor: "default"
 			};
 		}
 		else if (tag.sentiment_score > -0.8 ){
 			var style = {
-				backgroundColor: "#831414",
-				color: "white"
+				backgroundColor: "#aa3535",
+				color: "white",
+				cursor: "default"
 			};
 		}
 		else{
 			var style = {
 				backgroundColor: "#570000",
-				color: "white"
+				color: "white",
+				cursor: "default"
 			};
 		};
 
@@ -102,6 +107,7 @@ var Pair = React.createClass({
 		this.getArticles();
 	},
 	renderArticles: function(articles, difference_score, tags){
+		debugger;
 		return(
 			<div className="pair row">
 				<p className="text-center"> These articles discuss some category </p>
@@ -116,10 +122,10 @@ var Pair = React.createClass({
 	render:function(){
 
 		console.log("rendering pairs");
-		var styleE = {backgroundColor: "#fb9e9e", color:"white"}
-    var styleD = {backgroundColor: "#d15f5f", color:"white"}
-    var styleC = {backgroundColor: "#aa3535", color:"white"}
-    var styleB = {backgroundColor: "#831414", color:"white"}
+		var styleE = {backgroundColor: "#004400", color:"white"}
+    var styleD = {backgroundColor: "#2d882d", color:"white"}
+    var styleC = {backgroundColor: "gray", color:"white"}
+    var styleB = {backgroundColor: "#aa3535", color:"white"}
     var styleA = {backgroundColor: "#570000", color:"white"}
 		return (
 			<div className='newsFeed large-12 columns'>
@@ -144,13 +150,14 @@ var Article = React.createClass({
 	getInitialState: function(){
 		return {
 			showArticle: false,
-			style: {}
+			style: {},
+			titleStyle: {}
 		};
 	},
 	onMouseOver: function(){
 		this.setState({
 			style:{
-				boxShadow: "5px 5px 5px #888888",
+				boxShadow: "0px 0px 10px #888888",
 				cursor: "pointer"
 			}
 		});
@@ -186,13 +193,15 @@ var Rating = React.createClass({
 					<li className="agree tiny radius button">postive</li>
 					<li className="disagree tiny radius button">negative</li>
 				</ul>
-			)
+			),
+			response: ""
 		}
 	},
 	onClick: function(e){
-		debugger;
-		$(e.target).addClass('disabled');
-		$(e.target).siblings().addClass('disabled');
+		this.setState({response: $(e.target).text()});
+		$(e.target).fadeOut('1000');
+		$(e.target).siblings().fadeOut('1000');
+		this.setState({content: <p className = "right">You rated this article {this.state.response}</p>})
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
 	},
 	render: function(){
