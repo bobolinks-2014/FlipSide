@@ -190,7 +190,7 @@ var Rating = React.createClass({
 		}
 	},
 	onClick: function(e){
-		debugger;
+
 		$(e.target).addClass('disabled');
 		$(e.target).siblings().addClass('disabled');
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
