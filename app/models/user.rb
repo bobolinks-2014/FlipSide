@@ -61,15 +61,14 @@ class User < ActiveRecord::Base
   def custom_match(category)
     closest_matching_article = possible_article_matches(category)[-1].keys[0]
 
-    unless closest_matching_article.nil?
+    if closest_matching_article.nil?
+      Pair.defaults.find_by(category: category)
+    else
       new_pair = category.find_pair(closest_matching_article)
-
       Pair.find_or_create_by(article1_id: new_pair[0].id,
               article2_id: new_pair[1].id,
               category_id: category.id,
               difference_score: new_pair[2])
-    else
-      Pair.defaults.find_by(category: category)
     end
 
   end

@@ -6,10 +6,10 @@ describe User do
     @category = Category.create!(name: "The bad stuff meow")
     @user = User.create!(name: "me", email: "yolo2@yolo.com", password:"123456", password_confirmation: "123456")
 
-    @tag1 = Tag.create!(name:"this_is_text2")
-    @tag2 = Tag.create!(name:"this_is_text1")
-    @tag3 = Tag.create!(name:"this_is_text6")
-    @tag4 = Tag.create!(name:"this_is_text3")
+    @tag1 = Tag.create!(name:"this_is_text1")
+    @tag2 = Tag.create!(name:"this_is_text2")
+    @tag3 = Tag.create!(name:"this_is_text3")
+    @tag4 = Tag.create!(name:"this_is_text4")
     @tag5 = Tag.create!(name:"this_is_text5")
     @tag6 = Tag.create!(name:"this_is_text6")
 
@@ -191,7 +191,11 @@ describe User do
 
     it "orders the array" do
       expect(@user.possible_article_matches(@category)[0].values[0]<=@user.possible_article_matches(@category)[1].values[0]).to eq(true)
+    end
 
+    it "returns [{nil => nil}] if it can't find a match" do 
+      @category99 = Category.create!
+      expect(@user.possible_article_matches(@category99)).to eq([{nil => nil}])
     end
 
   end
@@ -200,5 +204,35 @@ describe User do
     it "finds the difference between a user's opinions and an article, given their overlapping tags." do
       expect(@user.find_quotient(@article).to_f).to eq(1.511)
     end
+  end
+
+  describe "#custom_match" do 
+    before do
+    end
+
+    it "returns a custom match within the category if available" do
+      @pair = Pair.create!(category: @category, article1_id: @article.id, article2_id: @article2.id, difference_score: 0.88)
+      expect(@user.custom_match(@category).article1).to eq(@article3)
+      expect(@user.custom_match(@category).article2).to eq(@article)
+    end
+
+    it "returns the category's default match if custom match is unavailable" do 
+      @category2 = Category.create!
+      @article777 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article_tag1111 = ArticleTag.create!(article_id: @article777.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
+      @article_tag2222 = ArticleTag.create!(article_id: @article777.id, tag_id: @tag6.id,sentiment_score:-0.3, relevance: 1.0)
+      @article_tag3333 = ArticleTag.create!(article_id: @article777.id, tag_id: @tag6.id,sentiment_score:-0.111, relevance: 1.0)
+
+
+      @article666 = Article.create!(title: "YOLAAAAAA",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article_tag4444 = ArticleTag.create!(article_id: @article666.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
+      @article_tag5555 = ArticleTag.create!(article_id: @article666.id, tag_id: @tag6.id,sentiment_score:-0.3, relevance: 1.0)
+      @article_tag6666 = ArticleTag.create!(article_id: @article666.id, tag_id: @tag6.id,sentiment_score:-0.111, relevance: 1.0)
+
+      @pair = Pair.create!(category: @category2, article1_id: @article666.id, article2_id: @article777.id, difference_score: 0.88)
+
+      expect(@user.custom_match(@category2)).to eq(@pair)
+    end
+
   end
 end

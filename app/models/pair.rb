@@ -10,9 +10,8 @@ class Pair < ActiveRecord::Base
   def self.custom(current_user)
     categories = Category.from_today
     categories.each do |category|
-        default_pair = Pair.defaults.where(category: category)
-
-        current_user.possible_article_matches(category)
+      default_pair = Pair.defaults.where(category: category)
+      current_user.possible_article_matches(category)
     end
   end
 end
