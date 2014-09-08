@@ -149,7 +149,7 @@ var Article = React.createClass({
 	getInitialState: function(){
 		return {
 			showArticle: false,
-			style: {boxShadow: "0px 1px 1px #888888"},
+			style: {},
 			titleStyle: {}
 		};
 	},
@@ -165,17 +165,14 @@ var Article = React.createClass({
 	},
 	onMouseLeave: function(){
 		this.setState({
-			style: {boxShadow: "0px 1px 1px #888888"},
+			style: {},
 			titleStyle: {textDecoration: "none"}
 		});
 	},
 	render: function(){
 		return (
 			<div className = 'large-6 columns' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
-				<div>
-					<TagCollection tags={this.props.tags}/>
-					<Rating article_id= {this.props.options.id} />
-				</div>
+				<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} data-reveal-id="myModal">
 					<div className = {this.props.options.url}>
 						<h4 style = {this.state.titleStyle}>{this.props.options.title}</h4>
@@ -183,6 +180,7 @@ var Article = React.createClass({
 						<p>{this.props.options.slug}</p>
 					</div>
 				</div>
+				<Rating article_id= {this.props.options.id} />
 			</div>
 		);
 	}
@@ -194,7 +192,7 @@ var Rating = React.createClass({
 	getInitialState: function(){
 		return {
 			content:(
-				<div className="right">
+				<div className="left">
 					<div className="agree radius secondary label">postive</div>
 					<div className="disagree radius secondary label">negative</div>
 				</div>
@@ -206,7 +204,7 @@ var Rating = React.createClass({
 		this.setState({response: $(e.target).text()});
 		$(e.target).fadeOut('1000');
 		$(e.target).siblings().fadeOut('1000');
-		this.setState({content: <p className = "right">You rated this article {this.state.response}</p>})
+		this.setState({content: <p className = "left">You rated this article {this.state.response}</p>})
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
 	},
 	render: function(){
