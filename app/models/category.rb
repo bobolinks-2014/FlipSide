@@ -4,6 +4,10 @@ class Category < ActiveRecord::Base
   has_many :pairs
 
   attr_reader :relevant_tags
+
+  def self.from_today
+    self.all.where("created_at >= ?", Time.zone.now.ago(86400))
+  end
   #Runner method; returns a pair object given the number of keywords
   def make_pair#number_of_keywords)
     # find_relevant_keywords(number_of_keywords)
