@@ -6,8 +6,10 @@
 # Example:
 #
 # set :output, "/path/to/my/cron_log.log"
-#
-set :environment, "production"
+
+
+# TODO: set to production before production
+set :environment, "development"
 set :output, {:error => "log/cron_error_log.log", :standard => "log/cron_log.log"}
 
 every 1.hour do

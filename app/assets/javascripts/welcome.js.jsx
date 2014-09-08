@@ -1,5 +1,61 @@
 /*** @jsx React.DOM */
 
+var TagCollection = React.createClass({
+	getInitialState: function(){
+
+		return {tagCollection: this.getTags(this.props.tags)};
+	},
+	getTags: function(tags){
+		tag_arr = [];
+		$.each(tags, function(i){
+			tag_arr.push(this.renderTag(tags[i]));
+		}.bind(this));
+		return tag_arr;
+	},
+	renderTag: function(tag){
+		console.log(tag);
+		if (tag.sentiment_score > 0.7 ){
+			var style = {
+				backgroundColor: "#fb9e9e",
+				color: "white"
+			};
+		}
+		else if (tag.sentiment_score > 0.2 ){
+			var style = {
+				backgroundColor: "#d15f5f",
+				color: "white"
+			};
+		}
+		else if (tag.sentiment_score > -0.2 ){
+			var style = {
+				backgroundColor: "#aa3535",
+				color: "white"
+			};
+		}
+		else if (tag.sentiment_score > -0.8 ){
+			var style = {
+				backgroundColor: "#831414",
+				color: "white"
+			};
+		}
+		else{
+			var style = {
+				backgroundColor: "#570000",
+				color: "white"
+			};
+		};
+
+		return(
+			<div style = {style} className= "radius secondary label">#{tag.tag.name}</div>
+		)
+	},
+	render: function(){
+		return(
+			<div className="tagCollection">{this.state.tagCollection}</div>
+		)
+	}
+});
+
 var Pair = React.createClass({
 
 	getInitialState: function(){
@@ -14,7 +70,7 @@ var Pair = React.createClass({
 				var articles = [];
 				articles.push(data[index].article1);
 				articles.push(data[index].article2);
-				pairRendered = this.renderArticles(articles);
+				pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
 				pair_arr.push(pairRendered);
 			}.bind(this));
 			this.setState({
@@ -22,18 +78,54 @@ var Pair = React.createClass({
 			});
 		}.bind(this));
 	},
-	renderArticles: function(articles){
+	getCommonTags: function(articles){
+		var tags1 = articles[0].article_tags;
+		var tags2 = articles[1].article_tags;
+		commonTags = [];
+		article1tags = [];
+		article2tags = [];
+		$.each(tags1, function(i){
+			$.each(tags2, function(j){
+				if (tags1[i].tag.name === tags2[j].tag.name){
+					article1tags.push(tags1[i]);
+					article2tags.push(tags2[j]);
+				}
+			})
+		})
+		// this is an array of common tags where each element of the array is an article tag...because i needed that.
+		return [article1tags, article2tags];
+	},
+	renderArticles: function(articles, difference_score, tags){
 		return(
 			<div className="pair row">
-				<Article options={articles[0]} onClick={this.handleClick}/>
-				<Article options={articles[1]} onClick={this.handleClick}/>
+				<p className="text-center"> These articles discuss some category </p>
+				<div className="paired_articles">
+					<Article options={articles[0]} tags = {tags[0]} onClick={this.handleClick}/>
+					<Article options={articles[1]} tags ={tags[1]} onClick={this.handleClick}/>
+				</div>
 				<hr/>
 			</div>
 		);
 	},
 	render:function(){
+		var styleE = {backgroundColor: "#fb9e9e", color:"white"}
+    var styleD = {backgroundColor: "#d15f5f", color:"white"}
+    var styleC = {backgroundColor: "#aa3535", color:"white"}
+    var styleB = {backgroundColor: "#831414", color:"white"}
+    var styleA = {backgroundColor: "#570000", color:"white"}
+
 		return (
-			<div className='newsFeed large-12 columns'>{this.state.pairs}</div>
+			<div className='newsFeed large-12 columns'>
+				<p>Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location</p>
+				<ul inline-list>
+					<li style = {styleA}className= "radius secondary label">very negative</li>
+					<li style = {styleB}className= "radius secondary label">negative</li>
+					<li style = {styleC}className= "radius secondary label">neutral</li>
+					<li style = {styleD}className= "radius secondary label">positive</li>
+					<li style = {styleE}className= "radius secondary label">very positive</li>
+				</ul>
+				{this.state.pairs}
+			</div>
 		);
 	}
 })
@@ -47,6 +139,8 @@ var Article = React.createClass({
 	render: function(){
 		return (
 			<div className = 'large-6 columns'>
+					<Rating article_id= {this.props.options.id} />
+					<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} >
 					<div className = {this.props.options.url}>
 						<h2>{this.props.options.title}</h2>
@@ -54,7 +148,6 @@ var Article = React.createClass({
 						<p>{this.props.options.slug}</p>
 					</div>
 				</div>
-				<Rating article_id= {this.props.options.id} />
 			</div>
 		);
 	}
@@ -62,24 +155,18 @@ var Article = React.createClass({
 
 var Rating = React.createClass({
 	getInitialState: function(){
-		var style = {
-			color: "black"
-		};
 		return {
-			clicked: "red",
-			not_clicked: "black",
 			content:(
 				<ul className="bottom right inline-list">
-					<li className="agree inline" style={style}>agree</li>
-					<li className="disagree inline" style={style} >disagree</li>
+					<li className="agree tiny radius button">agree</li>
+					<li className="disagree tiny radius button">disagree</li>
 				</ul>
 			)
 		}
 	},
 	onClick: function(e){
-
-		e.target.style.color = this.state.clicked;
-		$(e.target).siblings()[0].style.color = this.state.not_clicked;
+		$(e.target).addClass('disabled');
+		$(e.target).siblings().addClass('disabled');
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
 	},
 	render: function(){
@@ -112,19 +199,6 @@ var Home = React.createClass({
 		)
 	}
 });
-
-
-// http://stackoverflow.com/questions/22639534/pass-props-to-parent-component-in-react-js
-// var Iframe = React.createClass({
-// 	render: function(){
-// 		return(
-// 			<div className = "row article-view">
-
-// 		    <iframe src={this.props.url} className = "large-12 columns widescreen" height="600"></iframe>
-// 		  </div>
-// 		)
-// 	}
-// });
 
 function renderPair(){
 	React.renderComponent(
