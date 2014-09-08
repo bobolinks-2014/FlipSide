@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Category do
   before do
-
     @category = Category.create!(name: "The bad stuff meow")
 
     @tag1 = Tag.create!(name:"this_is_text2")
@@ -29,9 +28,6 @@ describe Category do
     @article_tag13 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
     @article_tag12 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag1.id,sentiment_score:-0.3, relevance: 1.0)
     @article_tag11 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
-
-
-
   end
 
   pending '#find_relevant_keywords' do
@@ -158,12 +154,21 @@ describe Category do
     end
 
     it "returns the most opposite article in the category" do
-
       expect(@category.make_user_pair(@article4)[1]).to eq(@article)
-
     end
+
     it "returns a big decimal in the last index of the pair array" do
       expect(@category.make_user_pair(@article4)[2]).to be_an_instance_of(BigDecimal)
+    end
+  end
+
+  describe "self#from_today" do 
+    it "only returns categories created in the last 24 hours" do 
+      @category999 = Category.create!(name: "FROM THE PAAAAST")
+      @category999.update(created_at: Time.zone.at(1170361845))
+
+
+      expect(Category.from_today.size).to eq(1)
     end
   end
 
