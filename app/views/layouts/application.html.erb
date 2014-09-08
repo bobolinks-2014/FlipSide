@@ -15,6 +15,7 @@
   </head>
 
 <body>
+  <div class= 'fixed'>
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name" id="goHome">
@@ -76,7 +77,7 @@
   </div>
 <%end%>
 </nav>
-
+</div>
   <div id = "container">
     <!-- It all gets rendered in here -->
   </div>
@@ -84,6 +85,9 @@
   <a class="close-reveal-modal">&#215;</a>
 </div>
     <%= yield %>
+
+
+    <footer class = "row"> This is a DBC project. <a href="http://www.alchemyapi.com/">Text Analysis by AlchemyAPI </a><img src="http://www.alchemyapi.com/sites/default/files/alchemyAPI.png"></footer>
     <%= javascript_include_tag "application" %>
   </body>
 </html>
