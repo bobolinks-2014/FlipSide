@@ -72,4 +72,5 @@ ArticleTag.create(article: boo_america, tag: america, sentiment_score: -0.5, rel
 ArticleTag.create(article: yay_america, tag: obama, sentiment_score: 0.3, relevance: 0.8)
 ArticleTag.create(article: boo_america, tag: obama, sentiment_score: -0.5, relevance: 0.9)
 ArticleTag.create(article: yay_america, tag: america, sentiment_score: 0.3, relevance: 0.8)
+ArticleTag.create(article: boo_russia, tag: obama, sentiment_score: 0.3, relevance: 0.8)
 
