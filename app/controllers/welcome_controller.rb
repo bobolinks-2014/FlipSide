@@ -45,6 +45,4 @@ class WelcomeController < ApplicationController
       render :json => {status: "ok"}
     end
   end
-
-
 end
