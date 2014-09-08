@@ -1,9 +1,13 @@
 class WelcomeController < ApplicationController
   include SessionsHelper
-
+# when the page refreshes, the user id in session goes away
+# but the no one is logged out.
   def index
-    if @current_user
-      render :json => {user: @current_user}
+    p "going to the index page"
+    if signed_in?
+      p "#{session[:user_id]}"
+      p "Someone is signed in #{current_user}"
+      user= current_user
     end
   end
 
@@ -17,7 +21,7 @@ class WelcomeController < ApplicationController
       @pairs = []
 
       categories.each do |category|
-        @pairs << @current_user.custom_match(category)
+        @pairs << current_user.custom_match(category)
       end
 
 

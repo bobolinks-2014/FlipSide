@@ -1,5 +1,7 @@
 /*** @jsx React.DOM */
 
+
+// TAG MODEL //
 var TagCollection = React.createClass({
 	getInitialState: function(){
 
@@ -54,6 +56,9 @@ var TagCollection = React.createClass({
 		)
 	}
 });
+
+
+// PAIR MODEL //
 
 var Pair = React.createClass({
 	getInitialState: function(){
@@ -132,8 +137,9 @@ var Pair = React.createClass({
 	}
 })
 
-// for security reasons...you can't access the url of an iframe.
 
+// ARTICLE MODEL //
+// for security reasons...you can't access the url of an iframe.
 var Article = React.createClass({
 	getInitialState: function(){
 		return {
@@ -170,13 +176,15 @@ var Article = React.createClass({
 	}
 });
 
+
+// RATING MODEL //
 var Rating = React.createClass({
 	getInitialState: function(){
 		return {
 			content:(
 				<ul className="bottom right inline-list">
-					<li className="agree tiny radius button">agree</li>
-					<li className="disagree tiny radius button">disagree</li>
+					<li className="agree tiny radius button">postive</li>
+					<li className="disagree tiny radius button">negative</li>
 				</ul>
 			)
 		}
@@ -197,27 +205,6 @@ var Rating = React.createClass({
 })
 
 
-
-var Home = React.createClass({
-	getInitialState: function(){
-		return {home: this.getHome()}
-	},
-	getHome: function(){
-		return ( <div>
-						<div id = "landing" className = "large-12 columns full-page"></div>
-						<div id="manifesto" className= "row">
-							<h1>We live in an <div className="accentWord"> information cocoon</div> of media that constantly mirrors our existing beliefs. So we built an <div className="accentWord">anti-echo</div> chamber. Welcome to the <div id ="enter" className="inline"><div id="flipWord" className = "inline">ᖷlip</div>/<div id="sideWord" className = "inline">Side</div></div>
-							</h1>
-						</div>
-					</div>)
-	},
-	render: function(){
-		return(
-			<div>{this.state.home}</div>
-		)
-	}
-});
-
 function renderPair(){
 	console.log("renderPair method")
 	React.renderComponent(
@@ -226,12 +213,12 @@ function renderPair(){
 	);
 }
 
-function renderHome(){
-	React.renderComponent(
-	<Home/>,
-	document.getElementById('container')
-	);
-}
+// function renderHome(){
+// 	React.renderComponent(
+// 	<Home/>,
+// 	document.getElementById('container')
+// 	);
+// }
 
 function removeIFrame(){
 	if ($('iframe').length !== 0){
@@ -254,7 +241,7 @@ $('div').on("click",'.close', function(e){
 
 $("#goHome").on("click", function(e){
 	e.preventDefault();
-	renderHome();
+	renderPair();
 })
 $('div').on("click","#enter", function(e){
     e.preventDefault();
@@ -323,7 +310,7 @@ $("#signup_form").on('submit', function(e) {
 			$.each(response.error, function(i) {
 				$("div#error ul").append('<li>'+response.error[i]+'</li>');
 		});
-    renderHome();
+    renderPair();
     }
 	})
 	return request;
@@ -332,6 +319,8 @@ $("#signup_form").on('submit', function(e) {
 $('a.close-reveal-modal').on("click", function() {
 	$("div#error ul li").remove();
 });
+
+// USER PROFILE //
 
 var UserProfile = React.createClass({
   render: function() {
@@ -366,7 +355,7 @@ $("#user_profile_link").on('click', function(e) {
       $('.logged_in').show();
       renderUserProfile(response.user);
     } else {
-      renderHome();
+      renderPair();
     }
   })
 });
