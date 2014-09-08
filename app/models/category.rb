@@ -26,10 +26,16 @@ class Category < ActiveRecord::Base
     @relevent_tags = tag_count.select {|k,v| v >= cut_off}.keys
   end
 
+<<<<<<< Updated upstream
   #find_relevent_keywords NEEDS TO be run before this.
   def relevent_articles
     self.articles.select do |article|
       false_count = 0
+=======
+        if (difference > article_pair.last) && (compare_tags(article1, article2, 2)) && (article1.source != article2.source)
+          article_pair = [article1, article2, difference]
+        end
+>>>>>>> Stashed changes
 
       @relevent_tags.each do |tag|
         unless article.tags.includes(tag)
