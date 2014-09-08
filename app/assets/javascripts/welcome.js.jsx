@@ -52,7 +52,7 @@ var TagCollection = React.createClass({
 		};
 
 		return(
-			<div style = {style} className= "radius secondary label">#{tag.tag.name}</div>
+			<div style = {style} className= " radius secondary label">#{tag.tag.name}</div>
 		)
 	},
 	render: function(){
@@ -149,14 +149,14 @@ var Article = React.createClass({
 	getInitialState: function(){
 		return {
 			showArticle: false,
-			style: {},
+			style: {boxShadow: "0px 1px 1px #888888"},
 			titleStyle: {}
 		};
 	},
 	onMouseOver: function(){
 		this.setState({
 			style:{
-				boxShadow: "0px 3px 10px #888888",
+				boxShadow: "0px 1px 10px #888888",
 				cursor: "pointer"
 			},
 			titleStyle: {textDecoration: "underline"}
@@ -165,18 +165,20 @@ var Article = React.createClass({
 	},
 	onMouseLeave: function(){
 		this.setState({
-			style: {boxShadow: "none"},
+			style: {boxShadow: "0px 1px 1px #888888"},
 			titleStyle: {textDecoration: "none"}
 		});
 	},
 	render: function(){
 		return (
 			<div className = 'large-6 columns' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
-					<Rating article_id= {this.props.options.id} />
+				<div>
 					<TagCollection tags={this.props.tags}/>
+					<Rating article_id= {this.props.options.id} />
+				</div>
 				<div className = 'article' id= {this.props.options.id} >
 					<div className = {this.props.options.url}>
-						<h2 style = {this.state.titleStyle}>{this.props.options.title}</h2>
+						<h4 style = {this.state.titleStyle}>{this.props.options.title}</h4>
 						<h6 className="subheader">{this.props.options.source}</h6>
 						<p>{this.props.options.slug}</p>
 					</div>
@@ -192,10 +194,10 @@ var Rating = React.createClass({
 	getInitialState: function(){
 		return {
 			content:(
-				<ul className="bottom right inline-list">
-					<li className="agree tiny radius button">postive</li>
-					<li className="disagree tiny radius button">negative</li>
-				</ul>
+				<div className="right">
+					<div className="agree radius secondary label">postive</div>
+					<div className="disagree radius secondary label">negative</div>
+				</div>
 			),
 			response: ""
 		}
