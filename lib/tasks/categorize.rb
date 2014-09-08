@@ -16,7 +16,13 @@ def add_categories(collection)
 	end
 end
 
-returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+# returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+#national news categories
+# returnVal= RestClient.get 'https://www.kimonolabs.com/api/4rqnhjt0?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+
+# seed national news
+returnVal = RestClient.get 'https://www.kimonolabs.com/api/58tlfm0u?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+
 json_obj = JSON.parse(returnVal)
 fixed_json = add_categories(json_obj)
 
