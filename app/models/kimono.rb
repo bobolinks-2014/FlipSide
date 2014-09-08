@@ -11,13 +11,10 @@ class Kimono
     # real
 
     # world news
-# returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
+returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
 
-#national news categories
+# national news categories
 # returnVal= RestClient.get 'https://www.kimonolabs.com/api/4rqnhjt0?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-
-  # seed national news
-  returnVal = RestClient.get 'https://www.kimonolabs.com/api/58tlfm0u?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
     #stephanie's test
     # returnVal= response = RestClient.get 'https://www.kimonolabs.com/api/95y8ownk?apikey=7eKJi6sY1ZTl8RSHvmeVOEl1kCfNAqeZ'
     # file = File.read('app/models/kimonoData.json')
