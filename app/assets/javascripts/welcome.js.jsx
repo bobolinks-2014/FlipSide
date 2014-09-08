@@ -107,7 +107,6 @@ var Pair = React.createClass({
 		this.getArticles();
 	},
 	renderArticles: function(articles, difference_score, tags){
-		debugger;
 		return(
 			<div className="pair row">
 				<p className="text-center"> These articles discuss some category </p>
@@ -157,14 +156,18 @@ var Article = React.createClass({
 	onMouseOver: function(){
 		this.setState({
 			style:{
-				boxShadow: "0px 0px 10px #888888",
+				boxShadow: "0px 3px 10px #888888",
 				cursor: "pointer"
-			}
+			},
+			titleStyle: {textDecoration: "underline"}
 		});
 
 	},
 	onMouseLeave: function(){
-		this.setState({style: {boxShadow: "none"}});
+		this.setState({
+			style: {boxShadow: "none"},
+			titleStyle: {textDecoration: "none"}
+		});
 	},
 	render: function(){
 		return (
@@ -173,7 +176,7 @@ var Article = React.createClass({
 					<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} >
 					<div className = {this.props.options.url}>
-						<h2>{this.props.options.title}</h2>
+						<h2 style = {this.state.titleStyle}>{this.props.options.title}</h2>
 						<h6 className="subheader">{this.props.options.source}</h6>
 						<p>{this.props.options.slug}</p>
 					</div>
