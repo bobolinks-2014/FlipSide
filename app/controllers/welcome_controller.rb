@@ -3,12 +3,7 @@ class WelcomeController < ApplicationController
 # when the page refreshes, the user id in session goes away
 # but the no one is logged out.
   def index
-    p "going to the index page"
-    if signed_in?
-      p "#{session[:user_id]}"
-      p "Someone is signed in #{current_user}"
-      user= current_user
-    end
+    @current_user = current_user if signed_in?
   end
 
   # all the pairs
