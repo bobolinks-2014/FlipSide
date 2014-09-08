@@ -30,7 +30,7 @@ gem 'simplecov', '~> 0.9.0',		group: :development
 gem 'pry'
 gem 'pry-nav'
 gem 'rest-client', '~> 1.7.2'
-
+gem 'nokogiri'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
