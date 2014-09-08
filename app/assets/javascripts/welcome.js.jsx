@@ -271,8 +271,8 @@ $("#signin_form").on('submit', function(e) {
 	request.done(function(response) {
 		if(response.success == true) {
 			$('#signin_button').foundation('reveal', 'close');
-			$('.not_logged_in').hide();
-			$('.logged_in').show();
+			// $('.not_logged_in').hide();
+			// $('.logged_in').show();
 			console.log("SIGN IN");
 			renderPair();
 		} else {
@@ -303,8 +303,8 @@ $("#signup_form").on('submit', function(e) {
 		if(response.success == true) {
 			console.log('success');
 			$('#signup_button').foundation('reveal', 'close');
-			$('.not_logged_in').hide();
-			$('.logged_in').show();
+			// $('.not_logged_in').hide();
+			// $('.logged_in').show();
 			renderPair();
 		} else {
 			$.each(response.error, function(i) {
@@ -351,8 +351,8 @@ $("#user_profile_link").on('click', function(e) {
   request.done(function(response) {
     if(response.success == true) {
       $('#signin_button').foundation('reveal', 'close');
-      $('.not_logged_in').hide();
-      $('.logged_in').show();
+      // $('.not_logged_in').hide();
+      // $('.logged_in').show();
       renderUserProfile(response.user);
     } else {
       renderPair();
