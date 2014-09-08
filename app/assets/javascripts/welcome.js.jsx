@@ -1,5 +1,7 @@
 /*** @jsx React.DOM */
 
+
+// TAG MODEL //
 var TagCollection = React.createClass({
 	getInitialState: function(){
 
@@ -13,7 +15,6 @@ var TagCollection = React.createClass({
 		return tag_arr;
 	},
 	renderTag: function(tag){
-		console.log(tag);
 		if (tag.sentiment_score > 0.7 ){
 			var style = {
 				backgroundColor: "#fb9e9e",
@@ -56,14 +57,15 @@ var TagCollection = React.createClass({
 	}
 });
 
-var Pair = React.createClass({
 
+// PAIR MODEL //
+
+var Pair = React.createClass({
 	getInitialState: function(){
-		this.getArticles("all");
 		return {pairs: ""};
 	},
-	getArticles: function(category){
-		request = $.get('pairs', {category: category});
+	getArticles: function(){
+		request = $.get('pairs');
 		pair_arr = [];
 		request.done(function(data){
 			$.each(data, function(index){
@@ -95,25 +97,30 @@ var Pair = React.createClass({
 		// this is an array of common tags where each element of the array is an article tag...because i needed that.
 		return [article1tags, article2tags];
 	},
+	componentDidMount: function(){
+		console.log("componentDidMount");
+		this.getArticles();
+	},
 	renderArticles: function(articles, difference_score, tags){
 		return(
 			<div className="pair row">
 				<p className="text-center"> These articles discuss some category </p>
 				<div className="paired_articles">
-					<Article options={articles[0]} tags = {tags[0]} onClick={this.handleClick}/>
-					<Article options={articles[1]} tags ={tags[1]} onClick={this.handleClick}/>
+					<Article options={articles[0]} tags = {tags[0]} />
+					<Article options={articles[1]} tags ={tags[1]} />
 				</div>
 				<hr/>
 			</div>
 		);
 	},
 	render:function(){
+
+		console.log("rendering pairs");
 		var styleE = {backgroundColor: "#fb9e9e", color:"white"}
     var styleD = {backgroundColor: "#d15f5f", color:"white"}
     var styleC = {backgroundColor: "#aa3535", color:"white"}
     var styleB = {backgroundColor: "#831414", color:"white"}
     var styleA = {backgroundColor: "#570000", color:"white"}
-
 		return (
 			<div className='newsFeed large-12 columns'>
 				<p>Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location</p>
@@ -130,15 +137,31 @@ var Pair = React.createClass({
 	}
 })
 
-// for security reasons...you can't access the url of an iframe.
 
+// ARTICLE MODEL //
+// for security reasons...you can't access the url of an iframe.
 var Article = React.createClass({
 	getInitialState: function(){
-		return {showArticle: false};
+		return {
+			showArticle: false,
+			style: {}
+		};
+	},
+	onMouseOver: function(){
+		this.setState({
+			style:{
+				boxShadow: "5px 5px 5px #888888",
+				cursor: "pointer"
+			}
+		});
+
+	},
+	onMouseLeave: function(){
+		this.setState({style: {boxShadow: "none"}});
 	},
 	render: function(){
 		return (
-			<div className = 'large-6 columns'>
+			<div className = 'large-6 columns' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 					<Rating article_id= {this.props.options.id} />
 					<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} >
@@ -153,18 +176,21 @@ var Article = React.createClass({
 	}
 });
 
+
+// RATING MODEL //
 var Rating = React.createClass({
 	getInitialState: function(){
 		return {
 			content:(
 				<ul className="bottom right inline-list">
-					<li className="agree tiny radius button">agree</li>
-					<li className="disagree tiny radius button">disagree</li>
+					<li className="agree tiny radius button">postive</li>
+					<li className="disagree tiny radius button">negative</li>
 				</ul>
 			)
 		}
 	},
 	onClick: function(e){
+		debugger;
 		$(e.target).addClass('disabled');
 		$(e.target).siblings().addClass('disabled');
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
@@ -179,40 +205,20 @@ var Rating = React.createClass({
 })
 
 
-
-var Home = React.createClass({
-	getInitialState: function(){
-		return {home: this.getHome()}
-	},
-	getHome: function(){
-		return ( <div>
-						<div id = "landing" className = "large-12 columns full-page"></div>
-						<div id="manifesto" className= "row">
-							<h1>We live in an <div className="accentWord"> information cocoon</div> of media that constantly mirrors our existing beliefs. So we built an <div className="accentWord">anti-echo</div> chamber. Welcome to the <div id ="enter" className="inline"><div id="flipWord" className = "inline">ᖷlip</div>/<div id="sideWord" className = "inline">Side</div></div>
-							</h1>
-						</div>
-					</div>)
-	},
-	render: function(){
-		return(
-			<div>{this.state.home}</div>
-		)
-	}
-});
-
 function renderPair(){
+	console.log("renderPair method")
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
 	);
 }
 
-function renderHome(){
-	React.renderComponent(
-	<Home/>,
-	document.getElementById('container')
-	);
-}
+// function renderHome(){
+// 	React.renderComponent(
+// 	<Home/>,
+// 	document.getElementById('container')
+// 	);
+// }
 
 function removeIFrame(){
 	if ($('iframe').length !== 0){
@@ -235,7 +241,7 @@ $('div').on("click",'.close', function(e){
 
 $("#goHome").on("click", function(e){
 	e.preventDefault();
-	renderHome();
+	renderPair();
 })
 $('div').on("click","#enter", function(e){
     e.preventDefault();
@@ -265,8 +271,9 @@ $("#signin_form").on('submit', function(e) {
 	request.done(function(response) {
 		if(response.success == true) {
 			$('#signin_button').foundation('reveal', 'close');
-			$('.not_logged_in').hide();
-			$('.logged_in').show();
+			// $('.not_logged_in').hide();
+			// $('.logged_in').show();
+			console.log("SIGN IN");
 			renderPair();
 		} else {
 		console.log('failed');
@@ -296,14 +303,14 @@ $("#signup_form").on('submit', function(e) {
 		if(response.success == true) {
 			console.log('success');
 			$('#signup_button').foundation('reveal', 'close');
-			$('.not_logged_in').hide();
-			$('.logged_in').show();
+			// $('.not_logged_in').hide();
+			// $('.logged_in').show();
 			renderPair();
 		} else {
 			$.each(response.error, function(i) {
 				$("div#error ul").append('<li>'+response.error[i]+'</li>');
 		});
-    renderHome();
+    renderPair();
     }
 	})
 	return request;
@@ -312,6 +319,8 @@ $("#signup_form").on('submit', function(e) {
 $('a.close-reveal-modal').on("click", function() {
 	$("div#error ul li").remove();
 });
+
+// USER PROFILE //
 
 var UserProfile = React.createClass({
   render: function() {
@@ -342,11 +351,11 @@ $("#user_profile_link").on('click', function(e) {
   request.done(function(response) {
     if(response.success == true) {
       $('#signin_button').foundation('reveal', 'close');
-      $('.not_logged_in').hide();
-      $('.logged_in').show();
+      // $('.not_logged_in').hide();
+      // $('.logged_in').show();
       renderUserProfile(response.user);
     } else {
-      renderHome();
+      renderPair();
     }
   })
 });
