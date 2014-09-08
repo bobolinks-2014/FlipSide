@@ -6,23 +6,7 @@ NUMBER_OF_KEYWORDS = 3
 
 class Kimono
   def self.start
-    #test
-    # returnVal = RestClient.get 'https://www.kimonolabs.com/api/csk458cq?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-    # real
-
-    # world news
-returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-
-# national news categories
-# returnVal= RestClient.get 'https://www.kimonolabs.com/api/4rqnhjt0?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
-
-
-  # seed national news
-  # returnVal = RestClient.get('https://www.kimonolabs.com/api/cnzmzwry?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn', {'authorization' => 'Bearer g12q4HHQXONnUpBxPaN8xTQs0Jd19gkJ'});
-    #stephanie's test
-    # returnVal= response = RestClient.get 'https://www.kimonolabs.com/api/95y8ownk?apikey=7eKJi6sY1ZTl8RSHvmeVOEl1kCfNAqeZ'
-    # file = File.read('app/models/kimonoData.json')
-    # json_obj = JSON.parse(file)
+    returnVal = RestClient.get 'https://www.kimonolabs.com/api/9lezh1lc?apikey=GsBpFLhrLVtXl8mIDnFj8zv8rRVrsKTn'
     json_obj = JSON.parse(returnVal)
     add_categories(json_obj)
 
