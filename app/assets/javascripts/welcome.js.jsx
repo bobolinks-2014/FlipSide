@@ -521,7 +521,10 @@ var UserProfile = React.createClass({
 										.attr("cx", function(d) { return d.x; })
       							.attr("cy", function(d) { return d.y; })
 										.attr("class", "category")
-										.style("fill", "red");
+										.style("fill", "steelblue")
+										.attr("opacity", 0.25)
+										.attr("stroke", "gray")
+										.attr("stroke-width", "2");
 
 		var text = svg.selectAll("text")
 									.data(nodes)
@@ -533,7 +536,6 @@ var UserProfile = React.createClass({
 						      .attr("text-anchor", "middle")
 						      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
 						      .text(function(d) { return d.name; });
-
 	},
 
   render: function() {

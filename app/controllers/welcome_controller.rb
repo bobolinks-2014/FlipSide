@@ -1,3 +1,4 @@
+require 'pry'
 class WelcomeController < ApplicationController
   include SessionsHelper
 # when the page refreshes, the user id in session goes away
@@ -45,7 +46,9 @@ class WelcomeController < ApplicationController
     # current_user = User.create(name: "fake", email: "hell0@jello.com", password: "123456", password_confirmation: "123456")
     @article = Article.find(params[:article_id])
     if signed_in?
-      rating = params[:rating] == "agree" ? true : false
+      test = params[:rating].gsub(/(\s.+)/, "")
+      rating = test == "agree" ? true : false
+      binding.pry
       current_user.vote(@article, rating)
     end
     if request.xhr?
