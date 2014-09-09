@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
 	has_many :ratings
   has_many :user_tags
   has_many :tags, through: :user_tags
+  has_many :pairs
 
   has_secure_password
 	validates :password, length: { minimum: 6 }
@@ -68,6 +69,7 @@ class User < ActiveRecord::Base
       Pair.find_or_create_by(article1_id: new_pair[0].id,
               article2_id: new_pair[1].id,
               category_id: category.id,
+
               difference_score: new_pair[2])
     end
 

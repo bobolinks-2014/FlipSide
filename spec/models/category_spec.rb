@@ -18,13 +18,13 @@ describe Category do
     @article_tag4 = ArticleTag.create!(article_id: @article.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
 
 
-    @article2 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article2 = Article.create!(title: "qwertyui",source: "That other place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
     @article_tag5 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
     @article_tag6 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag6.id,sentiment_score:-0.3, relevance: 1.0)
     @article_tag4 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
 
 
-    @article3 = Article.create!(title: "YOLAAAAAA",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article3 = Article.create!(title: "YOLAAAAAA",source: "some place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
     @article_tag13 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
     @article_tag12 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag1.id,sentiment_score:-0.3, relevance: 1.0)
     @article_tag11 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
@@ -65,12 +65,12 @@ describe Category do
   describe '#sum_differences' do
      before do
 
-      @article4 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article4 = Article.create!(title: "qwertyui",source: "which place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
       @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1, relevance: 1.0)
       @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2, relevance: 1.0)
       @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1, relevance: 1.0)
 
-      @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article5 = Article.create!(title: "lkjhgfds",source: "That place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
       @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1, relevance: 1.0)
       @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1, relevance: 1.0)
       @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1, relevance: 1.0)
@@ -84,12 +84,12 @@ describe Category do
   describe '#find_pair' do
     before do
 
-      @article4 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article4 = Article.create!(title: "qwertyui",source: "Which place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
       @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1, relevance: 1.0)
       @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2, relevance: 1.0)
       @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1, relevance: 1.0)
 
-      @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article5 = Article.create!(title: "lkjhgfds",source: "That place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
       @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1, relevance: 1.0)
       @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag5.id,sentiment_score:-0.1, relevance: 1.0)
       @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1, relevance: 1.0)
@@ -113,12 +113,12 @@ describe Category do
   describe '#make_pair' do
     it "should make one pair object" do
 
-      @article4 = Article.create!(title: "qwertyui",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article4 = Article.create!(title: "qwertyui",source: "WHich place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
       @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:1, relevance: 1.0)
       @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.2, relevance: 1.0)
       @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-1, relevance: 1.0)
 
-      @article5 = Article.create!(title: "lkjhgfds",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article5 = Article.create!(title: "lkjhgfds",source: "That place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
       @article_tag13 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag2.id,sentiment_score:-1, relevance: 1.0)
       @article_tag12 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag1.id,sentiment_score:-0.1, relevance: 1.0)
       @article_tag11 = ArticleTag.create!(article_id: @article5.id, tag_id: @tag4.id,sentiment_score:1, relevance: 1.0)
@@ -140,7 +140,7 @@ describe Category do
   describe "#make_user_pair" do
     before do
 
-      @article4 = Article.create!(title: "YOLAAAAAA",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article")
+      @article4 = Article.create!(title: "YOLAAAAAA",source: "which place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article")
       @article_tag13 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
       @article_tag12 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag1.id,sentiment_score:-0.3, relevance: 1.0)
       @article_tag11 = ArticleTag.create!(article_id: @article4.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
@@ -162,8 +162,8 @@ describe Category do
     end
   end
 
-  describe "self#from_today" do 
-    it "only returns categories created in the last 24 hours" do 
+  describe "self#from_today" do
+    it "only returns categories created in the last 24 hours" do
       @category999 = Category.create!(name: "FROM THE PAAAAST")
       @category999.update(created_at: Time.zone.at(1170361845))
 

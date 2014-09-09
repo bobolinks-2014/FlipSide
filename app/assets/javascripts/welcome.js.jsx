@@ -1,5 +1,26 @@
 /*** @jsx React.DOM */
+// SPIN //
+var opts = {
+  lines: 13, // The number of lines to draw
+  length: 20, // The length of each line
+  width: 10, // The line thickness
+  radius: 30, // The radius of the inner circle
+  corners: 1, // Corner roundness (0..1)
+  rotate: 0, // The rotation offset
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#000', // #rgb or #rrggbb or array of colors
+  speed: 1, // Rounds per second
+  trail: 60, // Afterglow percentage
+  shadow: false, // Whether to render a shadow
+  hwaccel: false, // Whether to use hardware acceleration
+  className: 'spinner', // The CSS class to assign to the spinner
+  zIndex: 2e9, // The z-index (defaults to 2000000000)
+  top: '50%', // Top position relative to parent
+  left: '50%' // Left position relative to parent
+};
 
+var target = document.getElementById('container');
+var spinner = new Spinner(opts).spin(target);
 
 // TAG MODEL //
 var TagCollection = React.createClass({
@@ -22,21 +43,21 @@ var TagCollection = React.createClass({
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > 0.2 ){
+		else if (tag.sentiment_score > 0.3 ){
 			var style = {
 				backgroundColor: "#2d882d",
 				color: "white",
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > -0.2 ){
+		else if (tag.sentiment_score > -0.3 ){
 			var style = {
 				backgroundColor: "gray",
 				color: "white",
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > -0.8 ){
+		else if (tag.sentiment_score > -0.7 ){
 			var style = {
 				backgroundColor: "#aa3535",
 				color: "white",
@@ -52,7 +73,7 @@ var TagCollection = React.createClass({
 		};
 
 		return(
-			<div style = {style} className= " radius secondary label">#{tag.tag.name}</div>
+			<div style = {style} className= " radius secondary label">#{tag.tag.name} {tag.sentiment_score}</div>
 		)
 	},
 	render: function(){
@@ -75,10 +96,12 @@ var Pair = React.createClass({
 		request.done(function(data){
 			$.each(data, function(index){
 				var articles = [];
-				articles.push(data[index].article1);
-				articles.push(data[index].article2);
-				pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
-				pair_arr.push(pairRendered);
+				if (data[index]!== null){
+					articles.push(data[index].article1);
+					articles.push(data[index].article2);
+					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
+					pair_arr.push(pairRendered);
+				}
 			}.bind(this));
 			this.setState({
 				pairs: pair_arr,
@@ -238,13 +261,6 @@ function renderPair(){
 	);
 }
 
-// function renderHome(){
-// 	React.renderComponent(
-// 	<Home/>,
-// 	document.getElementById('container')
-// 	);
-// }
-
 function removeIFrame(){
 	if ($('iframe').length !== 0){
 		$('iframe').remove();
@@ -256,14 +272,16 @@ $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
 	removeIFrame();
-	console.log('stuff')
-	$('#myModal').append('<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>');
+	var request = $.ajax({url: url, type:"GET"});
+	request.done(function(response) {
+		debugger;
+	});
+
+	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='600px' id='frame'></iframe>");
+	//$("#myModal iframe").on('autocompleteerror autocomplete waiting volumechange toggle timeupdate suspend submit stalled show select seeking seeked scroll resize reset ratechange progress playing play pause mousewheel mouseup mouseover mouseout mousemove mouseleave mouseenter mousedown loadstart loadedmetadata loadeddata load keyup keypress keydown invalid input focus error ended emptied durationchange drop dragstart dragover dragleave dragenter dragend drag dblclick cuechange contextmenu close click change canplaythrough canplay cancel blur abort wheel webkitfullscreenerror webkitfullscreenchange selectstart search paste cut copy beforepaste beforecut beforecopy', function(event) {console.log(event);})
+
 });
 
-// $('div').on("click",'.close', function(e){
-// 	e.preventDefault();
-// 	removeIFrame();
-// });
 
 $("#goHome").on("click", function(e){
 	e.preventDefault();
@@ -281,30 +299,6 @@ $('div').on("mouseover","#enter", function(){
   $("#enter").fadeIn( 1000 );
 });
 
-//////////////////////////////////////////////////////////////////////////////
-
-// var Site = React.createClass({
-
-// 	render: function(url){
-// 		return (
-// 			<iframe src={url} class= "large-12 columns" height="600px"></iframe>
-// 			)
-// 	}
-// })
-
-// $('div').on('click', function(e){
-// 	e.preventDefault();
-// 	var url = this.firstChild.className;
-// 	removeIFrame();
-
-// 	var iframe = '<iframe src='+url+' class= "large-12 columns" height="600px"></iframe>'
-
-// // console.log('stuff is happnin')
-
-// 	$(renderSite(url)).foundation('reveal', 'close');
-
-// })
-///////////////////////////////////////////////////////////////////////////////
 $("#signin_form").on('submit', function(e) {
 	e.preventDefault();
 
@@ -320,14 +314,14 @@ $("#signin_form").on('submit', function(e) {
 	request.done(function(response) {
 		if(response.success == true) {
 			$('#signin_button').foundation('reveal', 'close');
-			debugger;
 			$('.not_logged_in').hide();
 			$('.logged_in').show();
+			location.reload();
 			renderPair();
 		} else {
 		console.log('failed');
 			$("div#error ul").append('<li>'+response.error+'</li>');
-      renderHome();
+      renderPair();
     }
 	})
 });
@@ -340,7 +334,6 @@ $("#signup_form").on('submit', function(e) {
 	var email = $("#signup_email").val();
 	var password = $("#signup_password").val();
 	var password_confirmation = $("#signup_password_confirmation").val();
-	console.log(email);
 	var request = $.ajax({
 		type: "POST",
 		url: '/users',
@@ -352,8 +345,9 @@ $("#signup_form").on('submit', function(e) {
 		if(response.success == true) {
 			console.log('success');
 			$('#signup_button').foundation('reveal', 'close');
-			// $('.not_logged_in').hide();
-			// $('.logged_in').show();
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
+			location.reload();
 			renderPair();
 		} else {
 			$.each(response.error, function(i) {
@@ -525,8 +519,8 @@ $("#user_profile_link").on('click', function(e) {
   request.done(function(response) {
     if(response.success == true) {
       $('#signin_button').foundation('reveal', 'close');
-      // $('.not_logged_in').hide();
-      // $('.logged_in').show();
+      $('.not_logged_in').hide();
+      $('.logged_in').show();
       renderUserProfile(response.user);
     } else {
       renderPair();
