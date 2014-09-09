@@ -52,6 +52,7 @@ class MyNoko
 
 
   def self.make_articles(article)
+    return if article[:source] == "Wall Street Journal"
     new_article = Article.create(title: article[:title],
                    url: article[:url],
                    source: article[:source],

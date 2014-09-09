@@ -10,26 +10,14 @@ class WelcomeController < ApplicationController
   # all the pairs
   def pairs
     # get pairs for a particular user
+
     if signed_in?
-      p "*"*800
-      p "custom pairings"
-      categories = Category.from_today
-      @pairs = []
-
-      categories.each do |category|
-        @pairs << current_user.custom_match(category)
-      end
-
-
-      @pairs# = Pair.where(user: current_user).where("created_at >= ?", Time.zone.now.ago(86400))
-
-      # find stuff created in the last 24 hours (86400 seconds)
+      p "signed in"
+      @pairs = Pair.for_user(current_user)
     else
-      p "$"*800
-      p "default pairings"
+      p "not signed in"
       @pairs = Pair.defaults
     end
-
     if request.xhr?
       render :json => @pairs.to_json(:include=>{
         :article1=>{:include => {

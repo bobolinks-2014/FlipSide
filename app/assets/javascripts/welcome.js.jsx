@@ -36,7 +36,7 @@ var TagCollection = React.createClass({
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > -0.8 ){
+		else if (tag.sentiment_score > -0.7 ){
 			var style = {
 				backgroundColor: "#aa3535",
 				color: "white",
@@ -75,10 +75,12 @@ var Pair = React.createClass({
 		request.done(function(data){
 			$.each(data, function(index){
 				var articles = [];
-				articles.push(data[index].article1);
-				articles.push(data[index].article2);
-				pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
-				pair_arr.push(pairRendered);
+				if (data[index]!== null){
+					articles.push(data[index].article1);
+					articles.push(data[index].article2);
+					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
+					pair_arr.push(pairRendered);
+				}
 			}.bind(this));
 			this.setState({
 				pairs: pair_arr,
@@ -109,7 +111,6 @@ var Pair = React.createClass({
 	renderArticles: function(articles, difference_score, tags){
 		return(
 			<div className="pair row">
-				<p className="text-center"> These articles discuss some category </p>
 				<div className="paired_articles">
 					<Article options={articles[0]} tags = {tags[0]} />
 					<Article options={articles[1]} tags ={tags[1]} />
@@ -128,19 +129,27 @@ var Pair = React.createClass({
     var styleA = {backgroundColor: "#570000", color:"white"}
 		return (
 			<div className='newsFeed large-12 columns'>
-				<p>Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location</p>
-				<ul inline-list>
-					<li style = {styleA}className= "radius secondary label">very negative</li>
-					<li style = {styleB}className= "radius secondary label">negative</li>
-					<li style = {styleC}className= "radius secondary label">neutral</li>
-					<li style = {styleD}className= "radius secondary label">positive</li>
-					<li style = {styleE}className= "radius secondary label">very positive</li>
-				</ul>
+				<div className = "panel large-2 columns">
+					<h4>About</h4>
+					<p> The media likes to feed you only what you want to hear. At FlipSide, we strive to do the opposite.</p>
+					<h4>Article Sentiment Analysis</h4>
+					<p>Each article is analyzed for sentiment on the Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
+					<ul className="no-bullet">
+						<li style = {styleA} className= "radius secondary label">very negative</li><br/>
+						<li style = {styleB} className= "radius secondary label">negative</li><br/>
+						<li style = {styleC} className= "radius secondary label">neutral</li><br/>
+						<li style = {styleD} className= "radius secondary label">positive</li><br/>
+						<li style = {styleE} className= "radius secondary label">very positive</li><br/>
+					</ul>
+				</div>
+				<h2 className="text-center large-8 columns">FlipSide News Feed</h2>
 				{this.state.pairs}
 			</div>
 		);
 	}
 })
+
+//				<p className="text-center"> These articles discuss some category </p>
 
 
 // ARTICLE MODEL //
@@ -149,8 +158,8 @@ var Article = React.createClass({
 	getInitialState: function(){
 		return {
 			showArticle: false,
-			style: {boxShadow: "0px 1px 1px #888888"},
-			titleStyle: {}
+			style: {},
+			titleStyle: {textDecoration: "underline"}
 		};
 	},
 	onMouseOver: function(){
@@ -159,23 +168,25 @@ var Article = React.createClass({
 				boxShadow: "0px 1px 10px #888888",
 				cursor: "pointer"
 			},
-			titleStyle: {textDecoration: "underline"}
+			titleStyle: {color: "gray", textDecoration: "underline"}
 		});
 
 	},
+	onMouseDown: function(){
+		this.setState({
+			titleStyle: {color: "gray", textDecoration: "underline"}
+		});
+	},
 	onMouseLeave: function(){
 		this.setState({
-			style: {boxShadow: "0px 1px 1px #888888"},
-			titleStyle: {textDecoration: "none"}
+			style: {boxShadow: 'none'},
+			titleStyle: {color: "black", textDecoration: "underline"}
 		});
 	},
 	render: function(){
 		return (
 			<div className = 'large-6 columns' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
-				<div>
-					<TagCollection tags={this.props.tags}/>
-					<Rating article_id= {this.props.options.id} />
-				</div>
+				<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} data-reveal-id="myModal">
 					<div className = {this.props.options.url}>
 						<h4 style = {this.state.titleStyle}>{this.props.options.title}</h4>
@@ -183,6 +194,7 @@ var Article = React.createClass({
 						<p>{this.props.options.slug}</p>
 					</div>
 				</div>
+				<Rating article_id= {this.props.options.id} />
 			</div>
 		);
 	}
@@ -194,7 +206,8 @@ var Rating = React.createClass({
 	getInitialState: function(){
 		return {
 			content:(
-				<div className="right">
+				<div className="left">
+					<p> The essence of this article was </p>
 					<div className="agree radius secondary label">postive</div>
 					<div className="disagree radius secondary label">negative</div>
 				</div>
@@ -206,7 +219,7 @@ var Rating = React.createClass({
 		this.setState({response: $(e.target).text()});
 		$(e.target).fadeOut('1000');
 		$(e.target).siblings().fadeOut('1000');
-		this.setState({content: <p className = "right">You rated this article {this.state.response}</p>})
+		this.setState({content: <p className = "left">You rated this article {this.state.response}</p>})
 		var request = $.post('rate', {rating: e.target.className , article_id: this.props.article_id})
 	},
 	render: function(){
@@ -309,14 +322,14 @@ $("#signin_form").on('submit', function(e) {
 	request.done(function(response) {
 		if(response.success == true) {
 			$('#signin_button').foundation('reveal', 'close');
-			// $('.not_logged_in').hide();
-			// $('.logged_in').show();
-			console.log("SIGN IN");
+			// debugger;
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
 			renderPair();
 		} else {
 		console.log('failed');
 			$("div#error ul").append('<li>'+response.error+'</li>');
-      renderHome();
+      renderPair();
     }
 	})
 });
@@ -423,7 +436,7 @@ var UserProfile = React.createClass({
 		var y = d3.scale.linear()
 								    .domain([0, d3.max(idheights)])
 								    .range([height, 0]);
-		    
+
 		var colors = d3.scale.category10();
 
 		var xAxis = d3.svg.axis()
@@ -480,7 +493,7 @@ var UserProfile = React.createClass({
 												        "width": x.rangeBand(),
 												        "height": function(d) {return height - y(d.height);}
 												    })
-												    .style("fill", function(d,i,j) {return colors(i)});   
+												    .style("fill", function(d,i,j) {return colors(i)});
 	},
 
 	renderPackedCirclesGraph:function(packedCirclesData) {
