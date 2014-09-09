@@ -40,40 +40,45 @@ var TagCollection = React.createClass({
 			var style = {
 				backgroundColor: "#004400",
 				color: "white",
-				cursor: "default"
+				cursor: "default",
+				margin: "1px"
 			};
 		}
 		else if (tag.sentiment_score > 0.35 ){
 			var style = {
 				backgroundColor: "#2d882d",
 				color: "white",
-				cursor: "default"
+				cursor: "default",
+				margin: "1px"
 			};
 		}
 		else if (tag.sentiment_score > -0.35 ){
 			var style = {
 				backgroundColor: "gray",
 				color: "white",
-				cursor: "default"
+				cursor: "default",
+				margin: "1px"
 			};
 		}
 		else if (tag.sentiment_score > -0.65 ){
 			var style = {
 				backgroundColor: "#aa3535",
 				color: "white",
-				cursor: "default"
+				cursor: "default",
+				margin: "1px"
 			};
 		}
 		else{
 			var style = {
 				backgroundColor: "#570000",
 				color: "white",
-				cursor: "default"
+				cursor: "default",
+				margin: "1px"
 			};
 		};
 
 		return(
-			<div style = {style} className= " radius secondary label">#{tag.tag.name} {tag.sentiment_score}</div>
+			<div style = {style} className= "secondary label">{tag.tag.name}</div>
 		)
 	},
 	render: function(){
@@ -144,27 +149,27 @@ var Pair = React.createClass({
 	render:function(){
 
 		console.log("rendering pairs");
-		var styleE = {backgroundColor: "#004400", color:"white"}
-    var styleD = {backgroundColor: "#2d882d", color:"white"}
-    var styleC = {backgroundColor: "gray", color:"white"}
-    var styleB = {backgroundColor: "#aa3535", color:"white"}
-    var styleA = {backgroundColor: "#570000", color:"white"}
+		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px"}
+    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px"}
+    var styleC = {backgroundColor: "gray", color:"white", margin: "1px"}
+    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px"}
+    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px"}
 		return (
-			<div className='newsFeed large-12 columns'>
+			<div className='newsFeed large-12'>
 				<div className = "panel large-2 columns">
 					<h4>About</h4>
 					<p> The media likes to feed you only what you want to hear. At FlipSide, we strive to do the opposite.</p>
 					<h4>Article Sentiment Analysis</h4>
 					<p>Each article is analyzed for sentiment on the Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
 					<ul className="no-bullet">
-						<li style = {styleA} className= "radius secondary label"><div>very negative</div></li>
-						<li style = {styleB} className= "radius secondary label"><div>negative</div></li>
-						<li style = {styleC} className= "radius secondary label"><div>neutral</div></li>
-						<li style = {styleD} className= "radius secondary label"><div>positive</div></li>
-						<li style = {styleE} className= "radius secondary label"><div>very positive</div></li>
+						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
+						<li style = {styleB} className= "secondary label"><div>negative</div></li>
+						<li style = {styleC} className= "secondary label"><div>neutral</div></li>
+						<li style = {styleD} className= "secondary label"><div>positive</div></li>
+						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
 					</ul>
 				</div>
-				<h2 className="text-center large-8 columns">FlipSide News Feed</h2>
+				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
 				{this.state.pairs}
 			</div>
 		);
@@ -208,7 +213,7 @@ var Article = React.createClass({
 	render: function(){
 		return (
 			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
-				<TagCollection tags={this.props.tags}/>
+
 				<div className = 'article' id= {this.props.options.id} data-reveal-id="myModal">
 					<div className = {this.props.options.url}>
 						<h4 style = {this.state.titleStyle}>{this.props.options.title}</h4>
@@ -216,6 +221,7 @@ var Article = React.createClass({
 						<p>{this.props.options.slug}</p>
 					</div>
 				</div>
+				<TagCollection tags={this.props.tags}/>
 				<Rating article_id= {this.props.options.id} />
 			</div>
 		);
@@ -229,7 +235,8 @@ var Rating = React.createClass({
 		return {
 			content:(
 				<div className="left">
-					<p> The essence of this article was </p>
+					<br/>
+					<div> Evaluate the article bias </div>
 					<div className="agree radius secondary label">postive</div>
 					<div className="disagree radius secondary label">negative</div>
 				</div>
@@ -273,10 +280,6 @@ $('div').on("click",".article",function(e){
 	e.preventDefault();
 	var url = this.firstChild.className;
 	removeIFrame();
-	var request = $.ajax({url: url, type:"GET"});
-	request.done(function(response) {
-		debugger;
-	});
 
 	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='100%' id='frame'></iframe>");
 	//$("#myModal iframe").on('autocompleteerror autocomplete waiting volumechange toggle timeupdate suspend submit stalled show select seeking seeked scroll resize reset ratechange progress playing play pause mousewheel mouseup mouseover mouseout mousemove mouseleave mouseenter mousedown loadstart loadedmetadata loadeddata load keyup keypress keydown invalid input focus error ended emptied durationchange drop dragstart dragover dragleave dragenter dragend drag dblclick cuechange contextmenu close click change canplaythrough canplay cancel blur abort wheel webkitfullscreenerror webkitfullscreenchange selectstart search paste cut copy beforepaste beforecut beforecopy', function(event) {console.log(event);})
