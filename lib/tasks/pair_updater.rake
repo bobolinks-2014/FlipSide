@@ -19,7 +19,7 @@ namespace :pairs do
   end
 
   #scrapes google news; parses
-  taks :scrape => :environment do
+  task :scrape => :environment do
     Kimono.scrape
   end
 end

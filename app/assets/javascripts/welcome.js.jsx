@@ -75,10 +75,12 @@ var Pair = React.createClass({
 		request.done(function(data){
 			$.each(data, function(index){
 				var articles = [];
-				articles.push(data[index].article1);
-				articles.push(data[index].article2);
-				pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
-				pair_arr.push(pairRendered);
+				if (data[index]!== null){
+					articles.push(data[index].article1);
+					articles.push(data[index].article2);
+					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
+					pair_arr.push(pairRendered);
+				}
 			}.bind(this));
 			this.setState({
 				pairs: pair_arr,
