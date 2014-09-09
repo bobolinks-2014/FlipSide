@@ -46,9 +46,7 @@ class WelcomeController < ApplicationController
     # current_user = User.create(name: "fake", email: "hell0@jello.com", password: "123456", password_confirmation: "123456")
     @article = Article.find(params[:article_id])
     if signed_in?
-      test = params[:rating].gsub(/(\s.+)/, "")
-      rating = test == "agree" ? true : false
-      binding.pry
+      rating = params[:rating].gsub(/(\s.+)/, "") == "agree" ? true : false
       current_user.vote(@article, rating)
     end
     if request.xhr?

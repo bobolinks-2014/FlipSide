@@ -68,8 +68,6 @@ class UsersController < ApplicationController
         new_array << hash
       end
 
-      binding.pry
-
       render :json => {success: true, user: {
         email: user.email, 
         name: user.name, 

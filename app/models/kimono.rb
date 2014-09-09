@@ -57,7 +57,6 @@ class Kimono
                      category_id: category.id)
 
       keywords = Alchemy.alchemize(new_article.url)
-      # binding.pry
       new_article.make_tags(keywords, 6)
     end
   end
