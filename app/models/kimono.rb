@@ -63,7 +63,7 @@ class Kimono
   end
 
   def self.process_categories(number_of_keywords)
-    Category.all[-10..-1].each do |category|
+    Category.from_today.each do |category|
       category.make_pair
     end
 
