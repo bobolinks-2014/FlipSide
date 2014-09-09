@@ -13,10 +13,7 @@ class Pair < ActiveRecord::Base
     categories = Category.from_today
     pairs = []
     categories.each do |category|
-      p "*"*100
-      p category
-      p pair = Pair.find_by(user: user, category: category) || Pair.defaults.find_by(category: category)
-
+      pair = Pair.find_by(user: user, category: category) || Pair.defaults.find_by(category: category)
       pairs << pair unless pair.nil?
     end
     return pairs
