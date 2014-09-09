@@ -93,6 +93,9 @@ var Pair = React.createClass({
 	getArticles: function(){
 		request = $.get('pairs');
 		pair_arr = [];
+		request.progress(function(){
+			console.log( "waiting ...")
+		});
 		request.done(function(data){
 			$.each(data, function(index){
 				var articles = [];
@@ -154,7 +157,7 @@ var Pair = React.createClass({
 					<h4>About</h4>
 					<p> The media likes to feed you only what you want to hear. At FlipSide, we strive to do the opposite.</p>
 					<h4>Article Sentiment Analysis</h4>
-					<p>Each article is analyzed for sentiment on the Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
+					<p>Each article is analyzed for its sentiment towards its keywords. Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
 					<ul className="no-bullet">
 						<li style = {styleA} className= "radius secondary label"><div>very negative</div></li>
 						<li style = {styleB} className= "radius secondary label"><div>negative</div></li>
