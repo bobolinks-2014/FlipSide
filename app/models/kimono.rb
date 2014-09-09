@@ -19,7 +19,7 @@ class Kimono
   end
 
   def self.pair_user_articles
-    categories = Category.from_today
+    categories = Category.from_last_six_hours
     User.all.each do |user|
       categories.each do |category|
         user.custom_match(category)
@@ -73,7 +73,7 @@ class Kimono
   end
 
   def self.process_categories(number_of_keywords)
-    Category.from_today.each do |category|
+    Category.from_last_six_hours.each do |category|
       category.make_pair
     end
 

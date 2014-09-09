@@ -9,6 +9,10 @@ class Category < ActiveRecord::Base
     self.all.where("created_at >= ?", Time.zone.now.ago(86400))
   end
 
+  def self.from_last_six_hours
+    self.all.where("created_at >= ?", Time.zone.now.ago(86400/4))
+  end
+
   #Runner method; returns a pair object given the number of keywords
   def make_pair
 
