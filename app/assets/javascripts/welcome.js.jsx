@@ -133,11 +133,11 @@ var Pair = React.createClass({
 					<h4>Article Sentiment Analysis</h4>
 					<p>Each article is analyzed for sentiment on the Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
 					<ul className="no-bullet">
-						<li style = {styleA} className= "radius secondary label">very negative</li><br/>
-						<li style = {styleB} className= "radius secondary label">negative</li><br/>
-						<li style = {styleC} className= "radius secondary label">neutral</li><br/>
-						<li style = {styleD} className= "radius secondary label">positive</li><br/>
-						<li style = {styleE} className= "radius secondary label">very positive</li><br/>
+						<li style = {styleA} className= "radius secondary label"><div>very negative</div></li>
+						<li style = {styleB} className= "radius secondary label"><div>negative</div></li>
+						<li style = {styleC} className= "radius secondary label"><div>neutral</div></li>
+						<li style = {styleD} className= "radius secondary label"><div>positive</div></li>
+						<li style = {styleE} className= "radius secondary label"><div>very positive</div></li>
 					</ul>
 				</div>
 				<h2 className="text-center large-8 columns">FlipSide News Feed</h2>
@@ -183,7 +183,7 @@ var Article = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className = 'large-6 columns' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
+			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 				<TagCollection tags={this.props.tags}/>
 				<div className = 'article' id= {this.props.options.id} data-reveal-id="myModal">
 					<div className = {this.props.options.url}>
@@ -433,7 +433,7 @@ var UserProfile = React.createClass({
 		var y = d3.scale.linear()
 								    .domain([0, d3.max(idheights)])
 								    .range([height, 0]);
-		    
+
 		var colors = d3.scale.category10();
 
 		var xAxis = d3.svg.axis()
@@ -490,7 +490,7 @@ var UserProfile = React.createClass({
 												        "width": x.rangeBand(),
 												        "height": function(d) {return height - y(d.height);}
 												    })
-												    .style("fill", function(d,i,j) {return colors(i)});   
+												    .style("fill", function(d,i,j) {return colors(i)});
 	},
 
   render: function() {
