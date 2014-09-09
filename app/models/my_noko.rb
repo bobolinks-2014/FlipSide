@@ -6,7 +6,13 @@ class MyNoko
   #untested
 
   def self.parse(url)
-    doc = Nokogiri::HTML(open(url))
+
+    response = Net::Http.get(url)
+    if response.codraie == 200
+      doc = Nokogiri::HTML(response.body)
+    else
+      puts "Failed to download #{url}"
+    end
     # title = doc.css('.title a')[0].text
     # username = doc.css('.subtext > a:nth-child(2)')[0].text
     # points = doc.css('.subtext > span:first-child')[0].text.to_i
