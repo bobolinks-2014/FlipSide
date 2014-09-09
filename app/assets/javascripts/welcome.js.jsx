@@ -331,19 +331,111 @@ var UserProfile = React.createClass({
 			if(response.success == true) {
 				var dataset = response.user.dataset;
 				this.setState({stackedBarData:dataset});
-				this.renderStackedBarData(dataset);
+				this.renderStackedBarGraph(dataset);
 			}
 		}.bind(this))
 		// AJAX request, get user and data
 		// Call render methods for profileData, stackedBarData, and packedCirclesData
 	},
 
-	renderStackedBarData: function(stackedBarData) {
-		console.log(stackedBarData),
-		React.renderComponent(
-			<StackedBarGraph data={stackedBarData}/>,
-			document.getElementById('stackedBar')			
-		)
+	renderStackedBarGraph: function(stackedBarData) {
+		console.log(stackedBarData)
+		//get the layernames present in the first data element
+		var data = stackedBarData
+		var layernames = d3.keys(data[0].layers);
+		//get idheights, to use for determining scale extent, also get barnames for scale definition
+		var idheights = [];
+		var barnames = [];
+		for (var i=0; i<data.length; i++) {
+		    tempvalues = d3.values(data[i].layers);
+		    tempsum = 0;
+		    for (var j=0; j<tempvalues.length; j++) {tempsum = tempsum + tempvalues[j];}
+		    idheights.push(tempsum);
+		    barnames.push(data[i].name);
+		};
+
+		var margin = {top: 10, right: 10, bottom: 30, left: 30},
+		    width = 400 - margin.left - margin.right,
+		    height = 300 - margin.top - margin.bottom;
+
+		var x = d3.scale.ordinal()
+		    .domain(barnames)
+		    .rangeRoundBands([0, width], .25);
+
+		var y = d3.scale.linear()
+		    .domain([0, d3.max(idheights)])
+		    .range([height, 0]);
+		    
+		var colors = d3.scale.category10();
+
+		var xAxis = d3.svg.axis()
+		    .scale(x)
+		    .orient("bottom")
+
+		var yAxis = d3.svg.axis()
+		    .scale(y)
+		    .orient("left");
+
+		var svg = d3.select("#stackedBar").append("svg")
+		    .attr("width", width + margin.left + margin.right)
+		    .attr("height", height + margin.top + margin.bottom)
+		  .append("g")
+		    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+		svg.append("g")
+		    .attr("class", "x axis")
+		    .attr("transform", "translate(0," + height + ")")
+		    .call(xAxis)
+		    .append("text")
+		    .attr("x", width / 2)
+		    .attr("y", margin.bottom - 10)
+		    .attr("dy", ".71em")
+		    .style("text-anchor", "end")
+		    .text("Topics");
+
+		svg.append("g")
+		    .attr("class", "y axis")
+		    .call(yAxis)
+		    .append("text")
+		    .attr("transform", "rotate(-90)")
+		    .attr("x", -height/2)
+		    .attr("y", -margin.bottom)
+		    .attr("dy", ".71em")
+		    .style("text-anchor", "end")
+		    .text("Total Number of Votes");
+
+		//add a g element for each bar
+		var bargroups = svg.append("g")
+		    .attr("class", "bars")
+		    .selectAll("g")
+		    .data(data, function(d) {return d.id;})
+		  .enter().append("g")
+		    .attr("id", function(d) {return d.name;});
+		//sub-selection for rect elements
+		var barrects = bargroups.selectAll("rect")
+		    .data(function(d) {
+		        //set data as an array of objects [{height: _, y0: _},..]
+		        //must compute sum of other elements to get y0 (computed height)
+		        var temparray = [];
+		        var tempsum = 0;
+		        for (var i=0; i<layernames.length; i++) {
+		            console.log(layernames[i]);
+		            temparray.push(
+		                {height: d.layers[layernames[i]],
+		                 y0: tempsum + d.layers[layernames[i]]}
+		            );
+		            tempsum = tempsum + d.layers[layernames[i]];
+		        }
+		        return temparray;
+		    })
+		  .enter().append("rect")
+		    .attr({
+		        "x": function(d,i,j) {return x(barnames[j]);},
+		        "y": function(d) {return y(d.y0);},
+		        "width": x.rangeBand(),
+		        "height": function(d) {return height - y(d.height);}
+		    })
+		    .style("fill", function(d,i,j) {return colors(i)});   
 	},
 
   render: function() {
@@ -359,95 +451,6 @@ var UserProfile = React.createClass({
     )
   }
 });
-
-var StackedBarGraph = React.createClass({
-	render: function() {
-		//add as many elements to data as necessary, all layers should be present in first data element, add or remove layer elements as necessary
-	var data = this.props.data
-	//get the layernames present in the first data element
-	var layernames = d3.keys(data[0].layers);
-	//get idheights, to use for determining scale extent, also get barnames for scale definition
-	var idheights = [];
-	var barnames = [];
-	for (var i=0; i<data.length; i++) {
-	    tempvalues = d3.values(data[i].layers);
-	    tempsum = 0;
-	    for (var j=0; j<tempvalues.length; j++) {tempsum = tempsum + tempvalues[j];}
-	    idheights.push(tempsum);
-	    barnames.push(data[i].name);
-	};
-
-	var margin = {top: 10, right: 10, bottom: 30, left: 30},
-	    width = 400 - margin.left - margin.right,
-	    height = 300 - margin.top - margin.bottom;
-
-	var x = d3.scale.ordinal()
-	    .domain(barnames)
-	    .rangeRoundBands([0, width], .25);
-
-	var y = d3.scale.linear()
-	    .domain([0, d3.max(idheights)])
-	    .range([height, 0]);
-	    
-	var colors = d3.scale.category10();
-
-	var xAxis = d3.svg.axis()
-	    .scale(x)
-	    .orient("bottom");
-
-	var yAxis = d3.svg.axis()
-	    .scale(y)
-	    .orient("left");
-
-	var svg = d3.select("#chart").append("svg")
-	    .attr("width", width + margin.left + margin.right)
-	    .attr("height", height + margin.top + margin.bottom)
-	  .append("g")
-	    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-	svg.append("g")
-	    .attr("class", "x axis")
-	    .attr("transform", "translate(0," + height + ")")
-	    .call(xAxis);
-
-	svg.append("g")
-	    .attr("class", "y axis")
-	    .call(yAxis);
-	//add a g element for each bar
-	var bargroups = svg.append("g")
-	    .attr("class", "bars")
-	    .selectAll("g")
-	    .data(data, function(d) {return d.id;})
-	  .enter().append("g")
-	    .attr("id", function(d) {return d.name;});
-	//sub-selection for rect elements
-	var barrects = bargroups.selectAll("rect")
-	    .data(function(d) {
-	        //set data as an array of objects [{height: _, y0: _},..]
-	        //must compute sum of other elements to get y0 (computed height)
-	        var temparray = [];
-	        var tempsum = 0;
-	        for (var i=0; i<layernames.length; i++) {
-	            console.log(layernames[i]);
-	            temparray.push(
-	                {height: d.layers[layernames[i]],
-	                 y0: tempsum + d.layers[layernames[i]]}
-	            );
-	            tempsum = tempsum + d.layers[layernames[i]];
-	        }
-	        return temparray;
-	    })
-	  .enter().append("rect")
-	    .attr({
-	        "x": function(d,i,j) {return x(barnames[j]);},
-	        "y": function(d) {return y(d.y0);},
-	        "width": x.rangeBand(),
-	        "height": function(d) {return height - y(d.height);}
-	    })
-	    .style("fill", function(d,i,j) {return colors(i)});   
-
-		}
-	});
 
 function renderUserProfile(user){
   React.renderComponent(
