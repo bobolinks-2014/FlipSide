@@ -35,55 +35,83 @@ var TagCollection = React.createClass({
 		}.bind(this));
 		return tag_arr;
 	},
+
 	renderTag: function(tag){
-		if (tag.sentiment_score > 0.65 ){
+		return <Tag tag={tag}/>
+	},
+	render: function(){
+		return(
+			<div className="tagCollection">{this.state.tagCollection}</div>
+		)
+	}
+});
+
+var Tag = React.createClass({
+	onClick: function(){
+		var request = $.get('/filter_tags', {tag_id: this.props.id});
+		request.done(function(data){
+			<Search articles = {data}/>
+		});
+	},
+	render: function(){
+		var score = this.props.tag.sentiment_score;
+		if (score > 0.65 ){
 			var style = {
 				backgroundColor: "#004400",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
+				color: "white"
 			};
 		}
-		else if (tag.sentiment_score > 0.35 ){
+		else if (score > 0.35 ){
 			var style = {
 				backgroundColor: "#2d882d",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
+				color: "white"
 			};
 		}
-		else if (tag.sentiment_score > -0.35 ){
+		else if (score > -0.35 ){
 			var style = {
 				backgroundColor: "gray",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
+				color: "white"
 			};
 		}
-		else if (tag.sentiment_score > -0.65 ){
+		else if (score > -0.65 ){
 			var style = {
 				backgroundColor: "#aa3535",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
+				color: "white"
 			};
 		}
 		else{
 			var style = {
 				backgroundColor: "#570000",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
+				color: "white"
 			};
 		};
 
 		return(
-			<div style = {style} className= "secondary label">{tag.tag.name}</div>
+			<div style = {style} className= "tag secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
 		)
+	}
+});
+
+
+// FILTERED MODEL //
+var Search = React.createClass({
+	getInitialState: function(){
+		return {column: ""}
+	},
+	renderArticles: function(articles){
+		var column = [];
+		$.each(articles, function(i){
+			debugger;
+			tags = articles[i].tags;
+			column.push(<Article options={articles[i]} tags= {tags}/>);
+		})
+		this.setState({column: column});
 	},
 	render: function(){
+
+		this.renderArticles(this.props.articles);
 		return(
-			<div className="tagCollection">{this.state.tagCollection}</div>
+			<div>this.state.column</div>
 		)
 	}
 });
@@ -211,6 +239,7 @@ var Article = React.createClass({
 		});
 	},
 	render: function(){
+		debugger;
 		return (
 			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 

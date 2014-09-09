@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'profile' => 'users#profile'
 
   get 'pairs' => 'welcome#pairs'
+  get 'filter_tags' => 'welcome#filter_tags'
   post 'rate' => 'welcome#rate'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

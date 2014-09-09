@@ -7,6 +7,13 @@ class WelcomeController < ApplicationController
     @current_user = current_user if signed_in?
   end
 
+  def filter_tags
+    @articles  = Article.where(tag: params[:name])
+
+    if request.xhr?
+      render :json => @articles.to_json
+    end
+  end
   # all the pairs
   def pairs
     # get pairs for a particular user
