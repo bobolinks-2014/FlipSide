@@ -1,3 +1,4 @@
+require 'pry'
 class WelcomeController < ApplicationController
   include SessionsHelper
 # when the page refreshes, the user id in session goes away
@@ -9,12 +10,14 @@ class WelcomeController < ApplicationController
   # all the pairs
   def pairs
     # get pairs for a particular user
+
     if signed_in?
+      p "signed in"
       @pairs = Pair.for_user(current_user)
     else
+      p "not signed in"
       @pairs = Pair.defaults
     end
-
     if request.xhr?
       render :json => @pairs.to_json(:include=>{
         :article1=>{:include => {
