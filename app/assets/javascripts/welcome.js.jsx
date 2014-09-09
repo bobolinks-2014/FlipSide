@@ -36,7 +36,7 @@ var TagCollection = React.createClass({
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > -0.8 ){
+		else if (tag.sentiment_score > -0.7 ){
 			var style = {
 				backgroundColor: "#aa3535",
 				color: "white",
@@ -320,14 +320,14 @@ $("#signin_form").on('submit', function(e) {
 	request.done(function(response) {
 		if(response.success == true) {
 			$('#signin_button').foundation('reveal', 'close');
-			debugger;
+			// debugger;
 			$('.not_logged_in').hide();
 			$('.logged_in').show();
 			renderPair();
 		} else {
 		console.log('failed');
 			$("div#error ul").append('<li>'+response.error+'</li>');
-      renderHome();
+      renderPair();
     }
 	})
 });
@@ -433,7 +433,7 @@ var UserProfile = React.createClass({
 		var y = d3.scale.linear()
 								    .domain([0, d3.max(idheights)])
 								    .range([height, 0]);
-		    
+
 		var colors = d3.scale.category10();
 
 		var xAxis = d3.svg.axis()
@@ -490,7 +490,7 @@ var UserProfile = React.createClass({
 												        "width": x.rangeBand(),
 												        "height": function(d) {return height - y(d.height);}
 												    })
-												    .style("fill", function(d,i,j) {return colors(i)});   
+												    .style("fill", function(d,i,j) {return colors(i)});
 	},
 
   render: function() {
