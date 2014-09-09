@@ -39,7 +39,6 @@ class Category < ActiveRecord::Base
         if (difference > article_pair.last) && (compare_tags(article1, article2, 2)) && (article1.source != article2.source)
           article_pair = [article1, article2, difference]
         end
-
       end
       articles_left.shift
     end

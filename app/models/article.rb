@@ -6,6 +6,7 @@ class Article < ActiveRecord::Base
 
 
   def make_tags(keywords, number)
+    return if keywords.nil?
     keywords[0...number].each do |keyword|
       kw_name = keyword["text"]
       tag = Tag.find_or_create_by(name: kw_name)

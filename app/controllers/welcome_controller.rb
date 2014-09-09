@@ -1,3 +1,4 @@
+require 'pry'
 class WelcomeController < ApplicationController
   include SessionsHelper
 # when the page refreshes, the user id in session goes away
@@ -10,18 +11,20 @@ class WelcomeController < ApplicationController
   def pairs
     # get pairs for a particular user
     if signed_in?
-      p "*"*800
-      p "custom pairings"
+
       categories = Category.from_today
       @pairs = []
-
+      i=0
       categories.each do |category|
-        @pairs << current_user.custom_match(category)
+        pair = current_user.custom_match(category) || Pair.defaults.find_by(category: category)
+        @pairs << pair
+        # binding.pry if i > 10
+        i+=1
       end
-
-
+      p "*"*800
+      p "custom pairings"
+      p @pairs
       @pairs# = Pair.where(user: current_user).where("created_at >= ?", Time.zone.now.ago(86400))
-
       # find stuff created in the last 24 hours (86400 seconds)
     else
       p "$"*800
