@@ -92,6 +92,7 @@ var Pair = React.createClass({
 	},
 	getArticles: function(){
 		request = $.get('pairs');
+
 		pair_arr = [];
 		request.done(function(data){
 			$.each(data, function(index){
@@ -277,7 +278,7 @@ $('div').on("click",".article",function(e){
 		debugger;
 	});
 
-	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='600px' id='frame'></iframe>");
+	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='100%' id='frame'></iframe>");
 	//$("#myModal iframe").on('autocompleteerror autocomplete waiting volumechange toggle timeupdate suspend submit stalled show select seeking seeked scroll resize reset ratechange progress playing play pause mousewheel mouseup mouseover mouseout mousemove mouseleave mouseenter mousedown loadstart loadedmetadata loadeddata load keyup keypress keydown invalid input focus error ended emptied durationchange drop dragstart dragover dragleave dragenter dragend drag dblclick cuechange contextmenu close click change canplaythrough canplay cancel blur abort wheel webkitfullscreenerror webkitfullscreenchange selectstart search paste cut copy beforepaste beforecut beforecopy', function(event) {console.log(event);})
 
 });
