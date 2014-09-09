@@ -36,28 +36,28 @@ var TagCollection = React.createClass({
 		return tag_arr;
 	},
 	renderTag: function(tag){
-		if (tag.sentiment_score > 0.7 ){
+		if (tag.sentiment_score > 0.65 ){
 			var style = {
 				backgroundColor: "#004400",
 				color: "white",
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > 0.3 ){
+		else if (tag.sentiment_score > 0.35 ){
 			var style = {
 				backgroundColor: "#2d882d",
 				color: "white",
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > -0.3 ){
+		else if (tag.sentiment_score > -0.35 ){
 			var style = {
 				backgroundColor: "gray",
 				color: "white",
 				cursor: "default"
 			};
 		}
-		else if (tag.sentiment_score > -0.7 ){
+		else if (tag.sentiment_score > -0.65 ){
 			var style = {
 				backgroundColor: "#aa3535",
 				color: "white",
