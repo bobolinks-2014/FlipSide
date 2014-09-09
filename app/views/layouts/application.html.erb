@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href='http://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-    <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "FlipSide" %></title>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
 
@@ -85,7 +85,7 @@
     <%= yield %>
 
 
-    <footer class = "row"> This is a DBC project. <a href="http://www.alchemyapi.com/">Text Analysis by AlchemyAPI </a><img src="http://www.alchemyapi.com/sites/default/files/alchemyAPI.png"></footer>
+    <div class = "footer row"> This is a DBC project. <a href="http://www.alchemyapi.com/">Text Analysis by AlchemyAPI </a><img src="http://www.alchemyapi.com/sites/default/files/alchemyAPI.png"></div>
     <%= javascript_include_tag "application" %>
   </body>
 </html>

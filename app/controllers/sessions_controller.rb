@@ -11,7 +11,6 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       render :json => {success: true, user_id: user.id}
     else
-
       if request.xhr?
         render :json => {fail: true, error: "Invalid user name or password."}
       end
