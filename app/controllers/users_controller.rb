@@ -68,10 +68,12 @@ class UsersController < ApplicationController
         new_array << hash
       end
 
+      final_sentiment_array = new_array.sort { |x,y| x["layers"]["positive"]+x["layers"]["negative"] <=> y["layers"]["positive"]+y["layers"]["negative"] }.reverse.first(8)
+
       render :json => {success: true, user: {
         email: user.email, 
         name: user.name, 
-        dataset: new_array
+        dataset: final_sentiment_array
         } }
     end
   end
