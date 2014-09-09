@@ -321,9 +321,9 @@ $("#signin_form").on('submit', function(e) {
 	request.done(function(response) {
 		if(response.success == true) {
 			$('#signin_button').foundation('reveal', 'close');
-			// $('.not_logged_in').hide();
-			// $('.logged_in').show();
-			console.log("SIGN IN");
+			debugger;
+			$('.not_logged_in').hide();
+			$('.logged_in').show();
 			renderPair();
 		} else {
 		console.log('failed');
