@@ -1,19 +1,25 @@
-require 'benchmark'
 namespace :pairs do
   desc "Rake task to get new pairs from DB"
+
+  #does everything
   task :fetch => :environment do
-puts Benchmark.measure {
-    # puts "Hello, World."
-    Kimono.start
+    Kimono.scrape
+    Kimono.pair_default_articles
+    Kimono.pair_user_articles
+  end
 
-    categories = Category.from_today
-    User.all.each do |user|
-      categories.each do |category|
-        user.custom_match(category)
-      end
-    end
+  #makes default pairs for the day
+  task :default => :environment do
+    Kimono.pair_default_articles
+  end
 
-}
+  #makes all user pairs
+  task :users => :environment do
+    Kimono.pair_user_articles
+  end
 
+  #scrapes google news; parses
+  taks :scrape => :environment do
+    Kimono.scrape
   end
 end
