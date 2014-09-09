@@ -13,6 +13,9 @@ class Category < ActiveRecord::Base
     # find_relevant_keywords(number_of_keywords)
     return self.articles.first if self.articles.size == 1
     pair = find_pair
+    if pair[0] == 0
+      return; binding.pry
+    end
     Pair.create(article1_id: pair[0].id,
                 article2_id: pair[1].id,
                 category_id: self.id,
@@ -25,7 +28,7 @@ class Category < ActiveRecord::Base
 
     if article
       all_articles = [article]
-      articles_left = self.articles[0..1]
+      articles_left = self.articles.to_a
     else
       all_articles = self.articles
       articles_left = self.articles[1..-1]
@@ -36,7 +39,7 @@ class Category < ActiveRecord::Base
 
         difference = sum_differences(article1, article2)
 
-        if (difference > article_pair.last) && (compare_tags(article1, article2, 2)) && (article1.source != article2.source)
+        if (compare_tags(article1, article2, 2)) && (difference > article_pair.last) #&& (article1.source != article2.source)
           article_pair = [article1, article2, difference]
         end
 
