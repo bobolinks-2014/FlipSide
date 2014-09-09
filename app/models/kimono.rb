@@ -6,15 +6,25 @@ NUMBER_OF_KEYWORDS = 3
 
 class Kimono
   #untested
-  def self.start
+  def self.scrape
     urls_array = MyNoko.world_news_parse("https://news.google.com/news/section?pz=1&cf=all&ned=us&topic=n")
 
     urls_array.each do |url|
       MyNoko.parse(url)
     end
+  end
 
+  def self.pair_default_articles
     process_categories(NUMBER_OF_KEYWORDS)
+  end
 
+  def self.pair_user_articles
+    categories = Category.from_last_six_hours
+    User.all.each do |user|
+      categories.each do |category|
+        user.custom_match(category)
+      end
+    end
   end
   #untested
 
@@ -58,12 +68,12 @@ class Kimono
 
       keywords = Alchemy.alchemize(new_article.url)
       # binding.pry
-      new_article.make_tags(keywords, 6)
+      new_article.make_tags(keywords, 10)
     end
   end
 
   def self.process_categories(number_of_keywords)
-    Category.all[-10..-1].each do |category|
+    Category.from_last_six_hours.each do |category|
       category.make_pair
     end
 
