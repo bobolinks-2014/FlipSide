@@ -6,6 +6,8 @@ NUMBER_OF_KEYWORDS = 3
 
 class Kimono
   #untested
+  #first task of fetch and only task of scrape
+  #calls MyNoko.parse + wrld_news_parse
   def self.scrape
     urls_array = MyNoko.world_news_parse("https://news.google.com/news/section?pz=1&cf=all&ned=us&topic=w")
 
@@ -14,10 +16,15 @@ class Kimono
     end
   end
 
+  #called in the fetch and default rake tasks
+  #calls process_categories with a hard-coded number
   def self.pair_default_articles
     process_categories(NUMBER_OF_KEYWORDS)
   end
 
+
+  #called in :users rake task
+  #calls custom_match on a user
   def self.pair_user_articles
     categories = Category.from_last_six_hours
     User.all.each do |user|
@@ -72,6 +79,9 @@ class Kimono
     end
   end
 
+
+  #called by Kimono.pair_default_articles(number)
+  #calls Category#make_pair for each category made today.
   def self.process_categories(number_of_keywords)
     Category.from_last_six_hours.each do |category|
       category.make_pair

@@ -4,7 +4,8 @@ class Article < ActiveRecord::Base
   has_many :tags, :through => :article_tags
   belongs_to :category
 
-
+  #fed by Alchemy.alchemize - Called a ton if we rake Scrape.
+  #makes tags from keywords, and makes article tags with relevant scores
   def make_tags(keywords, number)
     keywords[0...number].each do |keyword|
       kw_name = keyword["text"]

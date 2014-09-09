@@ -5,6 +5,8 @@ require 'pp'
 class MyNoko
   #untested
 
+  #called by Kimono.scrape
+  #calls Make Articles and also makes categories for the day
   def self.parse(url)
     doc = Nokogiri::HTML(open(url))
     # title = doc.css('.title a')[0].text
@@ -27,17 +29,6 @@ class MyNoko
       url = art.css(".article")[0]["href"]
       source = art.css(".al-attribution-source").text()
 
-      # p "title: "
-      # p title
-      # p "slug: "
-      # p slug
-      # p "url: "
-      # p url
-      # p "source: "
-      # p source
-      # p "*"*200
-      # p category
-
       article = {
         :title => title,
         :url => url,
@@ -50,7 +41,9 @@ class MyNoko
     end
   end
 
-
+  #called in MyNoko.parse, and therefore called everytime we Scrape
+  #calls Alchemy.alchemize 
+  #calls article#make_tags
   def self.make_articles(article)
     return if article[:source] == "Wall Street Journal"
     new_article = Article.create(title: article[:title],
@@ -64,7 +57,7 @@ class MyNoko
     new_article.make_tags(keywords, 10)
   end
 
-
+  #called in Kimono.scrape - Just gets the relevant category urls
   def self.world_news_parse(url)
     google_news_base_url = "https://news.google.com"
     doc = Nokogiri::HTML(open(url))
