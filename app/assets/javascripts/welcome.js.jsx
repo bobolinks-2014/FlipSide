@@ -381,6 +381,7 @@ var UserProfile = React.createClass({
 				var dataset = response.user.dataset;
 				this.setState({stackedBarData:dataset});
 				this.renderStackedBarGraph(dataset);
+				this.renderPackedCirclesGraph();
 			}
 		}.bind(this))
 		// AJAX request, get user and data
@@ -482,6 +483,59 @@ var UserProfile = React.createClass({
 												    .style("fill", function(d,i,j) {return colors(i)});   
 	},
 
+	renderPackedCirclesGraph:function(packedCirclesData) {
+		console.log("Hooray!")
+
+		packedCirclesData = { "name": "categories",
+													// "value": 50,
+													"children": [
+														{ "name": "Putin", "value" : 20 },
+														{ "name": "Obama", "value" : 40 },
+														{ "name": "America", "value" : 10 },
+														{ "name": "Russia", "value" : 70 }
+													]
+												};
+
+		var data = packedCirclesData
+
+		var width = 1000,
+		    height = 800,
+		    r = 720,
+		    x = d3.scale.linear().range([0, r]),
+    		y = d3.scale.linear().range([0, r]);
+
+		var pack = d3.layout.pack()
+									.size([width, height])
+									.padding(10);
+
+		var svg = d3.select("#packedCircles").append("svg")
+																					.attr("width", width)
+																					.attr("height", height)
+
+		var nodes = pack.nodes(data);
+
+		var circle = svg.selectAll("circle")
+										.data(nodes)
+										.enter().append("circle")
+										.attr("r", function(d) { return d.value; })
+										.attr("cx", function(d) { return d.x; })
+      							.attr("cy", function(d) { return d.y; })
+										.attr("class", "category")
+										.style("fill", "red");
+
+		var text = svg.selectAll("text")
+									.data(nodes)
+									.enter().append("text")
+									.attr("class", function(d) { return d.children ? "categories" : "tag"; })
+						      .attr("x", function(d) { return d.x; })
+						      .attr("y", function(d) { return d.y; })
+						      .attr("dy", ".35em")
+						      .attr("text-anchor", "middle")
+						      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
+						      .text(function(d) { return d.name; });
+
+	},
+
   render: function() {
     return (
     	<div>
@@ -490,7 +544,7 @@ var UserProfile = React.createClass({
 	        <p>Your email address is {this.props.user.email}.</p>
 	      </div>
 	      <div id="stackedBar" className="text-center"> </div>
-				<div id="packedCircles"> </div>
+				<div id="packedCircles" className="text-center"> </div>
 			</div>
     )
   }
