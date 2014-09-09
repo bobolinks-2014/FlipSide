@@ -109,7 +109,6 @@ var Pair = React.createClass({
 	renderArticles: function(articles, difference_score, tags){
 		return(
 			<div className="pair row">
-				<p className="text-center"> These articles discuss some category </p>
 				<div className="paired_articles">
 					<Article options={articles[0]} tags = {tags[0]} />
 					<Article options={articles[1]} tags ={tags[1]} />
@@ -128,19 +127,27 @@ var Pair = React.createClass({
     var styleA = {backgroundColor: "#570000", color:"white"}
 		return (
 			<div className='newsFeed large-12 columns'>
-				<p>Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location</p>
-				<ul inline-list>
-					<li style = {styleA}className= "radius secondary label">very negative</li>
-					<li style = {styleB}className= "radius secondary label">negative</li>
-					<li style = {styleC}className= "radius secondary label">neutral</li>
-					<li style = {styleD}className= "radius secondary label">positive</li>
-					<li style = {styleE}className= "radius secondary label">very positive</li>
-				</ul>
+				<div className = "panel large-2 columns">
+					<h4>About</h4>
+					<p> The media likes to feed you only what you want to hear. At FlipSide, we strive to do the opposite.</p>
+					<h4>Article Sentiment Analysis</h4>
+					<p>Each article is analyzed for sentiment on the Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
+					<ul className="no-bullet">
+						<li style = {styleA} className= "radius secondary label">very negative</li><br/>
+						<li style = {styleB} className= "radius secondary label">negative</li><br/>
+						<li style = {styleC} className= "radius secondary label">neutral</li><br/>
+						<li style = {styleD} className= "radius secondary label">positive</li><br/>
+						<li style = {styleE} className= "radius secondary label">very positive</li><br/>
+					</ul>
+				</div>
+				<h2 className="text-center large-8 columns">FlipSide News Feed</h2>
 				{this.state.pairs}
 			</div>
 		);
 	}
 })
+
+//				<p className="text-center"> These articles discuss some category </p>
 
 
 // ARTICLE MODEL //
@@ -198,6 +205,7 @@ var Rating = React.createClass({
 		return {
 			content:(
 				<div className="left">
+					<p> The essence of this article was </p>
 					<div className="agree radius secondary label">postive</div>
 					<div className="disagree radius secondary label">negative</div>
 				</div>
