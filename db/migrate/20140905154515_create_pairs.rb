@@ -4,6 +4,7 @@ class CreatePairs < ActiveRecord::Migration
       t.integer :category_id
       t.integer :article1_id
       t.integer :article2_id
+      t.integer :user_id
       t.decimal :difference_score
 
       t.timestamps

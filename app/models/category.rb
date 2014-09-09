@@ -4,6 +4,10 @@ class Category < ActiveRecord::Base
   has_many :pairs
 
   attr_reader :relevant_tags
+
+  def self.from_today
+    self.all.where("created_at >= ?", Time.zone.now.ago(86400))
+  end
   #Runner method; returns a pair object given the number of keywords
   def make_pair#number_of_keywords)
     # find_relevant_keywords(number_of_keywords)
@@ -32,7 +36,7 @@ class Category < ActiveRecord::Base
 
         difference = sum_differences(article1, article2)
 
-        if difference > article_pair.last && compare_tags(article1, article2, 2)
+        if (difference > article_pair.last) && (compare_tags(article1, article2, 2)) && (article1.source != article2.source)
           article_pair = [article1, article2, difference]
         end
 

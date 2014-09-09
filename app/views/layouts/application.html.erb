@@ -15,74 +15,80 @@
     <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   </head>
 
-  <body>
-  <nav class="top-bar" data-topbar role="navigation">
-    <ul class="title-area">
-      <li class="name" id="goHome">
-        <h1><a href="#">ᖷlip/Side</a></h1>
-      </li>
-    </ul>
+<body>
+  <div class= 'fixed'>
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name" id="goHome">
+      <h1><a href="#">ᖷlip/Side</a></h1>
+    </li>
+  </ul>
+<%if signed_in?%>
+  <div id="logged_in">
+    <section class="top-bar-section">
+      <ul class="logged_in right">
+        <li><%= link_to "Log Out", signout_path, :method => :delete %></li>
+        <li><a href="/profile" id="user_profile_link">Profile</a></li>
+      </ul>
+    </section>
+  </div>
+<%else%>
+  <div id="not_logged_in">
+    <section class="top-bar-section">
+      <ul class="right not_logged_in">
+        <li><a href="#" data-reveal-id="signin_button">Log In</a></li>
 
+        <div id="signin_button" class="reveal-modal" data-reveal>
+          <h2>Log In</h2>
+          <form action="/signin" method="get" id="signin_form">
+            <div>
+              <input type="text" name="email" placeholder="Email" id="signin_email" required></input>
+              <input type="password" name="password" placeholder="Password" id="signin_password" required></input>
+            </div>
+            <button type="submit" value="Sign In" name="signin" >Sign In</button>
+            <div id ="error">
+              <ul>
+              </ul>
+            </div>
+          </form>
+          <a class="close-reveal-modal">&#215;</a>
+        </div>
 
-    <div id="logged_in">
-      <section class="top-bar-section">
-        <ul class="logged_in right">
-          <li><%= link_to "Log Out", signout_path, :method => :delete %></li>
-          <li><a href="/profile" id="user_profile_link">Profile</a></li>
-        </ul>
-      </section>
-    </div>
+        <li><a href="#" data-reveal-id="signup_button">Sign Up</a></li>
 
-    <div id="not_logged_in">
-      <section class="top-bar-section">
-        <ul class="right not_logged_in">
-          <li><a href="#" data-reveal-id="signin_button">Log In</a></li>
-
-          <div id="signin_button" class="reveal-modal" data-reveal>
-            <h2>Log In</h2>
-            <form action="/signin" method="get" id="signin_form">
-              <div>
-                <input type="text" name="email" placeholder="Email" id="signin_email" required></input>
-                <input type="password" name="password" placeholder="Password" id="signin_password" required></input>
-              </div>
-              <button type="submit" value="Sign In" name="signin" >Sign In</button>
-              <div id ="error">
-                <ul>
-                </ul>
-              </div>
-            </form>
-            <a class="close-reveal-modal">&#215;</a>
-          </div>
-
-          <li><a href="#" data-reveal-id="signup_button">Sign Up</a></li>
-
-          <div id="signup_button" class="reveal-modal" data-reveal>
-            <h2>Sign Up</h2>
-            <form action="/signup" method="get" id="signup_form">
-              <div>
-                <input id="signup_name", type="text" name="name" placeholder="Name" required></input>
-                <input id="signup_email", type="text" name="email" placeholder="Email" required></input>
-                <input id="signup_password", type="password" name="password" placeholder="Password" required></input>
-                <input id="signup_password_confirmation", type="password" name="password_confirmation" placeholder="Password Confirmation" required></input>
-              </div>
-              <button type="submit" value="Sign Up" name="signup">Sign Up</button>
-              <div id ="error">
-                <ul>
-                </ul>
-              </div>
-            </form>
-            <a class="close-reveal-modal">&#215;</a>
-          </div>
-        </ul>
-      </section>
-    </div>
-
-  </nav>
+        <div id="signup_button" class="reveal-modal" data-reveal>
+          <h2>Sign Up</h2>
+          <form action="/signup" method="get" id="signup_form">
+            <div>
+              <input id="signup_name", type="text" name="name" placeholder="Name" required></input>
+              <input id="signup_email", type="text" name="email" placeholder="Email" required></input>
+              <input id="signup_password", type="password" name="password" placeholder="Password" required></input>
+              <input id="signup_password_confirmation", type="password" name="password_confirmation" placeholder="Password Confirmation" required></input>
+            </div>
+            <button type="submit" value="Sign Up" name="signup">Sign Up</button>
+            <div id ="error">
+              <ul>
+              </ul>
+            </div>
+          </form>
+          <a class="close-reveal-modal">&#215;</a>
+        </div>
+      </ul>
+    </section>
+  </div>
+<%end%>
+</nav>
+</div>
   <div id = "container">
     <!-- It all gets rendered in here -->
   </div>
-
+<div id="myModal" class="reveal-modal" data-reveal>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
     <%= yield %>
+
+
+    <footer class = "row"> This is a DBC project. <a href="http://www.alchemyapi.com/">Text Analysis by AlchemyAPI </a><img src="http://www.alchemyapi.com/sites/default/files/alchemyAPI.png"></footer>
     <%= javascript_include_tag "application" %>
   </body>
 </html>
