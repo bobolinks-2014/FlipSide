@@ -138,7 +138,6 @@ puts ''
 # if response['status'] == 'OK'
 # 	puts '## Response Object ##'
 # 	puts JSON.pretty_generate(response)
-# binding.pry
 
 # 	puts ''
 # 	puts '## Entities ##'

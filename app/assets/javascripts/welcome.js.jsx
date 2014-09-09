@@ -390,6 +390,7 @@ var UserProfile = React.createClass({
 				var dataset = response.user.dataset;
 				this.setState({stackedBarData:dataset});
 				this.renderStackedBarGraph(dataset);
+				// this.renderPackedCirclesGraph();
 			}
 		}.bind(this))
 		// AJAX request, get user and data
@@ -420,9 +421,9 @@ var UserProfile = React.createClass({
 		    barnames.push(data[i].name);
 		};
 
-		var margin = {top: 10, right: 10, bottom: 30, left: 30},
-		    width = 500 - margin.left - margin.right,
-		    height = 400 - margin.top - margin.bottom;
+		var margin = {top: 150, right: 150, bottom: 150, left: 150},
+		    width = 1000 - margin.left - margin.right,
+		    height = 800 - margin.top - margin.bottom;
 
 		var x = d3.scale.ordinal()
 					    .domain(barnames)
@@ -432,7 +433,7 @@ var UserProfile = React.createClass({
 								    .domain([0, d3.max(idheights)])
 								    .range([height, 0]);
 
-		var colors = d3.scale.category10();
+		var colors = ["#2d882d", "#aa3535"];
 
 		var xAxis = d3.svg.axis()
 									    .scale(x)
@@ -456,6 +457,35 @@ var UserProfile = React.createClass({
 		svg.append("g")
 		    .attr("class", "y axis")
 		    .call(yAxis);
+
+		svg.append("text")
+		    .attr("transform", "translate(" + (width / 2) + " ," + (height + 28) + ")")
+		    .attr("dy", "2em")
+		    .style("text-anchor", "middle")
+		    .style("font-size", "1.5em")
+		    .text("Categories")
+		    .classed("axis_title")
+		    ;
+
+    svg.append("text")
+		    .attr("transform", "rotate(-90)")
+        .attr("y", 0 - 90)
+        .attr("x",0 - (height / 2))
+        .attr("dy", "2em")
+        .style("text-anchor", "middle")
+        .style("font-size", "1.5em")
+        .text("Stories Read")
+        .classed("axis_title")
+        ;
+
+    svg.append("text")
+        .attr("transform", "translate(" + (width / 2) + " ," + (height - 600) + ")")
+        .attr("dy", "2em")
+        .style("text-anchor", "middle")
+        .style("font-size", "1.75em")
+        .text("Sentiment Snapshot")
+        .classed("graph_title")
+        ;
 
 		//add a g element for each bar
 		var bargroups = svg.append("g")
@@ -488,18 +518,73 @@ var UserProfile = React.createClass({
 												        "width": x.rangeBand(),
 												        "height": function(d) {return height - y(d.height);}
 												    })
-												    .style("fill", function(d,i,j) {return colors(i)});
+												    .style("fill", function(d,i,j) {return colors[i]});
 	},
+
+	// renderPackedCirclesGraph:function(packedCirclesData) {
+	// 	console.log("Hooray!")
+
+	// 	packedCirclesData = { "name": "categories",
+	// 												// "value": 50,
+	// 												"children": [
+	// 													{ "name": "Putin", "value" : 20 },
+	// 													{ "name": "Obama", "value" : 40 },
+	// 													{ "name": "America", "value" : 10 },
+	// 													{ "name": "Russia", "value" : 70 }
+	// 												]
+	// 											};
+
+	// 	var data = packedCirclesData
+
+	// 	var width = 1000,
+	// 	    height = 800,
+	// 	    r = 720,
+	// 	    x = d3.scale.linear().range([0, r]),
+ //    		y = d3.scale.linear().range([0, r]);
+
+	// 	var pack = d3.layout.pack()
+	// 								.size([width, height])
+	// 								.padding(10);
+
+	// 	var svg = d3.select("#packedCircles").append("svg")
+	// 																				.attr("width", width)
+	// 																				.attr("height", height)
+
+	// 	var nodes = pack.nodes(data);
+
+	// 	var circle = svg.selectAll("circle")
+	// 									.data(nodes)
+	// 									.enter().append("circle")
+	// 									.attr("r", function(d) { return d.value; })
+	// 									.attr("cx", function(d) { return d.x; })
+ //      							.attr("cy", function(d) { return d.y; })
+	// 									.attr("class", "category")
+	// 									.style("fill", "steelblue")
+	// 									.attr("opacity", 0.25)
+	// 									.attr("stroke", "gray")
+	// 									.attr("stroke-width", "2");
+
+	// 	var text = svg.selectAll("text")
+	// 								.data(nodes)
+	// 								.enter().append("text")
+	// 								.attr("class", function(d) { return d.children ? "categories" : "tag"; })
+	// 					      .attr("x", function(d) { return d.x; })
+	// 					      .attr("y", function(d) { return d.y; })
+	// 					      .attr("dy", ".35em")
+	// 					      .attr("text-anchor", "middle")
+	// 					      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
+	// 					      .text(function(d) { return d.name; });
+	// },
 
   render: function() {
     return (
     	<div>
-	      <div className="userProfile">
-	        <p>Welcome to your user profile, {this.props.user.name}.</p>
+	      <div className="userProfile" className="text-center">
+	        <h1>Welcome to your user profile, {this.props.user.name}.</h1>
 	        <p>Your email address is {this.props.user.email}.</p>
 	      </div>
 	      <div id="stackedBar" className="text-center"> </div>
-				<div id="packedCircles"> </div>
+				// <div id="packedCircles" className="text-center"> </div>
 			</div>
     )
   }
