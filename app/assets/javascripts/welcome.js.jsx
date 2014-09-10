@@ -35,51 +35,9 @@ var TagCollection = React.createClass({
 		}.bind(this));
 		return tag_arr;
 	},
-	renderTag: function(tag){
-		if (tag.sentiment_score > 0.65 ){
-			var style = {
-				backgroundColor: "#004400",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
-			};
-		}
-		else if (tag.sentiment_score > 0.35 ){
-			var style = {
-				backgroundColor: "#2d882d",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
-			};
-		}
-		else if (tag.sentiment_score > -0.35 ){
-			var style = {
-				backgroundColor: "gray",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
-			};
-		}
-		else if (tag.sentiment_score > -0.65 ){
-			var style = {
-				backgroundColor: "#aa3535",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
-			};
-		}
-		else{
-			var style = {
-				backgroundColor: "#570000",
-				color: "white",
-				cursor: "default",
-				margin: "1px"
-			};
-		};
 
-		return(
-			<div style = {style} className= "secondary label tag">{tag.tag.name}</div>
-		)
+	renderTag: function(tag){
+		return <Tag tag={tag}/>
 	},
 	render: function(){
 		return(
@@ -87,6 +45,112 @@ var TagCollection = React.createClass({
 		)
 	}
 });
+
+// FILTERED MODEL //
+var Search = React.createClass({
+	getInitialState: function(){
+		this.renderArticles;
+		return {column: ""}
+	},
+	renderArticles: function(){
+		var column = [];
+
+		console.log("search did mount");
+		$.each(this.props.articles, function(){
+			tags = this.article_tags;
+			// send down an array of tags and then the article
+			column.push(<Article options={this} tags= {tags}/>);
+			console.log(column);
+		});
+		this.setState({column: column});
+		console.log(this.state);
+	},
+	componentDidMount: function(){
+		this.renderArticles();
+	},
+	componentWillReceiveProps: function(){
+		console.log("componentWillMount")
+		this.renderArticles();
+	},
+	render: function(){
+
+		return(
+			<div className="row">{this.state.column}</div>
+		)
+	}
+});
+
+
+
+function renderSearch(data){
+		React.renderComponent(
+		<Search articles={data}/>,
+		document.getElementById('container')
+	);
+}
+// TAG MODEL //
+var Tag = React.createClass({
+	onClick: function(){
+		console.log("I clicked a tag")
+		var request = $.get('filterTags', {tag_id: this.props.tag.tag_id});
+		request.done(function(data){
+			this.renderSearch(data);
+		}.bind(this));
+	},
+	renderSearch: function(data){
+		console.log("search");
+		renderSearch(data);
+	},
+	render: function(){
+		var score = this.props.tag.sentiment_score;
+		if (score > 0.65 ){
+			var style = {
+				backgroundColor: "#004400",
+				color: "white",
+				margin: "1px",
+				padding: "10px"
+			};
+		}
+		else if (score > 0.35 ){
+			var style = {
+				backgroundColor: "#2d882d",
+				color: "white",
+				margin: "1px",
+				padding: "10px"
+			};
+		}
+		else if (score > -0.35 ){
+			var style = {
+				backgroundColor: "gray",
+				color: "white",
+				margin: "1px",
+				padding: "10px"
+			};
+		}
+		else if (score > -0.65 ){
+			var style = {
+				backgroundColor: "#aa3535",
+				color: "white",
+				margin: "1px",
+				padding: "10px"
+			};
+		}
+		else{
+			var style = {
+				backgroundColor: "#570000",
+				color: "white",
+				margin: "1px",
+				padding: "10px"
+			};
+		};
+
+		return(
+			<div style = {style} className= "tag secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
+		)
+	}
+});
+
+
 
 
 // PAIR MODEL //
@@ -104,12 +168,15 @@ var Pair = React.createClass({
 			console.log( "waiting ...")
 		});
 		request.done(function(data){
+			console.log("articles requeest done");
 			$.each(data, function(index){
 				var articles = [];
 				if (data[index]!== null){
 					articles.push(data[index].article1);
 					articles.push(data[index].article2);
+
 					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
+					console.log(pairRendered);
 					pair_arr.push(pairRendered);
 				}
 			}.bind(this));
@@ -155,18 +222,17 @@ var Pair = React.createClass({
 	render:function(){
 
 		console.log("rendering pairs");
-		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px"}
-    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px"}
-    var styleC = {backgroundColor: "gray", color:"white", margin: "1px"}
-    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px"}
-    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px"}
+		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px", padding:"10px"}
+    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px", padding:"10px"}
+    var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10px"}
+    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px", padding:"10px"}
+    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
 		return (
 			<div className='newsFeed large-12'>
-				<div className = "panel large-2 columns">
+				<div className = "panel large-2 columns static-first hide-for-medium-down">
 					<h4>About</h4>
 					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
 					<h4>Detecting Bias</h4>
-					<p>No news outlet is impartial. Sentiment Tags bring this to the forefront, conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 					<ul className="no-bullet">
 						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
 						<li style = {styleB} className= "secondary label"><div>negative</div></li>
@@ -174,7 +240,9 @@ var Pair = React.createClass({
 						<li style = {styleD} className= "secondary label"><div>positive</div></li>
 						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
 					</ul>
+					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 				</div>
+				<div className="panel large-2 columns hide-this" ></div>
 				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
 				{this.state.pairs}
 			</div>
@@ -200,7 +268,8 @@ var Article = React.createClass({
 			style:{
 				boxShadow: "0px 1px 10px #888888",
 				cursor: "pointer",
-				backgroundColor: '#F2F2F2'
+				backgroundColor: '#F2F2F2',
+				transition: "0.15s"
 			},
 			titleStyle: {textDecoration: "underline"}
 		});
@@ -218,6 +287,8 @@ var Article = React.createClass({
 		});
 	},
 	render: function(){
+		console.log("render Article")
+		console.log(this.props.tags)
 		return (
 			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 
@@ -243,11 +314,11 @@ var Rating = React.createClass({
 			content:(
 				<div className="left">
 					<br/>
-					<div> Evaluate your reaction </div>
+					<div> Evaluate this article's coverage: </div>
 					<div className="agree radius secondary label">postive</div>
 					<div className="disagree radius secondary label">negative</div>
 				</div>
-			),
+			),//'
 			response: ""
 		}
 	},
@@ -288,7 +359,7 @@ $('div').on("click",".article",function(e){
 	var url = this.firstChild.className;
 	removeIFrame();
 
-	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='100%' id='frame'></iframe>");
+	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='95%' width='80%' id='frame'></iframe>");
 	//$("#myModal iframe").on('autocompleteerror autocomplete waiting volumechange toggle timeupdate suspend submit stalled show select seeking seeked scroll resize reset ratechange progress playing play pause mousewheel mouseup mouseover mouseout mousemove mouseleave mouseenter mousedown loadstart loadedmetadata loadeddata load keyup keypress keydown invalid input focus error ended emptied durationchange drop dragstart dragover dragleave dragenter dragend drag dblclick cuechange contextmenu close click change canplaythrough canplay cancel blur abort wheel webkitfullscreenerror webkitfullscreenchange selectstart search paste cut copy beforepaste beforecut beforecopy', function(event) {console.log(event);})
 
 });
@@ -698,6 +769,7 @@ $("#user_profile_link").on('click', function(e) {
   request.done(function(response) {
     if(response.success == true) {
       $('#signin_button').foundation('reveal', 'close');
+
       $('.not_logged_in').hide();
       $('.logged_in').show();
       renderUserProfile(response.user);
