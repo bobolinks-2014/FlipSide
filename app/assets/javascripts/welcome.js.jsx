@@ -103,6 +103,7 @@ var Search = React.createClass({
 		$.each(articles, function(i){
 			debugger;
 			tags = articles[i].tags;
+			// send down an array of tags and then the article
 			column.push(<Article options={articles[i]} tags= {tags}/>);
 		})
 		this.setState({column: column});
@@ -239,7 +240,6 @@ var Article = React.createClass({
 		});
 	},
 	render: function(){
-		debugger;
 		return (
 			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 

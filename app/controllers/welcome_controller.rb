@@ -7,8 +7,8 @@ class WelcomeController < ApplicationController
     @current_user = current_user if signed_in?
   end
 
-  def filter_tags
-    @articles  = Article.where(tag: params[:name])
+  def filterTags
+    @articles  = Tag.find(params[:tag_id]).articles
 
     if request.xhr?
       render :json => @articles.to_json
