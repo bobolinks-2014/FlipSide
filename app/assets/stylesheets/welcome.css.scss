@@ -18,7 +18,34 @@ body{
   position: fixed;
 }
 
->>>>>>> master
+
+.landing{
+  background: image-url('newspapers.png');
+  -webkit-filter: brightness(65%);
+  height: 300px;
+  width:100%;
+  right: 0px;
+  overflow: visible;
+  margin-bottom: 50px;
+}
+
+.landing .row{
+  background-color: black;
+  opacity: 0.8;
+  padding: 20px;
+
+}
+.landing h1{
+  font-weight: 400;
+  font-size: 5em;
+}
+
+.landing h3{
+  bottom: 0;
+  float: right;
+  color: white;
+}
+
 .article p {
   font-family: 'Playfair Display', serif;
 }
@@ -34,12 +61,12 @@ body{
   height:100%;
 }
 
+
 .accentWord{
-  font-family: 'Raleway', sans-serif;
-  font-weight:100;
-  color: #801515;
-  display: inline;
+  color: red;
+  letter-spacing: 3px;
 }
+
 
 #manifesto{
   postion: fixed;
