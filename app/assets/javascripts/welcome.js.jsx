@@ -473,8 +473,10 @@ var UserProfile = React.createClass({
 				var dataset = response.user.dataset;
 				this.setState({stackedBarData:dataset});
 				this.renderStackedBarGraph(dataset);
+				renderGraphExplanation();
 				$('#welcomeMessage').hide();
-				$('#graphExpanation').show();
+				$('#graphExplanation').show();
+				$('#graphTitle').show();
 			} else {
 				renderWelcomeMessage();
 			}
@@ -580,18 +582,18 @@ var UserProfile = React.createClass({
         .attr("dy", "2em")
         .style("text-anchor", "middle")
         .style("font-size", "1.5em")
-        .text("Articles Voted On")
+        .text("Articles Rated")
         .classed("axis_title")
         ;
 
-    svg.append("text")
-        .attr("transform", "translate(" + (width / 2) + " ," + (height - 600) + ")")
-        .attr("dy", "2em")
-        .style("text-anchor", "middle")
-        .style("font-size", "1.75em")
-        .text("Sentiment Snapshot")
-        .classed("graph_title")
-        ;
+    // svg.append("text")
+    //     .attr("transform", "translate(" + (width / 2) + " ," + (height - 600) + ")")
+    //     .attr("dy", "2em")
+    //     .style("text-anchor", "middle")
+    //     .style("font-size", "1.75em")
+    //     .text("Detect Your Biases")
+    //     .classed("graph_title")
+    //     ;
 
 		//add a g element for each bar
 		var bargroups = svg.append("g")
@@ -634,9 +636,11 @@ var UserProfile = React.createClass({
 	      <div className="userProfile" className="text-center">
 	        <h1>{this.props.user.name}</h1>
 	        <div className="panel" id="welcomeMessage"></div>
+	        <h2 id="graphTitle">Detect Your Biases</h2>
+		      <div className="panel" id="graphExplanation"></div>
 	      </div>
-	      <div className="panel" id="graphExplanation"></div>
 	      <div id="stackedBar" className="text-center"></div>
+
 
 			</div>
     )
@@ -644,17 +648,32 @@ var UserProfile = React.createClass({
 });
 
 var WelcomeMessage = React.createClass({
-		render: function() {
-			return (
-				<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, this panel will be replaced with data on your reading habits.</p>
-			)
-		}
-	})
+	render: function() {
+		return (
+			<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, this panel will be replaced with data on your reading habits.</p>
+		)
+	}
+})
+
+var GraphExplanation = React.createClass({
+	render: function() {
+		return (
+			<p>The graph below scales up as you cast more votes. Green bars indicate your agreement with the general slant of an article, whereas red bars show where you disagreed with the sentiment that Alchemy identified in the article you were reading.</p>
+		)
+	}
+})
 
 function renderWelcomeMessage() {
 	React.renderComponent(
     <WelcomeMessage/>,
     document.getElementById('welcomeMessage')
+	);
+}
+
+function renderGraphExplanation() {
+	React.renderComponent(
+    <GraphExplanation/>,
+    document.getElementById('graphExplanation')
 	);
 }
 
