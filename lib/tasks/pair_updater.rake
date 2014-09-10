@@ -3,9 +3,17 @@ namespace :pairs do
 
   #does everything
   task :fetch => :environment do
+    print "Running scrape..."
     Kimono.scrape
+    puts "done"
+
+    print "Running pair default articles..."
     Kimono.pair_default_articles
+    puts "done"
+
+    print "Running pair user articles..."
     Kimono.pair_user_articles
+    puts "done"
   end
 
   #makes default pairs for the day
