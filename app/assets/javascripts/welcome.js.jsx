@@ -167,7 +167,7 @@ var Pair = React.createClass({
     var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
 		return (
 			<div className='newsFeed large-12'>
-				<div className = "panel large-2 columns static-first">
+				<div className = "panel large-2 columns static-first hide-for-medium-down">
 					<h4>About</h4>
 					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
 					<h4>Detecting Bias</h4>
@@ -178,7 +178,7 @@ var Pair = React.createClass({
 						<li style = {styleD} className= "secondary label"><div>positive</div></li>
 						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
 					</ul>
-					<p>No news outlet is impartial. Sentiment Tags bring this to the forefront, conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
+					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 				</div>
 				<div className="panel large-2 columns hide-this" ></div>
 				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
@@ -250,11 +250,11 @@ var Rating = React.createClass({
 			content:(
 				<div className="left">
 					<br/>
-					<div> Evaluate the article bias </div>
+					<div> Evaluate this article's coverage: </div>
 					<div className="agree radius secondary label">postive</div>
 					<div className="disagree radius secondary label">negative</div>
 				</div>
-			),
+			),//'
 			response: ""
 		}
 	},
@@ -295,7 +295,7 @@ $('div').on("click",".article",function(e){
 	var url = this.firstChild.className;
 	removeIFrame();
 
-	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='100%' id='frame'></iframe>");
+	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='95%' width='80%' id='frame'></iframe>");
 	//$("#myModal iframe").on('autocompleteerror autocomplete waiting volumechange toggle timeupdate suspend submit stalled show select seeking seeked scroll resize reset ratechange progress playing play pause mousewheel mouseup mouseover mouseout mousemove mouseleave mouseenter mousedown loadstart loadedmetadata loadeddata load keyup keypress keydown invalid input focus error ended emptied durationchange drop dragstart dragover dragleave dragenter dragend drag dblclick cuechange contextmenu close click change canplaythrough canplay cancel blur abort wheel webkitfullscreenerror webkitfullscreenchange selectstart search paste cut copy beforepaste beforecut beforecopy', function(event) {console.log(event);})
 
 });
@@ -622,6 +622,7 @@ $("#user_profile_link").on('click', function(e) {
   request.done(function(response) {
     if(response.success == true) {
       $('#signin_button').foundation('reveal', 'close');
+
       $('.not_logged_in').hide();
       $('.logged_in').show();
       renderUserProfile(response.user);

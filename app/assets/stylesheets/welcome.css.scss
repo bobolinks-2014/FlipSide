@@ -77,3 +77,13 @@ body{
   visibility: hidden;
 }
 
+.agree{
+  margin-right: 3px;
+}
+
+.agree:hover, .disagree:hover{
+  background-color: #dedede;
+  shadow: 1px 1px 1px 1px;
+}
+
+
