@@ -15,8 +15,10 @@ class WelcomeController < ApplicationController
   end
   # all the pairs
   def pairs
-    # get pairs for a particular user
+    starting = params[:starting].to_i
+    ending = params[:ending].to_i
 
+    # get pairs for a particular user
     if signed_in?
       p "signed in"
       @pairs = Pair.for_user(current_user)
@@ -25,7 +27,7 @@ class WelcomeController < ApplicationController
       @pairs = Pair.defaults
     end
     if request.xhr?
-      render :json => @pairs.to_json(:include=>{
+      render :json => @pairs[starting..ending].to_json(:include=>{
         :article1=>{:include => {
           :article_tags=>{:include=> :tag}}},
         :article2=>{:include => {

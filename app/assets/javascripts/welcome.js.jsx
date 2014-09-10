@@ -109,36 +109,56 @@ var Tag = React.createClass({
 		if (score > 0.65 ){
 			var style = {
 				backgroundColor: "#004400",
-				color: "white"
+				color: "white",
+				cursor: "default",
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else if (score > 0.35 ){
 			var style = {
 				backgroundColor: "#2d882d",
-				color: "white"
+				color: "white",
+				cursor: "default",
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else if (score > -0.35 ){
 			var style = {
 				backgroundColor: "gray",
-				color: "white"
+				color: "white",
+				cursor: "default",
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else if (score > -0.65 ){
 			var style = {
 				backgroundColor: "#aa3535",
-				color: "white"
+				color: "white",
+				cursor: "default",
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else{
 			var style = {
 				backgroundColor: "#570000",
-				color: "white"
+				color: "white",
+				cursor: "default",
+				margin: "1px",
+				padding: "10px"
 			};
 		};
 
 		return(
 			<div style = {style} className= "tag secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
+		)
+	},
+	render: function(){
+		return(
+			<div className="tagCollection">{this.state.tagCollection}</div>
 		)
 	}
 });
@@ -152,10 +172,14 @@ var Pair = React.createClass({
 	getInitialState: function(){
 		return {pairs: ""};
 	},
-	getArticles: function(){
-		request = $.get('pairs');
+
+	getArticles: function(starting, ending){
+		request = $.get('pairs', {starting: starting, ending:ending});
 
 		pair_arr = [];
+		request.progress(function(){
+			console.log( "waiting ...")
+		});
 		request.done(function(data){
 			$.each(data, function(index){
 				var articles = [];
@@ -189,7 +213,10 @@ var Pair = React.createClass({
 		return [article1tags, article2tags];
 	},
 	componentDidMount: function(){
-		this.getArticles();
+		console.log("componentDidMount");
+		this.getArticles(0,3);
+		this.getArticles(4,9);
+		this.getArticles(10,-1);
 	},
 	renderArticles: function(articles, difference_score, tags){
 		return(
@@ -205,18 +232,17 @@ var Pair = React.createClass({
 	render:function(){
 
 		console.log("rendering pairs");
-		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px"}
-    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px"}
-    var styleC = {backgroundColor: "gray", color:"white", margin: "1px"}
-    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px"}
-    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px"}
+		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px", padding:"10px"}
+    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px", padding:"10px"}
+    var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10px"}
+    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px", padding:"10px"}
+    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
 		return (
 			<div className='newsFeed large-12'>
-				<div className = "panel large-2 columns">
+				<div className = "panel large-2 columns static-first hide-for-medium-down">
 					<h4>About</h4>
-					<p> The media likes to feed you only what you want to hear. At FlipSide, we strive to do the opposite.</p>
-					<h4>Article Sentiment Analysis</h4>
-					<p>Each article is analyzed for sentiment on the Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
+					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
+					<h4>Detecting Bias</h4>
 					<ul className="no-bullet">
 						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
 						<li style = {styleB} className= "secondary label"><div>negative</div></li>
@@ -224,11 +250,13 @@ var Pair = React.createClass({
 						<li style = {styleD} className= "secondary label"><div>positive</div></li>
 						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
 					</ul>
+					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 				</div>
+				<div className="panel large-2 columns hide-this" ></div>
 				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
 				{this.state.pairs}
 			</div>
-		);
+		);//'
 	}
 })
 
@@ -249,9 +277,11 @@ var Article = React.createClass({
 		this.setState({
 			style:{
 				boxShadow: "0px 1px 10px #888888",
-				cursor: "pointer"
+				cursor: "pointer",
+				backgroundColor: '#F2F2F2',
+				transition: "0.15s"
 			},
-			titleStyle: {color: "gray", textDecoration: "underline"}
+			titleStyle: {textDecoration: "underline"}
 		});
 
 	},
@@ -293,11 +323,11 @@ var Rating = React.createClass({
 			content:(
 				<div className="left">
 					<br/>
-					<div> Evaluate the article bias </div>
+					<div> Evaluate this article's coverage: </div>
 					<div className="agree radius secondary label">postive</div>
 					<div className="disagree radius secondary label">negative</div>
 				</div>
-			),
+			),//'
 			response: ""
 		}
 	},
@@ -338,7 +368,7 @@ $('div').on("click",".article",function(e){
 	var url = this.firstChild.className;
 	removeIFrame();
 
-	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='100%' id='frame'></iframe>");
+	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='95%' width='80%' id='frame'></iframe>");
 	//$("#myModal iframe").on('autocompleteerror autocomplete waiting volumechange toggle timeupdate suspend submit stalled show select seeking seeked scroll resize reset ratechange progress playing play pause mousewheel mouseup mouseover mouseout mousemove mouseleave mouseenter mousedown loadstart loadedmetadata loadeddata load keyup keypress keydown invalid input focus error ended emptied durationchange drop dragstart dragover dragleave dragenter dragend drag dblclick cuechange contextmenu close click change canplaythrough canplay cancel blur abort wheel webkitfullscreenerror webkitfullscreenchange selectstart search paste cut copy beforepaste beforecut beforecopy', function(event) {console.log(event);})
 
 });
@@ -478,13 +508,27 @@ var UserProfile = React.createClass({
 		    barnames.push(data[i].name);
 		};
 
+		var final_bar_names = [];
+
+		for (var e=0; e<barnames.length; e++) {
+			// console.log(barnames[e]);
+			// var split_arr = barnames[e].split(' ');
+			// console.log(split_arr);
+			// var new_title = split_arr.join("\n");
+			// console.log(new_title);
+			final_bar_names.push(barnames[e]);
+		}
+
+		console.log(final_bar_names)
+
 		var margin = {top: 150, right: 150, bottom: 150, left: 150},
 		    width = 1000 - margin.left - margin.right,
 		    height = 800 - margin.top - margin.bottom;
 
 		var x = d3.scale.ordinal()
-					    .domain(barnames)
-					    .rangeRoundBands([0, width], .25);
+								    .domain(final_bar_names)
+								    .rangeRoundBands([0, width], .25)
+								    ;
 
 		var y = d3.scale.linear()
 								    .domain([0, d3.max(idheights)])
@@ -509,7 +553,15 @@ var UserProfile = React.createClass({
 		svg.append("g")
 				.attr("class", "x axis")
 				.attr("transform", "translate(0," + height + ")")
-				.call(xAxis);
+				.call(xAxis)
+				.selectAll("text")
+					.style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", function(d) {
+            return "rotate(-65)"
+          })
+				;
 
 		svg.append("g")
 		    .attr("class", "y axis")
@@ -520,7 +572,7 @@ var UserProfile = React.createClass({
 		    .attr("dy", "2em")
 		    .style("text-anchor", "middle")
 		    .style("font-size", "1.5em")
-		    .text("Categories")
+		    // .text("Categories")
 		    .classed("axis_title")
 		    ;
 
@@ -570,12 +622,13 @@ var UserProfile = React.createClass({
 												    })
 														.enter().append("rect")
 												    .attr({
-												        "x": function(d,i,j) {return x(barnames[j]);},
+												        "x": function(d,i,j) {return x(final_bar_names[j]);},
 												        "y": function(d) {return y(d.y0);},
 												        "width": x.rangeBand(),
 												        "height": function(d) {return height - y(d.height);}
 												    })
 												    .style("fill", function(d,i,j) {return colors[i]});
+	debugger;
 	},
 
 	// renderPackedCirclesGraph:function(packedCirclesData) {
@@ -665,6 +718,7 @@ $("#user_profile_link").on('click', function(e) {
   request.done(function(response) {
     if(response.success == true) {
       $('#signin_button').foundation('reveal', 'close');
+
       $('.not_logged_in').hide();
       $('.logged_in').show();
       renderUserProfile(response.user);

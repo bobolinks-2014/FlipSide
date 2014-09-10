@@ -14,6 +14,11 @@ body{
   cursor: pointer;
   margin: 1px;
 }
+.static-first {
+  position: fixed;
+}
+
+>>>>>>> master
 .article p {
   font-family: 'Playfair Display', serif;
 }
@@ -73,3 +78,24 @@ body{
   right:10px;
 }
 
+.static-first{
+  position: fixed;
+}
+
+.hide-this{
+  visibility: hidden;
+}
+
+.agree{
+  margin-right: 3px;
+}
+
+.agree:hover, .disagree:hover{
+  background-color: #dedede;
+  shadow: 1px 1px 1px 1px;
+}
+
+.tick text {
+  margin-right: 5px;
+  margin-left: 5px
+}
