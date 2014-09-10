@@ -207,13 +207,13 @@ var Pair = React.createClass({
 	renderArticles: function(articles, difference_score, tags, category){
 		var styleCategory = {
 			textTransform: "uppercase",
-			letterSpacing: "3px",
+			letterSpacing: "4px",
 			color: "black"
 		}
 		return(
 			<div className="pair row">
 				<div className="paired_articles">
-					<h3 className = "text-center" style = {styleCategory}>{category}</h3>
+					<h1 className = "text-center" style = {styleCategory}>{category}</h1>
 					<Article options={articles[0]} tags = {tags[0]} size={"large-6 columns"}/>
 					<Article options={articles[1]} tags ={tags[1]} size={"large-6 columns"}/>
 				</div>
@@ -231,7 +231,7 @@ var Pair = React.createClass({
 					<div className="row">
 					<br/>
 					<h1 className="accentWord"> Flip/Side</h1>
-					<h3> Read</h3>
+					<h3> Every story has another side. </h3>
 					</div>
 				</div>
 					<div className = "panel large-1 columns static-first hide-for-medium-down">
@@ -318,9 +318,9 @@ var Rating = React.createClass({
 			content:(
 				<div className="left">
 					<br/>
-					<div> Evaluate this article's coverage: </div>
-					<div className="agree radius secondary label">postive</div>
-					<div className="disagree radius secondary label">negative</div>
+					<div> Was this coverage fair? </div>
+					<div className="agree radius secondary label">Yes</div>
+					<div className="disagree radius secondary label">No</div>
 				</div>
 			),//'
 			response: ""
