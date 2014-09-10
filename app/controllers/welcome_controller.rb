@@ -8,13 +8,17 @@ class WelcomeController < ApplicationController
   end
 
   def filterTags
-    @articles  = Tag.find(params[:tag_id]).articles
+    p "*"*100
+    tag =  Tag.find(params[:tag_id])
+    p tag.name
+    @articles  = tag.articles
     if request.xhr?
       render :json => @articles.to_json(:include => {:article_tags=>{:include=>:tag}})
     end
   end
   # all the pairs
   def pairs
+    # need to add an order_by created at date. newsfeed should be most recent first.
     starting = params[:starting].to_i
     ending = params[:ending].to_i
 
