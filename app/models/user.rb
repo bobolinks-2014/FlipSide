@@ -69,7 +69,7 @@ class User < ActiveRecord::Base
       Pair.find_or_create_by(article1_id: new_pair[0].id,
               article2_id: new_pair[1].id,
               category_id: category.id,
-
+              user_id: self.id,
               difference_score: new_pair[2])
     end
 
