@@ -83,7 +83,7 @@ var TagCollection = React.createClass({
 		};
 
 		return(
-			<div style = {style} className= "secondary label">{tag.tag.name}</div>
+			<div style = {style} className= "secondary label tag">{tag.tag.name}</div>
 		)
 	},
 	render: function(){
@@ -435,13 +435,27 @@ var UserProfile = React.createClass({
 		    barnames.push(data[i].name);
 		};
 
+		var final_bar_names = [];
+
+		for (var e=0; e<barnames.length; e++) {
+			// console.log(barnames[e]);
+			// var split_arr = barnames[e].split(' ');
+			// console.log(split_arr);
+			// var new_title = split_arr.join("\n");
+			// console.log(new_title);
+			final_bar_names.push(barnames[e]);
+		}
+
+		console.log(final_bar_names)
+
 		var margin = {top: 150, right: 150, bottom: 150, left: 150},
 		    width = 1000 - margin.left - margin.right,
 		    height = 800 - margin.top - margin.bottom;
 
 		var x = d3.scale.ordinal()
-					    .domain(barnames)
-					    .rangeRoundBands([0, width], .25);
+								    .domain(final_bar_names)
+								    .rangeRoundBands([0, width], .25)
+								    ;
 
 		var y = d3.scale.linear()
 								    .domain([0, d3.max(idheights)])
@@ -466,7 +480,15 @@ var UserProfile = React.createClass({
 		svg.append("g")
 				.attr("class", "x axis")
 				.attr("transform", "translate(0," + height + ")")
-				.call(xAxis);
+				.call(xAxis)
+				.selectAll("text")
+					.style("text-anchor", "end")
+          .attr("dx", "-.8em")
+          .attr("dy", ".15em")
+          .attr("transform", function(d) {
+            return "rotate(-65)"
+          })
+				;
 
 		svg.append("g")
 		    .attr("class", "y axis")
@@ -477,7 +499,7 @@ var UserProfile = React.createClass({
 		    .attr("dy", "2em")
 		    .style("text-anchor", "middle")
 		    .style("font-size", "1.5em")
-		    .text("Categories")
+		    // .text("Categories")
 		    .classed("axis_title")
 		    ;
 
@@ -527,12 +549,13 @@ var UserProfile = React.createClass({
 												    })
 														.enter().append("rect")
 												    .attr({
-												        "x": function(d,i,j) {return x(barnames[j]);},
+												        "x": function(d,i,j) {return x(final_bar_names[j]);},
 												        "y": function(d) {return y(d.y0);},
 												        "width": x.rangeBand(),
 												        "height": function(d) {return height - y(d.height);}
 												    })
 												    .style("fill", function(d,i,j) {return colors[i]});
+	debugger;
 	},
 
 	// renderPackedCirclesGraph:function(packedCirclesData) {
