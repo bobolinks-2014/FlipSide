@@ -35,39 +35,102 @@ var TagCollection = React.createClass({
 		}.bind(this));
 		return tag_arr;
 	},
+
 	renderTag: function(tag){
-		if (tag.sentiment_score > 0.65 ){
+		return <Tag tag={tag}/>
+	},
+	render: function(){
+		return(
+			<div className="tagCollection">{this.state.tagCollection}</div>
+		)
+	}
+});
+
+// FILTERED MODEL //
+var Search = React.createClass({
+	getInitialState: function(){
+		this.renderArticles;
+		return {column: ""}
+	},
+	renderArticles: function(){
+		var column = [];
+
+		console.log("search did mount");
+		$.each(this.props.articles, function(){
+			tags = this.article_tags;
+			// send down an array of tags and then the article
+			column.push(<Article options={this} tags= {tags}/>);
+			console.log(column);
+		});
+		this.setState({column: column});
+		console.log(this.state);
+	},
+	componentDidMount: function(){
+		this.renderArticles();
+	},
+	componentWillReceiveProps: function(){
+		console.log("componentWillMount")
+		this.renderArticles();
+	},
+	render: function(){
+
+		return(
+			<div className="row">{this.state.column}</div>
+		)
+	}
+});
+
+
+
+function renderSearch(data){
+		React.renderComponent(
+		<Search articles={data}/>,
+		document.getElementById('container')
+	);
+}
+// TAG MODEL //
+var Tag = React.createClass({
+	onClick: function(){
+		console.log("I clicked a tag")
+		var request = $.get('filterTags', {tag_id: this.props.tag.tag_id});
+		request.done(function(data){
+			this.renderSearch(data);
+		}.bind(this));
+	},
+	renderSearch: function(data){
+		console.log("search");
+		renderSearch(data);
+	},
+	render: function(){
+		var score = this.props.tag.sentiment_score;
+		if (score > 0.65 ){
 			var style = {
 				backgroundColor: "#004400",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
 		}
-		else if (tag.sentiment_score > 0.35 ){
+		else if (score > 0.35 ){
 			var style = {
 				backgroundColor: "#2d882d",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
 		}
-		else if (tag.sentiment_score > -0.35 ){
+		else if (score > -0.35 ){
 			var style = {
 				backgroundColor: "gray",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
 		}
-		else if (tag.sentiment_score > -0.65 ){
+		else if (score > -0.65 ){
 			var style = {
 				backgroundColor: "#aa3535",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
@@ -76,22 +139,18 @@ var TagCollection = React.createClass({
 			var style = {
 				backgroundColor: "#570000",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
 		};
 
 		return(
-			<div style = {style} className= "secondary label tag">{tag.tag.name}</div>
-		)
-	},
-	render: function(){
-		return(
-			<div className="tagCollection">{this.state.tagCollection}</div>
+			<div style = {style} className= "tag secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
 		)
 	}
 });
+
+
 
 
 // PAIR MODEL //
@@ -109,12 +168,15 @@ var Pair = React.createClass({
 			console.log( "waiting ...")
 		});
 		request.done(function(data){
+			console.log("articles requeest done");
 			$.each(data, function(index){
 				var articles = [];
 				if (data[index]!== null){
 					articles.push(data[index].article1);
 					articles.push(data[index].article2);
+
 					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
+					console.log(pairRendered);
 					pair_arr.push(pairRendered);
 				}
 			}.bind(this));
@@ -225,6 +287,8 @@ var Article = React.createClass({
 		});
 	},
 	render: function(){
+		console.log("render Article")
+		console.log(this.props.tags)
 		return (
 			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 
@@ -555,7 +619,7 @@ var UserProfile = React.createClass({
 												        "height": function(d) {return height - y(d.height);}
 												    })
 												    .style("fill", function(d,i,j) {return colors[i]});
-	debugger;
+	// debugger;
 	},
 
 	// renderPackedCirclesGraph:function(packedCirclesData) {
