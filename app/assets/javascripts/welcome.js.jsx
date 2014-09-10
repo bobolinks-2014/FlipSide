@@ -583,12 +583,12 @@ var UserProfile = React.createClass({
 
     svg.append("text")
 		    .attr("transform", "rotate(-90)")
-        .attr("y", 0 - 90)
+        .attr("y", 0 - 100)
         .attr("x",0 - (height / 2))
         .attr("dy", "2em")
         .style("text-anchor", "middle")
         .style("font-size", "1.5em")
-        .text("Stories Read")
+        .text("Articles Voted On")
         .classed("axis_title")
         ;
 
@@ -654,7 +654,7 @@ var UserProfile = React.createClass({
 var WelcomeMessage = React.createClass({
 		render: function() {
 			return (
-				<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, this panel will be replaced with a graph displaying your opinions.</p>
+				<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, this panel will be replaced with data on your reading habits.</p>
 			)
 		}
 	})
