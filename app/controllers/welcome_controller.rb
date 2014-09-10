@@ -30,7 +30,7 @@ class WelcomeController < ApplicationController
       p "not signed in"
       @pairs = Pair.defaults
     end
-    @pairs.order(:created_at)
+    @pairs.order(created_at: :desc)
     if request.xhr?
       render :json => @pairs[starting..ending].to_json(:include=>{
         :category=>{:only => [:name]},
