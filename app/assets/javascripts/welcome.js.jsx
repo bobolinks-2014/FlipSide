@@ -103,7 +103,7 @@ var Tag = React.createClass({
 		var score = this.props.tag.sentiment_score;
 		if (score > 0.65 ){
 			var style = {
-				backgroundColor: "#910000",
+				backgroundColor: "#005600",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -111,7 +111,7 @@ var Tag = React.createClass({
 		}
 		else if (score > 0.35 ){
 			var style = {
-				backgroundColor: "#E34848",
+				backgroundColor: "#3ab53a",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -127,7 +127,7 @@ var Tag = React.createClass({
 		}
 		else if (score > -0.65 ){
 			var style = {
-				backgroundColor: "#3ab53a",
+				backgroundColor: "#E34848",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -135,7 +135,7 @@ var Tag = React.createClass({
 		}
 		else{
 			var style = {
-				backgroundColor: "#005600",
+				backgroundColor: "#910000",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -207,13 +207,13 @@ var Pair = React.createClass({
 	renderArticles: function(articles, difference_score, tags, category){
 		var styleCategory = {
 			textTransform: "uppercase",
-			letterSpacing: "4px",
+			letterSpacing: "0.4em",
 			color: "black"
 		}
 		return(
 			<div className="pair row">
 				<div className="paired_articles">
-					<h1 className = "text-center" style = {styleCategory}>{category}</h1>
+					<h2 className = "text-center" style = {styleCategory}>{category}</h2>
 					<Article options={articles[0]} tags = {tags[0]} size={"large-6 columns"}/>
 					<Article options={articles[1]} tags ={tags[1]} size={"large-6 columns"}/>
 				</div>
@@ -314,15 +314,18 @@ var Article = React.createClass({
 // RATING MODEL //
 var Rating = React.createClass({
 	getInitialState: function(){
+		var style = {
+			fontSize: "17px",
+		}
 		return {
 			content:(
 				<div className="left">
 					<br/>
 					<div> Was this coverage fair? </div>
-					<div className="agree radius secondary label">Yes</div>
-					<div className="disagree radius secondary label">No</div>
+					<div className="agree radius secondary label" style={style} >Yes</div>
+					<div className="disagree radius secondary label" style={style} >No</div>
 				</div>
-			),//'
+			),
 			response: ""
 		}
 	},
