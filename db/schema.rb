@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(version: 20140907154231) do
   create_table "article_tags", force: true do |t|
     t.integer  "article_id"
     t.integer  "tag_id"
+    # Add indexes for the above two columns
+    #
     t.decimal  "sentiment_score"
     t.decimal  "relevance"
     t.datetime "created_at"

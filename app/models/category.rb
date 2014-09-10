@@ -27,32 +27,33 @@ class Category < ActiveRecord::Base
                 difference_score: pair[2])
   end
 
+class ArticlePair(article_1, article_2, difference)
+  def initialize(article_1, article_2, difference)
 
-  def find_pair(article=nil)
-    article_pair = [0,0,0]
+  end
 
-    if article
-      all_articles = [article]
-      articles_left = self.articles.to_a
-    else
-      all_articles = self.articles
-      articles_left = self.articles[1..-1]
+end
+
+
+  def find_generic_pair
+    pairs = []
+    self.articles.each do |subject|
+      pairs << find_pair(subject, self.articles.remove(subject))
     end
 
-    all_articles.each do |article1|
-      articles_left.each do |article2|
+    pairs.min_by{|p| p.difference}
+  end
 
-        difference = sum_differences(article1, article2)
+  def find_pair(subject, candidates)
+    pairs = []
+    candidates.each do |candidate|
+      difference = sum_differences(subject, candidate)
+      shared_tag_count = compare_tags(subject, candidate)
 
-        if (compare_tags(article1, article2, 2)) && (difference > article_pair.last) #&& (article1.source != article2.source)
-          article_pair = [article1, article2, difference]
-        end
-
-      end
-      articles_left.shift
+      pairs << ArticlePair.new(subject, candidate, difference) if shared_tag_count >= 2
     end
 
-    article_pair
+    pairs.max_by{|p| p.difference}
   end
 
   #method for evaluating differences between articles' relevant tags scores'
