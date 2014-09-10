@@ -95,10 +95,14 @@ var Pair = React.createClass({
 	getInitialState: function(){
 		return {pairs: ""};
 	},
-	getArticles: function(){
-		request = $.get('pairs');
+
+	getArticles: function(starting, ending){
+		request = $.get('pairs', {starting: starting, ending:ending});
 
 		pair_arr = [];
+		request.progress(function(){
+			console.log( "waiting ...")
+		});
 		request.done(function(data){
 			$.each(data, function(index){
 				var articles = [];
@@ -133,7 +137,9 @@ var Pair = React.createClass({
 	},
 	componentDidMount: function(){
 		console.log("componentDidMount");
-		this.getArticles();
+		this.getArticles(0,3);
+		this.getArticles(4,9);
+		this.getArticles(10,-1);
 	},
 	renderArticles: function(articles, difference_score, tags){
 		return(
@@ -158,9 +164,9 @@ var Pair = React.createClass({
 			<div className='newsFeed large-12'>
 				<div className = "panel large-2 columns">
 					<h4>About</h4>
-					<p> The media likes to feed you only what you want to hear. At FlipSide, we strive to do the opposite.</p>
-					<h4>Article Sentiment Analysis</h4>
-					<p>Each article is analyzed for sentiment on the Sentiment is the attitude or opinion expressed towards something, such as a person, product, organization or location. Article sentiments are categorized as follows: </p>
+					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
+					<h4>Detecting Bias</h4>
+					<p>No news outlet is impartial. Sentiment Tags bring this to the forefront, conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 					<ul className="no-bullet">
 						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
 						<li style = {styleB} className= "secondary label"><div>negative</div></li>
@@ -172,7 +178,7 @@ var Pair = React.createClass({
 				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
 				{this.state.pairs}
 			</div>
-		);
+		);//'
 	}
 })
 
@@ -193,9 +199,10 @@ var Article = React.createClass({
 		this.setState({
 			style:{
 				boxShadow: "0px 1px 10px #888888",
-				cursor: "pointer"
+				cursor: "pointer",
+				backgroundColor: '#F2F2F2'
 			},
-			titleStyle: {color: "gray", textDecoration: "underline"}
+			titleStyle: {textDecoration: "underline"}
 		});
 
 	},
