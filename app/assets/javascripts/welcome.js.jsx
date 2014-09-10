@@ -314,15 +314,18 @@ var Article = React.createClass({
 // RATING MODEL //
 var Rating = React.createClass({
 	getInitialState: function(){
+		var style = {
+			fontSize: "17px",
+		}
 		return {
 			content:(
 				<div className="left">
 					<br/>
 					<div> Was this coverage fair? </div>
-					<div className="agree radius secondary label">Yes</div>
-					<div className="disagree radius secondary label">No</div>
+					<div className="agree radius secondary label" style={style} >Yes</div>
+					<div className="disagree radius secondary label" style={style} >No</div>
 				</div>
-			),//'
+			),
 			response: ""
 		}
 	},
