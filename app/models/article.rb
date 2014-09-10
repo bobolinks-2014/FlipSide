@@ -1,3 +1,4 @@
+require 'pry'
 class Article < ActiveRecord::Base
 	has_many :ratings
 	has_many :article_tags
@@ -10,7 +11,7 @@ class Article < ActiveRecord::Base
       kw_name = keyword["text"]
       tag = Tag.find_or_create_by(name: kw_name)
       tag.save
-
+      next unless keyword["sentiment"]
       sentiment_score = keyword["sentiment"]["type"] == "neutral" ?
                         0 :
                         keyword["sentiment"]["score"]
