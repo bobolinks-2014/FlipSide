@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'test' => 'application#test'
 
   get 'edit_profile' => "users#edit"
+  get 'update_profile' => "users#update"
+  get 'delete_profile' => "users#destroy"
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

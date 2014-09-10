@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   include SessionsHelper
   before_filter :signed_in_user,
                 only: [:index, :edit, :update, :destroy]
-  before_filter :correct_user,   only: [:edit, :update]
+  # before_filter :correct_user,   only: [:edit, :update]
 
   def index
     @users = User.all
@@ -71,6 +71,7 @@ class UsersController < ApplicationController
       final_sentiment_array = new_array.sort { |x,y| x["layers"]["positive"]+x["layers"]["negative"] <=> y["layers"]["positive"]+y["layers"]["negative"] }.reverse.first(6)
 
       render :json => {success: true, user: {
+        id: user.id,
         email: user.email,
         name: user.name,
         dataset: final_sentiment_array
@@ -85,7 +86,6 @@ class UsersController < ApplicationController
   def create
 
     @user = User.new(strong_params)
-    p params
     if @user.save
       session[:user_id] = @user.id
       render :json => {success: true, user: @user.email}

@@ -460,13 +460,17 @@ var UserProfile = React.createClass({
 			type: "GET",
 			url: '/profile',
 		});
-
+		console.log("componentDidMount")
 		request.done(function(response) {
-			if(response.success == true) {
+			debugger;
+			if(response.success === true && response.user.dataset.length != 0) {
+				console.log("in here")
+				console.log(response.user.dataset)
 				var dataset = response.user.dataset;
 				this.setState({stackedBarData:dataset});
 				this.renderStackedBarGraph(dataset);
-				// this.renderPackedCirclesGraph();
+			} else {
+				renderWelcomeMessage();
 			}
 		}.bind(this))
 		// AJAX request, get user and data
@@ -474,8 +478,6 @@ var UserProfile = React.createClass({
 	},
 
 	renderStackedBarGraph: function(stackedBarData) {
-		console.log(stackedBarData)
-
 		//Width and height
 		//add as many elements to data as necessary, all layers should be present in first data element, add or remove layer elements as necessary
 		var data = stackedBarData
@@ -619,86 +621,37 @@ var UserProfile = React.createClass({
 												    .style("fill", function(d,i,j) {return colors[i]});
 	},
 
-	// renderPackedCirclesGraph:function(packedCirclesData) {
-	// 	console.log("Hooray!")
-
-	// 	packedCirclesData = { "name": "categories",
-	// 												// "value": 50,
-	// 												"children": [
-	// 													{ "name": "Putin", "value" : 20 },
-	// 													{ "name": "Obama", "value" : 40 },
-	// 													{ "name": "America", "value" : 10 },
-	// 													{ "name": "Russia", "value" : 70 }
-	// 												]
-	// 											};
-
-	// 	var data = packedCirclesData
-
-	// 	var width = 1000,
-	// 	    height = 800,
-	// 	    r = 720,
-	// 	    x = d3.scale.linear().range([0, r]),
- //    		y = d3.scale.linear().range([0, r]);
-
-	// 	var pack = d3.layout.pack()
-	// 								.size([width, height])
-	// 								.padding(10);
-
-	// 	var svg = d3.select("#packedCircles").append("svg")
-	// 																				.attr("width", width)
-	// 																				.attr("height", height)
-
-	// 	var nodes = pack.nodes(data);
-
-	// 	var circle = svg.selectAll("circle")
-	// 									.data(nodes)
-	// 									.enter().append("circle")
-	// 									.attr("r", function(d) { return d.value; })
-	// 									.attr("cx", function(d) { return d.x; })
- //      							.attr("cy", function(d) { return d.y; })
-	// 									.attr("class", "category")
-	// 									.style("fill", "steelblue")
-	// 									.attr("opacity", 0.25)
-	// 									.attr("stroke", "gray")
-	// 									.attr("stroke-width", "2");
-
-	// 	var text = svg.selectAll("text")
-	// 								.data(nodes)
-	// 								.enter().append("text")
-	// 								.attr("class", function(d) { return d.children ? "categories" : "tag"; })
-	// 					      .attr("x", function(d) { return d.x; })
-	// 					      .attr("y", function(d) { return d.y; })
-	// 					      .attr("dy", ".35em")
-	// 					      .attr("text-anchor", "middle")
-	// 					      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
-	// 					      .text(function(d) { return d.name; });
-	// },
-
   render: function() {
     return (
     	<div>
 
 	      <div className="userProfile" className="text-center">
 	        <h1>Welcome to your user profile, {this.props.user.name}.</h1>
-	        <p>Your email address is {this.props.user.email}.</p>
+	        <div id="welcomeMessage"></div>
+	        
 	      </div>
-
-	 
-					<div id="user_profile_edit_button">Edit your profile</div>
-					<a href="/delete" id="user_profile_delete_button">Delete your profile</a>
-					<a href="/email" id="email_devs_button">Send us a message!</a>
-
-				<div id="editUserForm" className="text-center"> </div>
 
 	      <div id="stackedBar" className="text-center"></div>
 
-				<div id="packedCircles" className="text-center"> </div>
-				
 			</div>
     )
   }
 });
 
+var WelcomeMessage = React.createClass({
+		render: function() {
+			return (
+				<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, a snapshot of your overall sentiment will appear here.</p>
+			)
+		}
+	})
+
+function renderWelcomeMessage() {
+	React.renderComponent(
+    <WelcomeMessage/>,
+    document.getElementById('welcomeMessage')
+	);
+}
 
 function renderUserProfile(user){
   React.renderComponent(
@@ -706,57 +659,6 @@ function renderUserProfile(user){
     document.getElementById('container')
   );
 }
-
-var EditUserForm = React.createClass({
-	render: function() {
-		return (
-			<div>{this.props.user.name}</div>
-		)
-	}
-});
-
-function renderEditUserForm(user){
-  React.renderComponent(
-    <EditUserForm />,
-    document.getElementById('#editUserForm')
-  );
-}
-
-$('div').on('click', "#user_profile_edit_button", function() {
-
-	console.log("Prevented a default")
-	debugger;
-	var request = $.ajax({
-		type: "GET",
-		url: "/edit"
-	});
-	console.log("Sent request")
-
-	request.done(function(response) {
-		console.log(response)
-		renderEditUserForm(response.user);
-	})
-});
-
-// $("#user_profile_edit_button").on('click', function(e) {
-// 	e.preventDefault();
-// 	var name = $("#edit_name").val();
-// 	var email = $("#edit_email").val();
-// 	var password = $("#edit_password").val();
-// 	var password_confirmation = $("#edit_password_confirmation").val();
-
-// 	var request = $.ajax({
-// 		type: "PATCH",
-// 		url: '/user',
-// 		data: { user: {name: name, email: email, password: password, password_confirmation: password_confirmation} },
-// 		dataType: "json"
-// 	});
-
-// 	request.done(function(response) {
-// 		renderUserProfile(response.user);
-// 	})
-// });
-
 
 $("#user_profile_link").on('click', function(e) {
   e.preventDefault();
