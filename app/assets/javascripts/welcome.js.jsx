@@ -481,6 +481,8 @@ var UserProfile = React.createClass({
 				var dataset = response.user.dataset;
 				this.setState({stackedBarData:dataset});
 				this.renderStackedBarGraph(dataset);
+				$('#welcomeMessage').hide();
+				$('#graphExpanation').show();
 			} else {
 				renderWelcomeMessage();
 			}
@@ -638,11 +640,10 @@ var UserProfile = React.createClass({
     	<div>
 
 	      <div className="userProfile" className="text-center">
-	        <h1>Welcome to your user profile, {this.props.user.name}.</h1>
-	        <div id="welcomeMessage"></div>
-	        
+	        <h1>{this.props.user.name}</h1>
+	        <div className="panel" id="welcomeMessage"></div>
 	      </div>
-
+	      <div className="panel" id="graphExplanation"></div>
 	      <div id="stackedBar" className="text-center"></div>
 
 			</div>
@@ -653,7 +654,7 @@ var UserProfile = React.createClass({
 var WelcomeMessage = React.createClass({
 		render: function() {
 			return (
-				<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, a snapshot of your overall sentiment will appear here.</p>
+				<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, this panel will be replaced with a graph displaying your opinions.</p>
 			)
 		}
 	})
