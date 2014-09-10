@@ -70,11 +70,12 @@ var Search = React.createClass({
 	componentDidMount: function(){
 		this.renderArticles();
 	},
-	componentWillMount: function(){
+	componentWillReceiveProps: function(){
 		console.log("componentWillMount")
 		this.renderArticles();
 	},
 	render: function(){
+
 		return(
 			<div className="row">{this.state.column}</div>
 		)
