@@ -67,7 +67,11 @@ var Search = React.createClass({
 		this.setState({column: column});
 		console.log(this.state);
 	},
-	componentDidMount:function(){
+	componentDidMount: function(){
+		this.renderArticles();
+	},
+	componentWillMount: function(){
+		console.log("componentWillMount")
 		this.renderArticles();
 	},
 	render: function(){
@@ -78,10 +82,7 @@ var Search = React.createClass({
 });
 
 
-	// componentWillMount: function(){
-	// 	console.log("componentWillMount")
-	// 	this.renderArticles();
-	// },
+
 function renderSearch(data){
 		React.renderComponent(
 		<Search articles={data}/>,
