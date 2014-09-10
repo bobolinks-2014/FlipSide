@@ -186,7 +186,7 @@ var Pair = React.createClass({
 					articles.push(data[index].article1);
 					articles.push(data[index].article2);
 
-					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
+					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles), data[index].category.name);
 					pair_arr.push(pairRendered);
 				}
 			}.bind(this));
@@ -218,10 +218,16 @@ var Pair = React.createClass({
 		this.getArticles(4,9);
 		this.getArticles(10,-1);
 	},
-	renderArticles: function(articles, difference_score, tags){
+	renderArticles: function(articles, difference_score, tags, category){
+		var styleCategory = {
+			textTransform: "uppercase",
+			letterSpacing: "1px",
+			color: "gray"
+		}
 		return(
 			<div className="pair row">
 				<div className="paired_articles">
+					<h5 className = "text-center" style = {styleCategory}>{category}</h5>
 					<Article options={articles[0]} tags = {tags[0]} size={"large-6 columns"} />
 					<Article options={articles[1]} tags ={tags[1]} size={"large-6 columns"}/>
 				</div>
@@ -249,7 +255,7 @@ var Pair = React.createClass({
 					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 				</div>
 				<div className="panel large-2 columns hide-this" ></div>
-				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
+				<h2 className="text-center large-8 columns">World News Feed</h2>
 				{this.state.pairs}
 			</div>
 		);//'
