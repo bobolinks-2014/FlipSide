@@ -8,7 +8,7 @@ class MyNoko
   def self.parse(url)
     uri = URI(url)
     response = Net::HTTP.get_response(uri)
-    if response.code == 200
+    if response.code == "200"
       doc = Nokogiri::HTML(response.body)
     else
       puts "Failed to download #{url}"
