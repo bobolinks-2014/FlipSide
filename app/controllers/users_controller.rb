@@ -95,24 +95,25 @@ class UsersController < ApplicationController
     end
   end
 
-  # def edit
-  # end
+  def edit
+    if session[:user_id]
+      @user = User.find(session[:user_id])
+      render :json => {user: {name: @user.name, email: @user.email } }
+    end
+  end
 
-  # def update
-  #   if @user.update_attributes(user_params)
-  #     flash[:success] = "Profile updated"
-  #     sign_in @user
-  #     redirect_to @user
-  #   else
-  #     render 'edit'
-  #   end
-  # end
+  def update
+    if @user.update_attributes(user_params)
+      render :json => {user: {name: @user.name, email: @user.email } }
+    else
+      redirect_to '/profile'
+    end
+  end
 
-  # def destroy
-  #   User.find(params[:id]).destroy
-  #   flash[:success] = "User destroyed."
-  #   redirect_to users_url
-  # end
+  def destroy
+    User.find(session[:user_id]).destroy
+    redirect_to root
+  end
 
 
   private

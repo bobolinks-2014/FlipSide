@@ -339,8 +339,6 @@ $("#signin_form").on('submit', function(e) {
 
 $("#signup_form").on('submit', function(e) {
 	e.preventDefault();
-	console.log("signup form on submit");
-
 	var name = $("#signup_name").val();
 	var email = $("#signup_email").val();
 	var password = $("#signup_password").val();
@@ -548,7 +546,6 @@ var UserProfile = React.createClass({
 												        "height": function(d) {return height - y(d.height);}
 												    })
 												    .style("fill", function(d,i,j) {return colors[i]});
-	debugger;
 	},
 
 	// renderPackedCirclesGraph:function(packedCirclesData) {
@@ -609,16 +606,28 @@ var UserProfile = React.createClass({
   render: function() {
     return (
     	<div>
+
 	      <div className="userProfile" className="text-center">
 	        <h1>Welcome to your user profile, {this.props.user.name}.</h1>
 	        <p>Your email address is {this.props.user.email}.</p>
 	      </div>
-	      <div id="stackedBar" className="text-center"> </div>
-				// <div id="packedCircles" className="text-center"> </div>
+
+	 
+					<div id="user_profile_edit_button">Edit your profile</div>
+					<a href="/delete" id="user_profile_delete_button">Delete your profile</a>
+					<a href="/email" id="email_devs_button">Send us a message!</a>
+
+				<div id="editUserForm" className="text-center"> </div>
+
+	      <div id="stackedBar" className="text-center"></div>
+
+				<div id="packedCircles" className="text-center"> </div>
+				
 			</div>
     )
   }
 });
+
 
 function renderUserProfile(user){
   React.renderComponent(
@@ -626,6 +635,57 @@ function renderUserProfile(user){
     document.getElementById('container')
   );
 }
+
+var EditUserForm = React.createClass({
+	render: function() {
+		return (
+			<div>420 blaze it {this.props.user.name}</div>
+		)
+	}
+});
+
+function renderEditUserForm(user){
+  React.renderComponent(
+    <EditUserForm />,
+    document.getElementById('#editUserForm')
+  );
+}
+
+$('div').on('click', "#user_profile_edit_button", function() {
+
+	console.log("Prevented a default")
+	debugger;
+	var request = $.ajax({
+		type: "GET",
+		url: "/user"
+	});
+	console.log("Sent request")
+
+	request.done(function(response) {
+		console.log(response)
+		renderEditUserForm(response.user);
+	})
+});
+
+// $("#user_profile_edit_button").on('click', function(e) {
+// 	e.preventDefault();
+// 	var name = $("#edit_name").val();
+// 	var email = $("#edit_email").val();
+// 	var password = $("#edit_password").val();
+// 	var password_confirmation = $("#edit_password_confirmation").val();
+
+// 	var request = $.ajax({
+// 		type: "PATCH",
+// 		url: '/user',
+// 		data: { user: {name: name, email: email, password: password, password_confirmation: password_confirmation} },
+// 		dataType: "json"
+// 	});
+
+// 	request.done(function(response) {
+// 		renderUserProfile(response.user);
+// 	})
+// });
+
 
 $("#user_profile_link").on('click', function(e) {
   e.preventDefault();
