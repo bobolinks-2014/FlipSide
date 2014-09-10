@@ -41,7 +41,8 @@ var TagCollection = React.createClass({
 				backgroundColor: "#004400",
 				color: "white",
 				cursor: "default",
-				margin: "1px"
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else if (tag.sentiment_score > 0.35 ){
@@ -49,7 +50,8 @@ var TagCollection = React.createClass({
 				backgroundColor: "#2d882d",
 				color: "white",
 				cursor: "default",
-				margin: "1px"
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else if (tag.sentiment_score > -0.35 ){
@@ -57,7 +59,8 @@ var TagCollection = React.createClass({
 				backgroundColor: "gray",
 				color: "white",
 				cursor: "default",
-				margin: "1px"
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else if (tag.sentiment_score > -0.65 ){
@@ -65,7 +68,8 @@ var TagCollection = React.createClass({
 				backgroundColor: "#aa3535",
 				color: "white",
 				cursor: "default",
-				margin: "1px"
+				margin: "1px",
+				padding: "10px"
 			};
 		}
 		else{
@@ -73,7 +77,8 @@ var TagCollection = React.createClass({
 				backgroundColor: "#570000",
 				color: "white",
 				cursor: "default",
-				margin: "1px"
+				margin: "1px",
+				padding: "10px"
 			};
 		};
 
@@ -155,18 +160,17 @@ var Pair = React.createClass({
 	render:function(){
 
 		console.log("rendering pairs");
-		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px"}
-    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px"}
-    var styleC = {backgroundColor: "gray", color:"white", margin: "1px"}
-    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px"}
-    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px"}
+		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px", padding:"10px"}
+    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px", padding:"10px"}
+    var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10px"}
+    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px", padding:"10px"}
+    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
 		return (
 			<div className='newsFeed large-12'>
-				<div className = "panel large-2 columns">
+				<div className = "panel large-2 columns static-first">
 					<h4>About</h4>
 					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
 					<h4>Detecting Bias</h4>
-					<p>No news outlet is impartial. Sentiment Tags bring this to the forefront, conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 					<ul className="no-bullet">
 						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
 						<li style = {styleB} className= "secondary label"><div>negative</div></li>
@@ -174,7 +178,9 @@ var Pair = React.createClass({
 						<li style = {styleD} className= "secondary label"><div>positive</div></li>
 						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
 					</ul>
+					<p>No news outlet is impartial. Sentiment Tags bring this to the forefront, conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 				</div>
+				<div className="panel large-2 columns hide-this" ></div>
 				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
 				{this.state.pairs}
 			</div>
@@ -200,7 +206,8 @@ var Article = React.createClass({
 			style:{
 				boxShadow: "0px 1px 10px #888888",
 				cursor: "pointer",
-				backgroundColor: '#F2F2F2'
+				backgroundColor: '#F2F2F2',
+				transition: "0.15s"
 			},
 			titleStyle: {textDecoration: "underline"}
 		});
