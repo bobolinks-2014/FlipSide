@@ -56,8 +56,6 @@ var Search = React.createClass({
 		var column = [];
 
 		console.log("search did mount");
-
-		// debugger;
 		$.each(this.props.articles, function(){
 			tags = this.article_tags;
 			// send down an array of tags and then the article
@@ -101,7 +99,6 @@ var Tag = React.createClass({
 	},
 	renderSearch: function(data){
 		console.log("search");
-		// debugger;
 		renderSearch(data);
 	},
 	render: function(){
@@ -110,7 +107,6 @@ var Tag = React.createClass({
 			var style = {
 				backgroundColor: "#004400",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
@@ -119,7 +115,6 @@ var Tag = React.createClass({
 			var style = {
 				backgroundColor: "#2d882d",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
@@ -128,7 +123,6 @@ var Tag = React.createClass({
 			var style = {
 				backgroundColor: "gray",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
@@ -137,7 +131,6 @@ var Tag = React.createClass({
 			var style = {
 				backgroundColor: "#aa3535",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
@@ -146,7 +139,6 @@ var Tag = React.createClass({
 			var style = {
 				backgroundColor: "#570000",
 				color: "white",
-				cursor: "default",
 				margin: "1px",
 				padding: "10px"
 			};
@@ -154,11 +146,6 @@ var Tag = React.createClass({
 
 		return(
 			<div style = {style} className= "tag secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
-		)
-	},
-	render: function(){
-		return(
-			<div className="tagCollection">{this.state.tagCollection}</div>
 		)
 	}
 });
@@ -181,12 +168,15 @@ var Pair = React.createClass({
 			console.log( "waiting ...")
 		});
 		request.done(function(data){
+			console.log("articles requeest done");
 			$.each(data, function(index){
 				var articles = [];
 				if (data[index]!== null){
 					articles.push(data[index].article1);
 					articles.push(data[index].article2);
+
 					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
+					console.log(pairRendered);
 					pair_arr.push(pairRendered);
 				}
 			}.bind(this));
@@ -298,6 +288,7 @@ var Article = React.createClass({
 	},
 	render: function(){
 		console.log("render Article")
+		console.log(this.props.tags)
 		return (
 			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 
@@ -628,7 +619,7 @@ var UserProfile = React.createClass({
 												        "height": function(d) {return height - y(d.height);}
 												    })
 												    .style("fill", function(d,i,j) {return colors[i]});
-	debugger;
+	// debugger;
 	},
 
 	// renderPackedCirclesGraph:function(packedCirclesData) {
