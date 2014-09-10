@@ -639,7 +639,7 @@ function renderUserProfile(user){
 var EditUserForm = React.createClass({
 	render: function() {
 		return (
-			<div>420 blaze it {this.props.user.name}</div>
+			<div>{this.props.user.name}</div>
 		)
 	}
 });
@@ -657,7 +657,7 @@ $('div').on('click', "#user_profile_edit_button", function() {
 	debugger;
 	var request = $.ajax({
 		type: "GET",
-		url: "/user"
+		url: "/edit"
 	});
 	console.log("Sent request")
 

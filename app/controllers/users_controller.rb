@@ -95,6 +95,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit_profile
+  end
+
   def edit
     if session[:user_id]
       @user = User.find(session[:user_id])
