@@ -31,7 +31,7 @@ class WelcomeController < ApplicationController
       @pairs = Pair.defaults
     end
 
-   @pairs = @pairs.sort_by &:created_at
+   @pairs = (@pairs.sort_by &:created_at).reverse
 
     if request.xhr?
       render :json => @pairs[starting..ending].to_json(:include=>{
