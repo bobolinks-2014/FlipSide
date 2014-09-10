@@ -66,7 +66,6 @@ class MyNoko
                    category: article[:category])
 
     keywords = Alchemy.alchemize(new_article.url)
-    # binding.pry
     new_article.make_tags(keywords, 10)
   end
 
