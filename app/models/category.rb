@@ -20,11 +20,11 @@ class Category < ActiveRecord::Base
 
     pair = find_pair
     return if pair[0] == 0
-
     Pair.create(article1_id: pair[0].id,
                 article2_id: pair[1].id,
                 category_id: self.id,
                 difference_score: pair[2])
+
   end
 
 
@@ -43,8 +43,7 @@ class Category < ActiveRecord::Base
       articles_left.each do |article2|
 
         difference = sum_differences(article1, article2)
-
-        if (compare_tags(article1, article2, 2)) && (difference > article_pair.last) #&& (article1.source != article2.source)
+        if (compare_tags(article1, article2, 2)) && (difference > article_pair.last)
           article_pair = [article1, article2, difference]
         end
 

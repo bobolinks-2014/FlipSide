@@ -18,9 +18,14 @@ var opts = {
   top: '50%', // Top position relative to parent
   left: '50%' // Left position relative to parent
 };
-
 var target = document.getElementById('container');
 var spinner = new Spinner(opts).spin(target);
+
+var styleE = {backgroundColor: "#004400", color:"white", margin: "1px", padding:"10px"}
+var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px", padding:"10px"}
+var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10px"}
+var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px", padding:"10px"}
+var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
 
 // TAG MODEL //
 var TagCollection = React.createClass({
@@ -54,52 +59,59 @@ var Search = React.createClass({
 	},
 	renderArticles: function(){
 		var column = [];
-
-		console.log("search did mount");
 		$.each(this.props.articles, function(){
 			tags = this.article_tags;
 			// send down an array of tags and then the article
-			column.push(<Article options={this} tags= {tags}/>);
-			console.log(column);
+			column.push(<Article options={this} tags= {tags} size={"large-12 columns"}/>);
 		});
 		this.setState({column: column});
-		console.log(this.state);
 	},
 	componentDidMount: function(){
 		this.renderArticles();
 	},
 	componentWillReceiveProps: function(){
-		console.log("componentWillMount")
 		this.renderArticles();
 	},
 	render: function(){
-
 		return(
-			<div className="row">{this.state.column}</div>
+			<div>
+				<div className = "panel large-2 columns static-first hide-for-medium-down">
+					<h4>About</h4>
+					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
+					<h4>Detecting Bias</h4>
+					<ul className="no-bullet">
+						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
+						<li style = {styleB} className= "secondary label"><div>negative</div></li>
+						<li style = {styleC} className= "secondary label"><div>neutral</div></li>
+						<li style = {styleD} className= "secondary label"><div>positive</div></li>
+						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
+					</ul>
+					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each articles key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
+				</div>
+				<h2 className="text-center">Articles tagged {this.props.header}</h2>
+				<div className="row">{this.state.column}</div>
+			</div>
 		)
 	}
 });
 
 
 
-function renderSearch(data){
+function renderSearch(data, name){
 		React.renderComponent(
-		<Search articles={data}/>,
+		<Search articles={data} header={name}/>,
 		document.getElementById('container')
 	);
 }
 // TAG MODEL //
 var Tag = React.createClass({
 	onClick: function(){
-		console.log("I clicked a tag")
+		var name = this.props.tag.tag.name
+		console.log("I clicked a tag: "+name)
 		var request = $.get('filterTags', {tag_id: this.props.tag.tag_id});
 		request.done(function(data){
-			this.renderSearch(data);
+			renderSearch(data, name);
 		}.bind(this));
-	},
-	renderSearch: function(data){
-		console.log("search");
-		renderSearch(data);
 	},
 	render: function(){
 		var score = this.props.tag.sentiment_score;
@@ -145,7 +157,7 @@ var Tag = React.createClass({
 		};
 
 		return(
-			<div style = {style} className= "tag secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
+			<div style = {style} className= "tag radius secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
 		)
 	}
 });
@@ -168,15 +180,13 @@ var Pair = React.createClass({
 			console.log( "waiting ...")
 		});
 		request.done(function(data){
-			console.log("articles requeest done");
 			$.each(data, function(index){
 				var articles = [];
 				if (data[index]!== null){
 					articles.push(data[index].article1);
 					articles.push(data[index].article2);
 
-					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles));
-					console.log(pairRendered);
+					pairRendered = this.renderArticles(articles, data[index].difference_score, this.getCommonTags(articles), data[index].category.name);
 					pair_arr.push(pairRendered);
 				}
 			}.bind(this));
@@ -208,12 +218,18 @@ var Pair = React.createClass({
 		this.getArticles(4,9);
 		this.getArticles(10,-1);
 	},
-	renderArticles: function(articles, difference_score, tags){
+	renderArticles: function(articles, difference_score, tags, category){
+		var styleCategory = {
+			textTransform: "uppercase",
+			letterSpacing: "1px",
+			color: "gray"
+		}
 		return(
 			<div className="pair row">
 				<div className="paired_articles">
-					<Article options={articles[0]} tags = {tags[0]} />
-					<Article options={articles[1]} tags ={tags[1]} />
+					<h5 className = "text-center" style = {styleCategory}>{category}</h5>
+					<Article options={articles[0]} tags = {tags[0]} size={"large-6 columns"} />
+					<Article options={articles[1]} tags ={tags[1]} size={"large-6 columns"}/>
 				</div>
 				<hr/>
 			</div>
@@ -222,11 +238,7 @@ var Pair = React.createClass({
 	render:function(){
 
 		console.log("rendering pairs");
-		var styleE = {backgroundColor: "#004400", color:"white", margin: "1px", padding:"10px"}
-    var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px", padding:"10px"}
-    var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10px"}
-    var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px", padding:"10px"}
-    var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
+
 		return (
 			<div className='newsFeed large-12'>
 				<div className = "panel large-2 columns static-first hide-for-medium-down">
@@ -243,7 +255,7 @@ var Pair = React.createClass({
 					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
 				</div>
 				<div className="panel large-2 columns hide-this" ></div>
-				<h2 className="text-center large-8 columns">FlipSide - World News Feed</h2>
+				<h2 className="text-center large-8 columns">World News Feed</h2>
 				{this.state.pairs}
 			</div>
 		);//'
@@ -288,9 +300,9 @@ var Article = React.createClass({
 	},
 	render: function(){
 		console.log("render Article")
-		console.log(this.props.tags)
+		var classSet = this.props.size+' article-container'
 		return (
-			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
+			<div className = {classSet} style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 
 				<div className = 'article' id= {this.props.options.id} data-reveal-id="myModal">
 					<div className = {this.props.options.url}>
