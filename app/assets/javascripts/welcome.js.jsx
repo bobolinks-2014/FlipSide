@@ -21,11 +21,11 @@ var opts = {
 var target = document.getElementById('container');
 var spinner = new Spinner(opts).spin(target);
 
-var styleE = {backgroundColor: "#004400", color:"white", margin: "1px", padding:"10px"}
-var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px", padding:"10px"}
+var styleE = {backgroundColor: "#910000", color:"white", margin: "1px", padding:"10px"}
+var styleD = {backgroundColor: "#E34848", color:"white", margin: "1px", padding:"10px"}
 var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10px"}
-var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px", padding:"10px"}
-var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
+var styleB = {backgroundColor: "#3ab53a", color:"white", margin: "1px", padding:"10px"}
+var styleA = {backgroundColor: "#005600", color:"white", margin: "1px", padding:"10px"}
 
 // TAG MODEL //
 var TagCollection = React.createClass({
@@ -75,27 +75,13 @@ var Search = React.createClass({
 	render: function(){
 		return(
 			<div>
-				<div className = "panel large-2 columns static-first hide-for-medium-down">
-					<h4>About</h4>
-					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
-					<h4>Detecting Bias</h4>
-					<ul className="no-bullet">
-						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
-						<li style = {styleB} className= "secondary label"><div>negative</div></li>
-						<li style = {styleC} className= "secondary label"><div>neutral</div></li>
-						<li style = {styleD} className= "secondary label"><div>positive</div></li>
-						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
-					</ul>
-					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each articles key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
-				</div>
+
 				<h2 className="text-center">Articles tagged {this.props.header}</h2>
 				<div className="row">{this.state.column}</div>
 			</div>
 		)
 	}
 });
-
-
 
 function renderSearch(data, name){
 		React.renderComponent(
@@ -117,7 +103,7 @@ var Tag = React.createClass({
 		var score = this.props.tag.sentiment_score;
 		if (score > 0.65 ){
 			var style = {
-				backgroundColor: "#004400",
+				backgroundColor: "#910000",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -125,7 +111,7 @@ var Tag = React.createClass({
 		}
 		else if (score > 0.35 ){
 			var style = {
-				backgroundColor: "#2d882d",
+				backgroundColor: "#E34848",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -141,7 +127,7 @@ var Tag = React.createClass({
 		}
 		else if (score > -0.65 ){
 			var style = {
-				backgroundColor: "#aa3535",
+				backgroundColor: "#3ab53a",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -149,7 +135,7 @@ var Tag = React.createClass({
 		}
 		else{
 			var style = {
-				backgroundColor: "#570000",
+				backgroundColor: "#005600",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -221,14 +207,14 @@ var Pair = React.createClass({
 	renderArticles: function(articles, difference_score, tags, category){
 		var styleCategory = {
 			textTransform: "uppercase",
-			letterSpacing: "1px",
-			color: "gray"
+			letterSpacing: "4px",
+			color: "black"
 		}
 		return(
 			<div className="pair row">
 				<div className="paired_articles">
-					<h5 className = "text-center" style = {styleCategory}>{category}</h5>
-					<Article options={articles[0]} tags = {tags[0]} size={"large-6 columns"} />
+					<h1 className = "text-center" style = {styleCategory}>{category}</h1>
+					<Article options={articles[0]} tags = {tags[0]} size={"large-6 columns"}/>
 					<Article options={articles[1]} tags ={tags[1]} size={"large-6 columns"}/>
 				</div>
 				<hr/>
@@ -240,29 +226,35 @@ var Pair = React.createClass({
 		console.log("rendering pairs");
 
 		return (
-			<div className='newsFeed large-12'>
-				<div className = "panel large-2 columns static-first hide-for-medium-down">
-					<h4>About</h4>
-					<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
-					<h4>Detecting Bias</h4>
-					<ul className="no-bullet">
-						<li style = {styleA} className= "secondary label"><div>very negative</div></li>
-						<li style = {styleB} className= "secondary label"><div>negative</div></li>
-						<li style = {styleC} className= "secondary label"><div>neutral</div></li>
-						<li style = {styleD} className= "secondary label"><div>positive</div></li>
-						<li style = {styleE} className= "secondary label"><div>very positive</div></li>
-					</ul>
-					<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
+			<div>
+				<div className="landing">
+					<div className="row">
+					<br/>
+					<h1 className="accentWord"> Flip/Side</h1>
+					<h3> Every story has another side. </h3>
+					</div>
 				</div>
-				<div className="panel large-2 columns hide-this" ></div>
-				<h2 className="text-center large-8 columns">World News Feed</h2>
-				{this.state.pairs}
+					<div className = "panel large-1 columns static-first hide-for-medium-down">
+						<h4>Tag Bias</h4>
+						<ul className="no-bullet">
+							<li style = {styleA} className= "secondary label"><div>very positive</div></li><br/>
+							<li style = {styleB} className= "secondary label"><div>positive</div></li><br/>
+							<li style = {styleC} className= "secondary label"><div>neutral</div></li><br/>
+							<li style = {styleD} className= "secondary label"><div>negative</div></li><br/>
+							<li style = {styleE} className= "secondary label"><div>very negative</div></li><br/>
+						</ul>
+				</div>
+				<div className='newsFeed large-12 columns'>
+					{this.state.pairs}
+				</div>
 			</div>
-		);//'
+		);
 	}
 })
 
-//				<p className="text-center"> These articles discuss some category </p>
+
+
+	// 			<div className="panel large-2 columns hide-this" ></div>
 
 
 // ARTICLE MODEL //
@@ -272,7 +264,7 @@ var Article = React.createClass({
 		return {
 			showArticle: false,
 			style: {},
-			titleStyle: {textDecoration: "underline"}
+			titleStyle: {textDecoration: "underline", color: "#606060"}
 		};
 	},
 	onMouseOver: function(){
@@ -289,13 +281,13 @@ var Article = React.createClass({
 	},
 	onMouseDown: function(){
 		this.setState({
-			titleStyle: {color: "gray", textDecoration: "underline"}
+			titleStyle: {color: "black", textDecoration: "underline"}
 		});
 	},
 	onMouseLeave: function(){
 		this.setState({
 			style: {boxShadow: 'none'},
-			titleStyle: {color: "black", textDecoration: "underline"}
+			titleStyle: {color: "gray", textDecoration: "underline"}
 		});
 	},
 	render: function(){
@@ -326,9 +318,9 @@ var Rating = React.createClass({
 			content:(
 				<div className="left">
 					<br/>
-					<div> Evaluate this article's coverage: </div>
-					<div className="agree radius secondary label">postive</div>
-					<div className="disagree radius secondary label">negative</div>
+					<div> Was this coverage fair? </div>
+					<div className="agree radius secondary label">Yes</div>
+					<div className="disagree radius secondary label">No</div>
 				</div>
 			),//'
 			response: ""
