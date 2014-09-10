@@ -417,8 +417,6 @@ $("#signin_form").on('submit', function(e) {
 
 $("#signup_form").on('submit', function(e) {
 	e.preventDefault();
-	console.log("signup form on submit");
-
 	var name = $("#signup_name").val();
 	var email = $("#signup_email").val();
 	var password = $("#signup_password").val();
@@ -469,13 +467,21 @@ var UserProfile = React.createClass({
 			type: "GET",
 			url: '/profile',
 		});
-
+		console.log("componentDidMount")
 		request.done(function(response) {
-			if(response.success == true) {
+			debugger;
+			if(response.success === true && response.user.dataset.length != 0) {
+				console.log("in here")
+				console.log(response.user.dataset)
 				var dataset = response.user.dataset;
 				this.setState({stackedBarData:dataset});
 				this.renderStackedBarGraph(dataset);
-				// this.renderPackedCirclesGraph();
+				renderGraphExplanation();
+				$('#welcomeMessage').hide();
+				$('#graphExplanation').show();
+				$('#graphTitle').show();
+			} else {
+				renderWelcomeMessage();
 			}
 		}.bind(this))
 		// AJAX request, get user and data
@@ -483,8 +489,6 @@ var UserProfile = React.createClass({
 	},
 
 	renderStackedBarGraph: function(stackedBarData) {
-		console.log(stackedBarData)
-
 		//Width and height
 		//add as many elements to data as necessary, all layers should be present in first data element, add or remove layer elements as necessary
 		var data = stackedBarData
@@ -576,23 +580,23 @@ var UserProfile = React.createClass({
 
     svg.append("text")
 		    .attr("transform", "rotate(-90)")
-        .attr("y", 0 - 90)
+        .attr("y", 0 - 100)
         .attr("x",0 - (height / 2))
         .attr("dy", "2em")
         .style("text-anchor", "middle")
         .style("font-size", "1.5em")
-        .text("Stories Read")
+        .text("Articles Rated")
         .classed("axis_title")
         ;
 
-    svg.append("text")
-        .attr("transform", "translate(" + (width / 2) + " ," + (height - 600) + ")")
-        .attr("dy", "2em")
-        .style("text-anchor", "middle")
-        .style("font-size", "1.75em")
-        .text("Sentiment Snapshot")
-        .classed("graph_title")
-        ;
+    // svg.append("text")
+    //     .attr("transform", "translate(" + (width / 2) + " ," + (height - 600) + ")")
+    //     .attr("dy", "2em")
+    //     .style("text-anchor", "middle")
+    //     .style("font-size", "1.75em")
+    //     .text("Detect Your Biases")
+    //     .classed("graph_title")
+    //     ;
 
 		//add a g element for each bar
 		var bargroups = svg.append("g")
@@ -626,77 +630,55 @@ var UserProfile = React.createClass({
 												        "height": function(d) {return height - y(d.height);}
 												    })
 												    .style("fill", function(d,i,j) {return colors[i]});
-	// debugger;
 	},
-
-	// renderPackedCirclesGraph:function(packedCirclesData) {
-	// 	console.log("Hooray!")
-
-	// 	packedCirclesData = { "name": "categories",
-	// 												// "value": 50,
-	// 												"children": [
-	// 													{ "name": "Putin", "value" : 20 },
-	// 													{ "name": "Obama", "value" : 40 },
-	// 													{ "name": "America", "value" : 10 },
-	// 													{ "name": "Russia", "value" : 70 }
-	// 												]
-	// 											};
-
-	// 	var data = packedCirclesData
-
-	// 	var width = 1000,
-	// 	    height = 800,
-	// 	    r = 720,
-	// 	    x = d3.scale.linear().range([0, r]),
- //    		y = d3.scale.linear().range([0, r]);
-
-	// 	var pack = d3.layout.pack()
-	// 								.size([width, height])
-	// 								.padding(10);
-
-	// 	var svg = d3.select("#packedCircles").append("svg")
-	// 																				.attr("width", width)
-	// 																				.attr("height", height)
-
-	// 	var nodes = pack.nodes(data);
-
-	// 	var circle = svg.selectAll("circle")
-	// 									.data(nodes)
-	// 									.enter().append("circle")
-	// 									.attr("r", function(d) { return d.value; })
-	// 									.attr("cx", function(d) { return d.x; })
- //      							.attr("cy", function(d) { return d.y; })
-	// 									.attr("class", "category")
-	// 									.style("fill", "steelblue")
-	// 									.attr("opacity", 0.25)
-	// 									.attr("stroke", "gray")
-	// 									.attr("stroke-width", "2");
-
-	// 	var text = svg.selectAll("text")
-	// 								.data(nodes)
-	// 								.enter().append("text")
-	// 								.attr("class", function(d) { return d.children ? "categories" : "tag"; })
-	// 					      .attr("x", function(d) { return d.x; })
-	// 					      .attr("y", function(d) { return d.y; })
-	// 					      .attr("dy", ".35em")
-	// 					      .attr("text-anchor", "middle")
-	// 					      .style("opacity", function(d) { return d.r > 20 ? 1 : 0; })
-	// 					      .text(function(d) { return d.name; });
-	// },
 
   render: function() {
     return (
     	<div>
+
 	      <div className="userProfile" className="text-center">
-	        <h1>Welcome to your user profile, {this.props.user.name}.</h1>
-	        <p>Your email address is {this.props.user.email}.</p>
+	        <h1>{this.props.user.name}</h1>
+	        <div className="panel" id="welcomeMessage"></div>
+	        <h2 id="graphTitle">Detect Your Biases</h2>
+		      <div className="panel" id="graphExplanation"></div>
 	      </div>
-	      <div id="stackedBar" className="text-center"> </div>
-				// <div id="packedCircles" className="text-center"> </div>
+	      <div id="stackedBar" className="text-center"></div>
+
+
 			</div>
     )
   }
 });
+
+var WelcomeMessage = React.createClass({
+	render: function() {
+		return (
+			<p>Welcome to FlipSide. This is your personal profile page. As you read stories and vote on them, this panel will be replaced with data on your reading habits.</p>
+		)
+	}
+})
+
+var GraphExplanation = React.createClass({
+	render: function() {
+		return (
+			<p>The graph below scales up as you cast more votes. Green bars indicate your agreement with the general slant of an article, whereas red bars show where you disagreed with the sentiment that Alchemy identified in the article you were reading.</p>
+		)
+	}
+})
+
+function renderWelcomeMessage() {
+	React.renderComponent(
+    <WelcomeMessage/>,
+    document.getElementById('welcomeMessage')
+	);
+}
+
+function renderGraphExplanation() {
+	React.renderComponent(
+    <GraphExplanation/>,
+    document.getElementById('graphExplanation')
+	);
+}
 
 function renderUserProfile(user){
   React.renderComponent(
