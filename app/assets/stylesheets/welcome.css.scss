@@ -10,6 +10,10 @@ body{
   color: white;
 }
 
+.static-first {
+  position: fixed;
+}
+
 .article p {
   font-family: 'Playfair Display', serif;
 }
@@ -69,3 +73,7 @@ body{
   right:10px;
 }
 
+.tick text {
+  margin-right: 5px;
+  margin-left: 5px
+}
