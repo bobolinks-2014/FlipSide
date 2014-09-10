@@ -32,6 +32,10 @@ gem 'pry-nav'
 gem 'rest-client', '~> 1.7.2'
 gem 'nokogiri'
 
+group :test, :development do
+  gem 'jasmine-rails'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.14.1'
   gem 'capybara'
