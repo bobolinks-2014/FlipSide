@@ -46,12 +46,61 @@ var TagCollection = React.createClass({
 	}
 });
 
+// FILTERED MODEL //
+var Search = React.createClass({
+	getInitialState: function(){
+		this.renderArticles;
+		return {column: ""}
+	},
+	renderArticles: function(){
+		var column = [];
+
+		console.log("search did mount");
+
+		// debugger;
+		$.each(this.props.articles, function(){
+			tags = this.article_tags;
+			// send down an array of tags and then the article
+			column.push(<Article options={this} tags= {tags}/>);
+			console.log(column);
+		});
+		this.setState({column: column});
+		console.log(this.state);
+	},
+	componentDidMount:function(){
+		this.renderArticles();
+	},
+	render: function(){
+		return(
+			<div className="row">{this.state.column}</div>
+		)
+	}
+});
+
+
+	// componentWillMount: function(){
+	// 	console.log("componentWillMount")
+	// 	this.renderArticles();
+	// },
+function renderSearch(data){
+		React.renderComponent(
+		<Search articles={data}/>,
+		document.getElementById('container')
+	);
+}
+// TAG MODEL //
 var Tag = React.createClass({
 	onClick: function(){
-		var request = $.get('/filter_tags', {tag_id: this.props.id});
+		console.log("I clicked a tag")
+		var request = $.get('filterTags', {tag_id: this.props.tag.tag_id});
 		request.done(function(data){
-			<Search articles = {data}/>
-		});
+			this.renderSearch(data);
+		}.bind(this));
+	},
+	renderSearch: function(data){
+		console.log("search");
+		// debugger;
+		renderSearch(data);
 	},
 	render: function(){
 		var score = this.props.tag.sentiment_score;
@@ -93,29 +142,6 @@ var Tag = React.createClass({
 });
 
 
-// FILTERED MODEL //
-var Search = React.createClass({
-	getInitialState: function(){
-		return {column: ""}
-	},
-	renderArticles: function(articles){
-		var column = [];
-		$.each(articles, function(i){
-			debugger;
-			tags = articles[i].tags;
-			// send down an array of tags and then the article
-			column.push(<Article options={articles[i]} tags= {tags}/>);
-		})
-		this.setState({column: column});
-	},
-	render: function(){
-
-		this.renderArticles(this.props.articles);
-		return(
-			<div>this.state.column</div>
-		)
-	}
-});
 
 
 // PAIR MODEL //
@@ -161,7 +187,6 @@ var Pair = React.createClass({
 		return [article1tags, article2tags];
 	},
 	componentDidMount: function(){
-		console.log("componentDidMount");
 		this.getArticles();
 	},
 	renderArticles: function(articles, difference_score, tags){
@@ -240,6 +265,7 @@ var Article = React.createClass({
 		});
 	},
 	render: function(){
+		console.log("render Article")
 		return (
 			<div className = 'large-6 columns article-container' style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
 

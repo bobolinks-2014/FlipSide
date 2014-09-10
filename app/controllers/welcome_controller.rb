@@ -9,9 +9,8 @@ class WelcomeController < ApplicationController
 
   def filterTags
     @articles  = Tag.find(params[:tag_id]).articles
-
     if request.xhr?
-      render :json => @articles.to_json
+      render :json => @articles.to_json(:include => {:article_tags=>{:include=>:tag}})
     end
   end
   # all the pairs
