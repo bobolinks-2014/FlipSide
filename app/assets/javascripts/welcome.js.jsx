@@ -21,11 +21,11 @@ var opts = {
 var target = document.getElementById('container');
 var spinner = new Spinner(opts).spin(target);
 
-var styleE = {backgroundColor: "#004400", color:"white", margin: "1px", padding:"10px"}
-var styleD = {backgroundColor: "#2d882d", color:"white", margin: "1px", padding:"10px"}
+var styleE = {backgroundColor: "#910000", color:"white", margin: "1px", padding:"10px"}
+var styleD = {backgroundColor: "#E34848", color:"white", margin: "1px", padding:"10px"}
 var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10px"}
-var styleB = {backgroundColor: "#aa3535", color:"white", margin: "1px", padding:"10px"}
-var styleA = {backgroundColor: "#570000", color:"white", margin: "1px", padding:"10px"}
+var styleB = {backgroundColor: "#3ab53a", color:"white", margin: "1px", padding:"10px"}
+var styleA = {backgroundColor: "#005600", color:"white", margin: "1px", padding:"10px"}
 
 // TAG MODEL //
 var TagCollection = React.createClass({
@@ -103,7 +103,7 @@ var Tag = React.createClass({
 		var score = this.props.tag.sentiment_score;
 		if (score > 0.65 ){
 			var style = {
-				backgroundColor: "#004400",
+				backgroundColor: "#910000",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -111,7 +111,7 @@ var Tag = React.createClass({
 		}
 		else if (score > 0.35 ){
 			var style = {
-				backgroundColor: "#2d882d",
+				backgroundColor: "#E34848",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -127,7 +127,7 @@ var Tag = React.createClass({
 		}
 		else if (score > -0.65 ){
 			var style = {
-				backgroundColor: "#aa3535",
+				backgroundColor: "#3ab53a",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -135,7 +135,7 @@ var Tag = React.createClass({
 		}
 		else{
 			var style = {
-				backgroundColor: "#570000",
+				backgroundColor: "#005600",
 				color: "white",
 				margin: "1px",
 				padding: "10px"
@@ -234,6 +234,16 @@ var Pair = React.createClass({
 					<h3> Read</h3>
 					</div>
 				</div>
+					<div className = "panel large-1 columns static-first hide-for-medium-down">
+						<h4>Tag Bias</h4>
+						<ul className="no-bullet">
+							<li style = {styleA} className= "secondary label"><div>very positive</div></li><br/>
+							<li style = {styleB} className= "secondary label"><div>positive</div></li><br/>
+							<li style = {styleC} className= "secondary label"><div>neutral</div></li><br/>
+							<li style = {styleD} className= "secondary label"><div>negative</div></li><br/>
+							<li style = {styleE} className= "secondary label"><div>very negative</div></li><br/>
+						</ul>
+				</div>
 				<div className='newsFeed large-12 columns'>
 					{this.state.pairs}
 				</div>
@@ -243,22 +253,8 @@ var Pair = React.createClass({
 })
 
 
-// <img src="images/newspapers.png"/>
-	// <div className = "panel large-2 columns static-first hide-for-medium-down">
-	// 				<h4>About</h4>
-	// 				<p>FlipSide is a sentiment-driven news aggregator designed to expose readers to different perspectives on current issues.</p>
-	// 				<h4>Detecting Bias</h4>
-	// 				<ul className="no-bullet">
-	// 					<li style = {styleA} className= "secondary label"><div>very negative</div></li>
-	// 					<li style = {styleB} className= "secondary label"><div>negative</div></li>
-	// 					<li style = {styleC} className= "secondary label"><div>neutral</div></li>
-	// 					<li style = {styleD} className= "secondary label"><div>positive</div></li>
-	// 					<li style = {styleE} className= "secondary label"><div>very positive</div></li>
-	// 				</ul>
-	// 				<p>No news outlet is impartial. Sentiment Tags emphasize this by conveying each article's key themes and the tone associated with its coverage. Articles are paired based on similarity of content and difference in tone.</p>
-	// 			</div>
+
 	// 			<div className="panel large-2 columns hide-this" ></div>
-//				<p className="text-center"> These articles discuss some category </p>
 
 
 // ARTICLE MODEL //
