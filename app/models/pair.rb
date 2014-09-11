@@ -6,7 +6,7 @@ class Pair < ActiveRecord::Base
   belongs_to :user
 
   def self.defaults
-    self.all.where("created_at >= ?", Time.zone.now.ago(86400)).where(user_id: nil)
+    self.all.where("created_at >= ?", Time.zone.now.ago(86400*3)).where(user_id: nil)
   end
 
   def self.for_user(user)

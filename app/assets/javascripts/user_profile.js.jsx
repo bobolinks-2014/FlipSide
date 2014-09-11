@@ -27,6 +27,7 @@ var UserProfile = React.createClass({
 				$('#graphTitle').show();
 			} else {
 				renderWelcomeMessage();
+				$('#graphExplanation').hide();
 			}
 		}.bind(this))
 	},
@@ -215,7 +216,6 @@ $("#user_profile_link").on('click', function(e) {
   request.done(function(response) {
     if(response.success == true) {
       $('#signin_button').foundation('reveal', 'close');
-
       $('.not_logged_in').hide();
       $('.logged_in').show();
       renderUserProfile(response.user);

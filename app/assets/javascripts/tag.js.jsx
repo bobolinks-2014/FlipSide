@@ -25,6 +25,8 @@ var TagCollection = React.createClass({
 //////////////////////////////// TAG MODEL ////////////////////////////////
 var Tag = React.createClass({
   onClick: function(){
+    
+    var name = this.props.tag.tag.name;
     var request = $.get('filterTags', {tag_id: this.props.tag.tag_id});
     request.done(function(data){
       renderSearch(data, name);
