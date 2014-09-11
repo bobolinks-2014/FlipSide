@@ -62,10 +62,14 @@ body{
   height:100%;
 }
 
+.landing h1{
+  color:white;
+  letter-spacing: 0.1em;
+}
 
 .accentWord{
   color: red;
-  letter-spacing: 3px;
+
 }
 
 
@@ -151,9 +155,4 @@ body{
   margin-right: 20%;
   margin-bottom: -6%;
   text-align: justify;
-}
-
-#graphTitle {
-  margin-left: 20%;
-  margin-right: 20%;
 }

@@ -5,7 +5,7 @@ require 'spec_helper'
 describe 'Article' do
   before do
     @category = Category.create!(name: "The bad stuff meow")
-    @article = Article.create!(title: "YOLO",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article = Article.create!(title: "YOLO",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: " is the first few phrases of an article", category_id: @category.id)
 
     @keywords1=[{"text" => "this_is_text1","sentiment" => {"type" => "neutral"}},
                 {"text" => "this_is_text2","sentiment" => {"type" => "fuck_face","score"=> 0.1}},
@@ -17,7 +17,7 @@ describe 'Article' do
 
     @tags = [@tag1, @tag5, @tag6]
 
-    @article2 = Article.create!(title: "FUUUUUUCK",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article2 = Article.create!(title: "FUUUUUUCK",source: "That one place", url: "www.coding4life.org/children/catholicism", slug: "This  the first few phrases of an article", category_id: @category.id)
 
     @article_tag2 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag1.id,sentiment_score:0.8, relevance: 0.5)
     @article_tag3 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:-0.3, relevance: 1.0)
