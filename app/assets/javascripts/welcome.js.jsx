@@ -230,7 +230,7 @@ var Pair = React.createClass({
 				<div className="landing">
 					<div className="row">
 					<br/>
-					<h1 className="accentWord"> Flip/Side</h1>
+					<h1 className> Flip<div className="accentWord inline">/</div>Side</h1>
 					<h3> Every story has another side. </h3>
 					</div>
 				</div>
