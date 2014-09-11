@@ -28,7 +28,6 @@ class WelcomeController < ApplicationController
     end
 
    @pairs = (@pairs.sort_by &:created_at).reverse
-
     if request.xhr?
       render :json => @pairs[starting..ending].to_json(:include=>{
         :category=>{:only => [:name]},

@@ -1,4 +1,3 @@
-require 'pry'
 class Pair < ActiveRecord::Base
   belongs_to :category
   belongs_to :article1, :class_name => "Article"
