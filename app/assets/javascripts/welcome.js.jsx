@@ -639,7 +639,6 @@ var UserProfile = React.createClass({
 	      <div className="userProfile" className="text-center">
 	        <h1>{this.props.user.name}</h1>
 	        <div className="panel" id="welcomeMessage"></div>
-	        <h2 id="graphTitle">Detect Your Biases</h2>
 		      <div className="panel" id="graphExplanation"></div>
 	      </div>
 	      <div id="stackedBar" className="text-center"></div>
@@ -661,7 +660,10 @@ var WelcomeMessage = React.createClass({
 var GraphExplanation = React.createClass({
 	render: function() {
 		return (
-			<p>The graph below scales up as you cast more votes. Green bars indicate your agreement with the general slant of an article, whereas red bars show where you disagreed with the sentiment that Alchemy identified in the article you were reading.</p>
+			<div className = "row">
+				<h2 id="graphTitle">Detect Your Biases</h2>
+				<p> In each article you read, Alchemy analyzed the sentiment towards key topics, revealing the general slant of the article. Green bars indicate your agreement with article bias. Red bars show where you disagreed. The graph scales up as you cast more votes. </p>
+			</div>
 		)
 	}
 })
