@@ -18,8 +18,8 @@ var opts = {
   top: '50%', // Top position relative to parent
   left: '50%' // Left position relative to parent
 };
-var target = document.getElementById('container');
-var spinner = new Spinner(opts).spin(target);
+var spinnerTarget = document.getElementById('container');
+var spinner = new Spinner(opts).spin(spinnerTarget);
 
 var styleE = {backgroundColor: "#910000", color:"white", margin: "1px", padding:"10px"}
 var styleD = {backgroundColor: "#E34848", color:"white", margin: "1px", padding:"10px"}
@@ -27,31 +27,7 @@ var styleC = {backgroundColor: "gray", color:"white", margin: "1px", padding:"10
 var styleB = {backgroundColor: "#3ab53a", color:"white", margin: "1px", padding:"10px"}
 var styleA = {backgroundColor: "#005600", color:"white", margin: "1px", padding:"10px"}
 
-// TAG MODEL //
-var TagCollection = React.createClass({
-	getInitialState: function(){
-
-		return {tagCollection: this.getTags(this.props.tags)};
-	},
-	getTags: function(tags){
-		tag_arr = [];
-		$.each(tags, function(i){
-			tag_arr.push(this.renderTag(tags[i]));
-		}.bind(this));
-		return tag_arr;
-	},
-
-	renderTag: function(tag){
-		return <Tag tag={tag}/>
-	},
-	render: function(){
-		return(
-			<div className="tagCollection">{this.state.tagCollection}</div>
-		)
-	}
-});
-
-// FILTERED MODEL //
+//////////////////////////////// SEARCH MODEL ////////////////////////////////
 var Search = React.createClass({
 	getInitialState: function(){
 		this.renderArticles;
@@ -93,75 +69,9 @@ var Search = React.createClass({
 	}
 });
 
-function renderSearch(data, name){
-		React.renderComponent(
-		<Search articles={data} header={name}/>,
-		document.getElementById('container')
-	);
-}
-// TAG MODEL //
-var Tag = React.createClass({
-	onClick: function(){
-		var name = this.props.tag.tag.name
-		console.log("I clicked a tag: "+name)
-		var request = $.get('filterTags', {tag_id: this.props.tag.tag_id});
-		request.done(function(data){
-			renderSearch(data, name);
-		}.bind(this));
-	},
-	render: function(){
-		var score = this.props.tag.sentiment_score;
-		if (score > 0.65 ){
-			var style = {
-				backgroundColor: "#005600",
-				color: "white",
-				margin: "1px",
-				padding: "7px"
-			};
-		}
-		else if (score > 0.35 ){
-			var style = {
-				backgroundColor: "#3ab53a",
-				color: "white",
-				margin: "1px",
-				padding: "7px"
-			};
-		}
-		else if (score > -0.35 ){
-			var style = {
-				backgroundColor: "gray",
-				color: "white",
-				margin: "1px",
-				padding: "7px"
-			};
-		}
-		else if (score > -0.65 ){
-			var style = {
-				backgroundColor: "#E34848",
-				color: "white",
-				margin: "1px",
-				padding: "7px"
-			};
-		}
-		else{
-			var style = {
-				backgroundColor: "#910000",
-				color: "white",
-				margin: "1px",
-				padding: "7px"
-			};
-		};
-
-		return(
-			<div style = {style} className= "tag radius secondary label" onClick={this.onClick}>{this.props.tag.tag.name}</div>
-		)
-	}
-});
 
 
-
-
-// PAIR MODEL //
+//////////////////////////////// PAIR MODEL ////////////////////////////////
 
 var Pair = React.createClass({
 	getInitialState: function(){
@@ -173,7 +83,7 @@ var Pair = React.createClass({
 
 		pair_arr = [];
 		request.progress(function(){
-			console.log( "waiting ...")
+
 		});
 		request.done(function(data){
 			$.each(data, function(index){
@@ -205,11 +115,9 @@ var Pair = React.createClass({
 				}
 			})
 		})
-		// this is an array of common tags where each element of the array is an article tag...because i needed that.
 		return [article1tags, article2tags];
 	},
 	componentDidMount: function(){
-		console.log("componentDidMount");
 		this.getArticles(0,3);
 		this.getArticles(4,9);
 		this.getArticles(10,-1);
@@ -232,9 +140,6 @@ var Pair = React.createClass({
 		);
 	},
 	render:function(){
-
-		console.log("rendering pairs");
-
 		return (
 			<div>
 				<div className="landing">
@@ -262,13 +167,7 @@ var Pair = React.createClass({
 	}
 })
 
-
-
-	// 			<div className="panel large-2 columns hide-this" ></div>
-
-
-// ARTICLE MODEL //
-// for security reasons...you can't access the url of an iframe.
+//////////////////////////////// ARTICLE MODEL ////////////////////////////////
 var Article = React.createClass({
 	getInitialState: function(){
 		return {
@@ -301,7 +200,6 @@ var Article = React.createClass({
 		});
 	},
 	render: function(){
-		console.log("render Article")
 		var classSet = this.props.size+' article-container'
 		return (
 			<div className = {classSet} style={this.state.style} onMouseOver = {this.onMouseOver} onMouseLeave = {this.onMouseLeave}>
@@ -321,7 +219,7 @@ var Article = React.createClass({
 });
 
 
-// RATING MODEL //
+//////////////////////////////// RATING MODEL ////////////////////////////////
 var Rating = React.createClass({
 	getInitialState: function(){
 		var style = {
@@ -357,111 +255,21 @@ var Rating = React.createClass({
 
 
 function renderPair(){
-	console.log("renderPair method")
 	React.renderComponent(
 	<Pair/>,
 	document.getElementById('container')
 	);
 }
 
-function removeIFrame(){
-	if ($('iframe').length !== 0){
-		$('iframe').remove();
-		$('.button.close').remove();
-	}
+function renderSearch(data, name){
+		React.renderComponent(
+		<Search articles={data} header={name}/>,
+		document.getElementById('container')
+	);
 }
 
-$('div').on("click",".article",function(e){
-	e.preventDefault();
-	var url = this.firstChild.className;
-	removeIFrame();
 
-	$('#myModal').append("<iframe  src="+url+" class= 'large-12 columns' height='95%' width='80%' id='frame'></iframe>");
-	//$("#myModal iframe").on('autocompleteerror autocomplete waiting volumechange toggle timeupdate suspend submit stalled show select seeking seeked scroll resize reset ratechange progress playing play pause mousewheel mouseup mouseover mouseout mousemove mouseleave mouseenter mousedown loadstart loadedmetadata loadeddata load keyup keypress keydown invalid input focus error ended emptied durationchange drop dragstart dragover dragleave dragenter dragend drag dblclick cuechange contextmenu close click change canplaythrough canplay cancel blur abort wheel webkitfullscreenerror webkitfullscreenchange selectstart search paste cut copy beforepaste beforecut beforecopy', function(event) {console.log(event);})
-
-});
-
-
-$("#goHome").on("click", function(e){
-	e.preventDefault();
-	renderPair();
-})
-$('div').on("click","#enter", function(e){
-    e.preventDefault();
-    $( '#landing' ).fadeOut( 1000 );
-    $( '#manifesto' ).fadeOut( 1000 );
-    renderPair();
-  });
-
-$('div').on("mouseover","#enter", function(){
-  $("#enter").fadeOut( 1000 );
-  $("#enter").fadeIn( 1000 );
-});
-
-$("#signin_form").on('submit', function(e) {
-	e.preventDefault();
-
-	var email = $("#signin_email").val();
-	var password = $("#signin_password").val();
-
-	var request = $.ajax({
-		type: "POST",
-		url: '/sessions',
-    data: { email: email, password: password },
-	});
-
-	request.done(function(response) {
-		if(response.success == true) {
-			$('#signin_button').foundation('reveal', 'close');
-			$('.not_logged_in').hide();
-			$('.logged_in').show();
-			location.reload();
-			renderPair();
-		} else {
-		console.log('failed');
-			$("div#error ul").append('<li>'+response.error+'</li>');
-      renderPair();
-    }
-	})
-});
-
-$("#signup_form").on('submit', function(e) {
-	e.preventDefault();
-	var name = $("#signup_name").val();
-	var email = $("#signup_email").val();
-	var password = $("#signup_password").val();
-	var password_confirmation = $("#signup_password_confirmation").val();
-	var request = $.ajax({
-		type: "POST",
-		url: '/users',
-		data: { user: {name: name, email: email, password: password, password_confirmation: password_confirmation} },
-		dataType: "json"
-	});
-
-	request.done(function(response) {
-		if(response.success == true) {
-			console.log('success');
-			$('#signup_button').foundation('reveal', 'close');
-			$('.not_logged_in').hide();
-			$('.logged_in').show();
-			location.reload();
-			renderPair();
-		} else {
-			$.each(response.error, function(i) {
-				$("div#error ul").append('<li>'+response.error[i]+'</li>');
-		});
-    renderPair();
-    }
-	})
-	return request;
-});
-
-$('a.close-reveal-modal').on("click", function() {
-	$("div#error ul li").remove();
-});
-
-
-// USER PROFILE //
+//////////////////////////////// USER PROFILE ////////////////////////////////
 
 var UserProfile = React.createClass({
 	getInitialState: function() {
@@ -493,24 +301,13 @@ var UserProfile = React.createClass({
 				renderWelcomeMessage();
 			}
 		}.bind(this))
-		// AJAX request, get user and data
-		// Call render methods for profileData, stackedBarData, and packedCirclesData
 	},
 
 	renderStackedBarGraph: function(stackedBarData) {
-		//Width and height
-		//add as many elements to data as necessary, all layers should be present in first data element, add or remove layer elements as necessary
 		var data = stackedBarData
-
-		//get the layernames present in the first data element
-
 		var layernames = d3.keys(data[0].layers);
-
-		//get idheights, to use for determining scale extent, also get barnames for scale definition
-
 		var idheights = [];
 		var barnames = [];
-
 		for (var i=0; i<data.length; i++) {
 		    tempvalues = d3.values(data[i].layers);
 		    tempsum = 0;
@@ -518,15 +315,8 @@ var UserProfile = React.createClass({
 		    idheights.push(tempsum);
 		    barnames.push(data[i].name);
 		};
-
 		var final_bar_names = [];
-
 		for (var e=0; e<barnames.length; e++) {
-			// console.log(barnames[e]);
-			// var split_arr = barnames[e].split(' ');
-			// console.log(split_arr);
-			// var new_title = split_arr.join("\n");
-			// console.log(new_title);
 			final_bar_names.push(barnames[e]);
 		}
 
