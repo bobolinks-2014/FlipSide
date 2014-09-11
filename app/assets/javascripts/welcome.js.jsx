@@ -520,7 +520,7 @@ var UserProfile = React.createClass({
 
 		console.log(final_bar_names)
 
-		var margin = {top: 150, right: 150, bottom: 150, left: 150},
+		var margin = {top: 150, right: 150, bottom: 300, left: 150},
 		    width = 1000 - margin.left - margin.right,
 		    height = 800 - margin.top - margin.bottom;
 
