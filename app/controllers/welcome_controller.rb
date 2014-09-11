@@ -8,9 +8,7 @@ class WelcomeController < ApplicationController
   end
 
   def filterTags
-    p "*"*100
     tag =  Tag.find(params[:tag_id])
-    p tag.name
     @articles  = tag.articles
     if request.xhr?
       render :json => @articles.to_json(:include => {:article_tags=>{:include=>:tag}})
@@ -24,10 +22,8 @@ class WelcomeController < ApplicationController
 
     # get pairs for a particular user
     if signed_in?
-      p "signed in"
       @pairs = Pair.for_user(current_user)
     else
-      p "not signed in"
       @pairs = Pair.defaults
     end
 
