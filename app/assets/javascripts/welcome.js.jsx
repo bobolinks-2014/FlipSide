@@ -77,6 +77,16 @@ var Search = React.createClass({
 			<div>
 
 				<h2 className="text-center">Articles tagged {this.props.header}</h2>
+				<div className = "panel large-1 columns static-first hide-for-medium-down">
+						<h4>Tag Bias</h4>
+						<ul className="no-bullet">
+							<li style = {styleA} className= "secondary label"><div>very positive</div></li><br/>
+							<li style = {styleB} className= "secondary label"><div>positive</div></li><br/>
+							<li style = {styleC} className= "secondary label"><div>neutral</div></li><br/>
+							<li style = {styleD} className= "secondary label"><div>negative</div></li><br/>
+							<li style = {styleE} className= "secondary label"><div>very negative</div></li><br/>
+						</ul>
+				</div>
 				<div className="row">{this.state.column}</div>
 			</div>
 		)
@@ -106,7 +116,7 @@ var Tag = React.createClass({
 				backgroundColor: "#005600",
 				color: "white",
 				margin: "1px",
-				padding: "10px"
+				padding: "7px"
 			};
 		}
 		else if (score > 0.35 ){
@@ -114,7 +124,7 @@ var Tag = React.createClass({
 				backgroundColor: "#3ab53a",
 				color: "white",
 				margin: "1px",
-				padding: "10px"
+				padding: "7px"
 			};
 		}
 		else if (score > -0.35 ){
@@ -122,7 +132,7 @@ var Tag = React.createClass({
 				backgroundColor: "gray",
 				color: "white",
 				margin: "1px",
-				padding: "10px"
+				padding: "7px"
 			};
 		}
 		else if (score > -0.65 ){
@@ -130,7 +140,7 @@ var Tag = React.createClass({
 				backgroundColor: "#E34848",
 				color: "white",
 				margin: "1px",
-				padding: "10px"
+				padding: "7px"
 			};
 		}
 		else{
@@ -138,7 +148,7 @@ var Tag = React.createClass({
 				backgroundColor: "#910000",
 				color: "white",
 				margin: "1px",
-				padding: "10px"
+				padding: "7px"
 			};
 		};
 
@@ -469,7 +479,6 @@ var UserProfile = React.createClass({
 		});
 		console.log("componentDidMount")
 		request.done(function(response) {
-			debugger;
 			if(response.success === true && response.user.dataset.length != 0) {
 				console.log("in here")
 				console.log(response.user.dataset)
@@ -523,7 +532,7 @@ var UserProfile = React.createClass({
 
 		console.log(final_bar_names)
 
-		var margin = {top: 150, right: 150, bottom: 150, left: 150},
+		var margin = {top: 150, right: 150, bottom: 200, left: 150},
 		    width = 1000 - margin.left - margin.right,
 		    height = 800 - margin.top - margin.bottom;
 
@@ -662,7 +671,11 @@ var GraphExplanation = React.createClass({
 		return (
 			<div className = "row">
 				<h2 id="graphTitle">Detect Your Biases</h2>
-				<p> In each article you read, Alchemy analyzed the sentiment towards key topics, revealing the general slant of the article. Green bars indicate your agreement with article bias. Red bars show where you disagreed. The graph scales up as you cast more votes. </p>
+				<p>  Alchemy's natural language processing API parses each article on Flip/Side for keywords, and assisgns them a positive or negative sentiment based on the tone of their context within the text.
+				<br/>
+				<br/>
+				  This graph displays your history of each tag associated with an article you've rated. Green bars show the number of times you've agreed with the positive tone of a tag, or disagreed with the negative tone of a tag. Comparatively, red bars show the number of times you've agreed with the negative tone of a tag, or disagreed with the positive tone of a tag.
+				</p>
 			</div>
 		)
 	}
