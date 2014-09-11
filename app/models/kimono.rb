@@ -6,7 +6,7 @@ NUMBER_OF_KEYWORDS = 3
 class Kimono
   #untested
   def self.scrape
-    urls_array = MyNoko.world_news_parse("https://news.google.com/news/section?pz=1&cf=all&ned=us&topic=n")
+    urls_array = MyNoko.world_news_parse("https://news.google.com/news/section?pz=1&cf=all&ned=us&topic=w")
 
     urls_array.each do |url|
       MyNoko.parse(url)
