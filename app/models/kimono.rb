@@ -1,5 +1,4 @@
 require 'rest_client'
-require 'pry'
 
 # of keywords to pair articles on
 NUMBER_OF_KEYWORDS = 3
@@ -67,7 +66,6 @@ class Kimono
                      category_id: category.id)
 
       keywords = Alchemy.alchemize(new_article.url)
-      # binding.pry
       new_article.make_tags(keywords, 10)
     end
   end
