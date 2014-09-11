@@ -55,19 +55,19 @@ describe User do
     @usertag812 = UserTag.create!(user_id: @user.id, tag_id: @tag4.id, relevance: 0.1, sentiment_score: -0.5, agreement: false)
 
 
-    @article = Article.create!(title: "qwertyugvu",source: "That one place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article = Article.create!(title: "qwertyugvu",source: "That one place", url: "www.coding4life.org/", slug: "This is  first few phrases of an article", category_id: @category.id)
     @article_tag2 = ArticleTag.create!(article_id: @article.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
     @article_tag3 = ArticleTag.create!(article_id: @article.id, tag_id: @tag3.id,sentiment_score:-0.3, relevance: 1.0)
     @article_tag4 = ArticleTag.create!(article_id: @article.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
 
 
-    @article2 = Article.create!(title: "qwertyui",source: "That other place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article2 = Article.create!(title: "qwertyui",source: "That other place", url: "www.coding4life.org/", slug: "This ithe first few phrases of an article", category_id: @category.id)
     @article_tag5 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
     @article_tag6 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag6.id,sentiment_score:-0.3, relevance: 1.0)
     @article_tag4 = ArticleTag.create!(article_id: @article2.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
 
 
-    @article3 = Article.create!(title: "YOLAAAAAA",source: "Some place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+    @article3 = Article.create!(title: "YOLAAAAAA",source: "Some place", url: "www.coding4life.org/", slug: "Tis the first few phrases of an article", category_id: @category.id)
     @article_tag13 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
     @article_tag12 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag1.id,sentiment_score:-0.3, relevance: 1.0)
     @article_tag11 = ArticleTag.create!(article_id: @article3.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
@@ -169,7 +169,7 @@ describe User do
       @usertag2 = UserTag.create!(user_id: @user.id, tag_id: @tag2.id, relevance: 0.5, sentiment_score: 0.7, agreement: true)
       @usertag3 = UserTag.create!(user_id: @user.id, tag_id: @tag3.id, relevance: 0.1, sentiment_score: -0.5, agreement: false)
 
-      @article = Article.create!(title: "qwertyugvu",source: "which place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article")
+      @article = Article.create!(title: "qwertyugvu",source: "which place", url: "www.coding4life.org/", slug: "This ishrases of an article")
       @article_tag2 = ArticleTag.create!(article_id: @article.id, tag_id: @tag2.id,sentiment_score:0.8, relevance: 1.0)
       @article_tag3 = ArticleTag.create!(article_id: @article.id, tag_id: @tag3.id,sentiment_score:-0.3, relevance: 1.0)
       @article_tag4 = ArticleTag.create!(article_id: @article.id, tag_id: @tag4.id,sentiment_score:-0.111, relevance: 1.0)
@@ -218,13 +218,13 @@ describe User do
 
     it "returns the category's default match if custom match is unavailable" do
       @category2 = Category.create!
-      @article777 = Article.create!(title: "qwertyui",source: "another place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article777 = Article.create!(title: "qwertyui",source: "another place", url: "www.coding4life.org/", slug: "This is the  of an article", category_id: @category.id)
       @article_tag1111 = ArticleTag.create!(article_id: @article777.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
       @article_tag2222 = ArticleTag.create!(article_id: @article777.id, tag_id: @tag6.id,sentiment_score:-0.3, relevance: 1.0)
       @article_tag3333 = ArticleTag.create!(article_id: @article777.id, tag_id: @tag6.id,sentiment_score:-0.111, relevance: 1.0)
 
 
-      @article666 = Article.create!(title: "YOLAAAAAA",source: " place", url: "www.coding4life.org/", slug: "This is the first few phrases of an article", category_id: @category.id)
+      @article666 = Article.create!(title: "YOLAAAAAA",source: " place", url: "www.coding4life.org/", slug: "T12 first few phrases of an article", category_id: @category.id)
       @article_tag4444 = ArticleTag.create!(article_id: @article666.id, tag_id: @tag5.id,sentiment_score:0.8, relevance: 1.0)
       @article_tag5555 = ArticleTag.create!(article_id: @article666.id, tag_id: @tag6.id,sentiment_score:-0.3, relevance: 1.0)
       @article_tag6666 = ArticleTag.create!(article_id: @article666.id, tag_id: @tag6.id,sentiment_score:-0.111, relevance: 1.0)
