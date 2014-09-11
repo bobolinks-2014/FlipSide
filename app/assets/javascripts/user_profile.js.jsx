@@ -173,7 +173,7 @@ var GraphExplanation = React.createClass({
 		return (
 			<div className = "row">
 				<h2 id="graphTitle">Detect Your Biases</h2>
-				<p>  Alchemy's natural language processing API parses each article on Flip/Side for keywords, and assisgns them a positive or negative sentiment based on the tone of their context within the text.
+				<p>  Alchemy's natural language processing API parses each article on Flip/Side for keywords, and assigns them a positive or negative sentiment based on the tone of their context within the text.
 				<br/>
 				<br/>
 				  This graph displays your history of each tag associated with an article you've rated. Green bars show the number of times you've agreed with the positive tone of a tag, or disagreed with the negative tone of a tag. Comparatively, red bars show the number of times you've agreed with the negative tone of a tag, or disagreed with the positive tone of a tag.
