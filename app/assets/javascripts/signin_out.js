@@ -24,7 +24,6 @@ $("#signin_form").on('submit', function(e) {
       location.reload();
       renderPair();
     } else {
-    console.log('failed');
       $("div#error ul").append('<li>'+response.error+'</li>');
       renderPair();
     }
@@ -46,7 +45,6 @@ $("#signup_form").on('submit', function(e) {
 
   request.done(function(response) {
     if(response.success == true) {
-      console.log('success');
       $('#signup_button').foundation('reveal', 'close');
       $('.not_logged_in').hide();
       $('.logged_in').show();
