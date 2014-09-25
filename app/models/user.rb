@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   end
 
   #makes the user_tag with an article and a true/false agreement value
+  #called in welcome_controller
   def vote(article,agreement)
     article.article_tags.each do |article_tag|
       tag = article_tag.tag
@@ -34,7 +35,9 @@ class User < ActiveRecord::Base
                      agreement: agreement)
     end
   end
+
  #return a hash with tags(associated to the user) and their weighted_tag_score
+ #called in users_controller
   def opinions
     opinions_hash = Hash.new(0)
     self.tags.each do |tag|
@@ -44,6 +47,7 @@ class User < ActiveRecord::Base
   end
 
   #make sentiment, agreement, relevance attr_reader
+  #called by opionions, and therefore in users_controller
   def weighted_tag_score(tag)
     user_tags = self.user_tags.where(tag_id: tag.id)
 
@@ -59,6 +63,12 @@ class User < ActiveRecord::Base
     weighted_tag_score = numerator/denominator
   end
 
+
+  #finds or creates pairs based on user data
+  #called by kimono#pair_user_articles
+  #called in :users rake task
+  #calls User#possible_article_matches
+  #cals Category#find_pair
   def custom_match(category)
     closest_matching_article = possible_article_matches(category)[-1].keys[0]
 
@@ -75,6 +85,11 @@ class User < ActiveRecord::Base
 
   end
 
+  #returns an ordered array of possible matches in a category, for a user
+  #called by User#custom_match and in :users rake task
+  #calls user#overlapping_tags
+  #calls user#find_quotient
+  #calls user#vote_count
   def possible_article_matches(category)
     possible_matches = []
     articles = category.articles
@@ -92,6 +107,8 @@ class User < ActiveRecord::Base
     possible_matches.sort_by { |hash| hash.values[0] }
   end
 
+  #called from User#possible_article_matches and therefore in :users rake task
+  #calls User#overlapping_tags  
   def find_quotient(article)
     quotient = 0
     user_opinions = self.opinions
@@ -107,6 +124,9 @@ class User < ActiveRecord::Base
     return quotient
   end
 
+  #called by both user#find_quotient && user#possible_article_matches
+  #and therefore in :user rake task
+  #returns the array of tags the both the user and article share
   def overlapping_tags(article)
     user_tags = self.tags
     article_tags = article.tags
@@ -114,7 +134,9 @@ class User < ActiveRecord::Base
     user_tags & article_tags
   end
 
-  # might be better elsewhere
+  # called from user#possible_article_match
+  # called in :user rake task
+  # counts the total number of user_tags (votes) that a user has made on the tags given in parameters
   def vote_count(overlapping_tags)
     user_tags_count = self.user_tags.where(tag_id: overlapping_tags).size
   end

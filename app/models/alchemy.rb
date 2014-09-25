@@ -1,6 +1,8 @@
 require_relative '../../lib/assets/alchemyapi.rb'
 
 class Alchemy
+  #called from MyNoko.make_articles & therfore called in every rake Scrape
+  #keywords are passed to Article#make_tags
   def self.alchemize(url)
     alchemyapi = AlchemyAPI.new()
     response = alchemyapi.combined('url', url, { 'extract'=>'keyword', 'sentiment'=>1 })
@@ -12,6 +14,8 @@ class Alchemy
     response["keywords"]
   end
 
+
+  #not called anywhere
   def self.test_alchemize
     test_url= 'http://online.wsj.com/articles/russia-says-ukraine-nato-ambitions-threaten-peace-efforts-1409828434'
     tags = Alchemy.alchemize(test_url)

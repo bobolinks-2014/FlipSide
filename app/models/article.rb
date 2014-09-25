@@ -6,7 +6,8 @@ class Article < ActiveRecord::Base
   belongs_to :category
   validates :slug, uniqueness: :true
 
-
+  #fed by Alchemy.alchemize - Called a ton if we rake Scrape.
+  #makes tags from keywords, and makes article tags with relevant scores
   def make_tags(keywords, number)
     keywords[0...number].each do |keyword|
       kw_name = keyword["text"]

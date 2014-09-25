@@ -13,6 +13,9 @@ class Category < ActiveRecord::Base
   end
 
   #Runner method; returns a pair object given the number of keywords
+  #called in :default rake task
+  #called by Kimono.process_categories
+  #calls Category#find_pair
   def make_pair
 
     return self.articles.first if self.articles.size == 1
@@ -26,7 +29,10 @@ class Category < ActiveRecord::Base
 
   end
 
-
+  #called by Category#make_pair and 
+  #used in :default rake task
+  #pairs an article if there exists an article with two of the same tags in the same category
+  #calls category#sum_differences, compare_tags
   def find_pair(article=nil)
     article_pair = [0,0,0]
 
@@ -54,6 +60,8 @@ class Category < ActiveRecord::Base
   end
 
   #method for evaluating differences between articles' relevant tags scores'
+  #called by find_pair
+  #used in :default rake task
   def sum_differences(article1, article2)
     sum = 0
 
@@ -69,6 +77,8 @@ class Category < ActiveRecord::Base
     return sum
   end
 
+  #called by find_pair 
+  #used in :default rake task
   def compare_tags(article1, article2, number)
     similarities = (article1.tags & article2.tags).size
     similarities >= number
